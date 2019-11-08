@@ -18,12 +18,12 @@ jobs:
           command: yes | sdkmanager --update || true
       - run:
           name: Install Android SDK Packages
-          command: yes | sdkmanager --install "build-tools;27.0.3" "tools" "platform-tools" "platforms;android-27" || true
+          command: yes | sdkmanager --install "build-tools;29.0.2" "tools" "platform-tools" "platforms;android-29" || true
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - save_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}-{{ checksum "hiroaki-core/build.gradle" }}-{{ checksum "hiroaki-android/build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}-{{ checksum "library/build.gradle" }}
           paths:
             - ~/.gradle
       - run:
@@ -31,12 +31,8 @@ jobs:
           command: ./gradlew :app:ktlint
           when: always
       - run:
-          name: Run Klint on hiroaki core module
-          command: ./gradlew :hiroaki-core:ktlint
-          when: always
-      - run:
-          name: Run Klint on hiroaki android module
-          command: ./gradlew :hiroaki-android:ktlint
+          name: Run Klint on library module
+          command: ./gradlew :library:ktlint
           when: always
       - run:
           name: Run Unit Tests
