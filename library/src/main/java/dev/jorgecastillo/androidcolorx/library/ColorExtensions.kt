@@ -1,14 +1,21 @@
 package dev.jorgecastillo.androidcolorx.library
 
 import android.graphics.Color
+import androidx.annotation.ColorInt
+import androidx.annotation.NonNull
 import androidx.core.graphics.ColorUtils
 import kotlin.math.max
 import kotlin.math.roundToInt
 
-fun Int.toRGB() = "${Color.red(this)} / ${Color.green(this)} / ${Color.blue(this)}"
-fun Int.toHex() = String.format("#%06X", 0xFFFFFF and this)
-fun Int.toHexPureValue() = toHex().drop(1)
-fun Int.toHSL() = this.let { color ->
+fun @receiver:ColorInt Int.toRGB(): String =
+    "${Color.red(this)} / ${Color.green(this)} / ${Color.blue(this)}"
+
+fun @receiver:ColorInt Int.toHex(): String = String.format("#%06X", 0xFFFFFF and this)
+
+fun @receiver:ColorInt Int.toHexPureValue(): String = toHex().drop(1)
+
+@NonNull
+fun @receiver:ColorInt Int.toHSL(): String = this.let { color ->
     FloatArray(3).apply { ColorUtils.colorToHSL(color, this) }.let {
         "${String.format("%.2f", it[0])}º / ${String.format(
             "%.2f",
@@ -20,7 +27,7 @@ fun Int.toHSL() = this.let { color ->
 /**
  * Formula extracted from {@see https://www.rapidtables.com/convert/color/rgb-to-cmyk.html}.
  */
-fun Int.toCMYK(): String {
+fun @receiver:ColorInt Int.toCMYK(): String {
     val r = Color.red(this)
     val g = Color.green(this)
     val b = Color.blue(this)
@@ -40,7 +47,7 @@ fun Int.toCMYK(): String {
     )} / ${String.format("%.2f", k)}"
 }
 
-fun Int.getShades(): List<Int> {
+fun @receiver:ColorInt Int.getShades(): List<Int> {
     val colorHSL = FloatArray(3)
     ColorUtils.colorToHSL(this, colorHSL)
 
@@ -54,7 +61,7 @@ fun Int.getShades(): List<Int> {
     }
 }
 
-fun Int.getTints(): List<Int> {
+fun @receiver:ColorInt Int.getTints(): List<Int> {
     val colorHSL = FloatArray(3)
     ColorUtils.colorToHSL(this, colorHSL)
 
@@ -71,7 +78,7 @@ fun Int.getTints(): List<Int> {
  * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The complimentary color stands for the
  * color in the opposite side of the circle, so it's (hue + 180) % 360.
  */
-fun Int.complimentary(): Int {
+fun @receiver:ColorInt Int.complimentary(): Int {
     val colorHSL = FloatArray(3)
     ColorUtils.colorToHSL(this, colorHSL)
     val hue = colorHSL[0] // 0° to 359°
@@ -87,7 +94,7 @@ fun Int.complimentary(): Int {
  *
  * Triadic colors for h0 would be (hue + 120) % 360 and (hue + 240) % 360.
  */
-fun Int.triadic(): Pair<Int, Int> {
+fun @receiver:ColorInt Int.triadic(): Pair<Int, Int> {
     val colorHSL = FloatArray(3)
     ColorUtils.colorToHSL(this, colorHSL)
     val hue = colorHSL[0] // 0° to 359°
@@ -107,7 +114,7 @@ fun Int.triadic(): Pair<Int, Int> {
  *
  * Tetradic colors for h0 would be (hue + 90) % 360, (hue + 180) % 360 and (hue + 270) % 360.
  */
-fun Int.tetradic(): Triple<Int, Int, Int> {
+fun @receiver:ColorInt Int.tetradic(): Triple<Int, Int, Int> {
     val colorHSL = FloatArray(3)
     ColorUtils.colorToHSL(this, colorHSL)
     val hue = colorHSL[0] // 0° to 359°
@@ -130,7 +137,7 @@ fun Int.tetradic(): Triple<Int, Int, Int> {
  *
  * Analogous colors for h0 would be (hue + 30) % 360 & (hue - 30) % 360.
  */
-fun Int.analogous(): Pair<Int, Int> {
+fun @receiver:ColorInt Int.analogous(): Pair<Int, Int> {
     val colorHSL = FloatArray(3)
     ColorUtils.colorToHSL(this, colorHSL)
     val hue = colorHSL[0] // 0° to 359°
@@ -143,3 +150,8 @@ fun Int.analogous(): Pair<Int, Int> {
 
     return Pair(ColorUtils.HSLToColor(h1), ColorUtils.HSLToColor(h2))
 }
+
+/**
+ * Check if a color is dark (convert to XYZ & check Y component)
+ */
+fun @receiver:ColorInt Int.isDark(): Boolean = ColorUtils.calculateLuminance(this) < 0.5

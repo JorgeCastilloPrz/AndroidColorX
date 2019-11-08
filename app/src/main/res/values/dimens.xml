@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="spacing_smallest">2dp</dimen>
+  <dimen name="spacing_very_small">4dp</dimen>
+  <dimen name="spacing_small">8dp</dimen>
+  <dimen name="spacing">16dp</dimen>
+  <dimen name="spacing_medium">20dp</dimen>
+  <dimen name="spacing_big">24dp</dimen>
+  <dimen name="spacing_very_big">32dp</dimen>
+  <dimen name="spacing_biggest">48dp</dimen>
+
+  <dimen name="card_corner_radius">4dp</dimen>
+  <dimen name="dot_size">32dp</dimen>
+  <dimen name="dot_size_big">72dp</dimen>
+  <dimen name="generated_color_size">92dp</dimen>
+  <dimen name="cutout_bottom_sheet_elevation">8dp</dimen>
+  <dimen name="cutout_bottom_sheet_radius">32dp</dimen>
+  <dimen name="toolbar_text_size">20sp</dimen>
+  <dimen name="generated_color_activity_header">180dp</dimen>
+  <dimen name="icon_button_size">52dp</dimen>
+  <dimen name="clothes_item_height">300dp</dimen>
+  <dimen name="progress_thin_stroke_width">4dp</dimen>
+  <dimen name="progress_medium_stroke_width">6dp</dimen>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/generated_color_size"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_smallest"
+    tools:background="@color/background_card"
+    >
+
+  <dev.jorgecastillo.androidcolorx.RoundedCornersColor
+      android:id="@+id/colorSquare"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/generated_color_size"
+      app:color="@color/colorAccent"
+      />
+
+  <TextView
+      android:id="@+id/colorText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:padding="@dimen/spacing_small"
+      android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+      android:textColor="@color/white"
+      tools:text="#38B0C8"
+      />
+</LinearLayout>

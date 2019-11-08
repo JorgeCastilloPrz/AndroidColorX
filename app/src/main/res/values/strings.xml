@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">AndroidColorX</string>
+    <string name="rgb">RGB: %1$s</string>
+    <string name="cmyk">CMYK: %1$s</string>
+    <string name="color_name">\"%1$s\"</string>
+    <string name="shades">Shades</string>
+    <string name="tints">Tints</string>
+    <string name="complimentary">Complimentary color</string>
+    <string name="triadic">Triadic colors</string>
+    <string name="tetradic">Tetradic colors</string>
+    <string name="analogous">Analogous colors</string>
 </resources>
