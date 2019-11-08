@@ -40,7 +40,6 @@ fun Int.toCMYK(): String {
     )} / ${String.format("%.2f", k)}"
 }
 
-
 fun Int.getShades(): List<Int> {
     val colorHSL = FloatArray(3)
     ColorUtils.colorToHSL(this, colorHSL)
