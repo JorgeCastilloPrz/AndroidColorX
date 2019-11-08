@@ -18,10 +18,10 @@ import dev.jorgecastillo.androidcolorx.library.getShades
 import dev.jorgecastillo.androidcolorx.library.getTints
 import dev.jorgecastillo.androidcolorx.library.isDark
 import dev.jorgecastillo.androidcolorx.library.tetradic
-import dev.jorgecastillo.androidcolorx.library.toCMYK
-import dev.jorgecastillo.androidcolorx.library.toHSL
-import dev.jorgecastillo.androidcolorx.library.toHex
-import dev.jorgecastillo.androidcolorx.library.toRGB
+import dev.jorgecastillo.androidcolorx.library.asCMYK
+import dev.jorgecastillo.androidcolorx.library.asHSL
+import dev.jorgecastillo.androidcolorx.library.asHex
+import dev.jorgecastillo.androidcolorx.library.asRGB
 import dev.jorgecastillo.androidcolorx.library.triadic
 import kotlinx.android.synthetic.main.activity_main.analogousColor1
 import kotlinx.android.synthetic.main.activity_main.analogousColor1Hex
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             if (selectedColor.isDark()) R.color.white else R.color.black
         )
         selectedColorHex.setTextColor(headerTextColor)
-        selectedColorHex.text = selectedColor.toHex()
+        selectedColorHex.text = selectedColor.asHex().toString()
 
         generateColors(selectedColor)
     }
@@ -141,10 +141,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 popup.setOnMenuItemClickListener {
                     when (it.itemId) {
-                        0 -> copyToClipboard(selectedColor().toRGB())
-                        1 -> copyToClipboard(selectedColor().toHex())
-                        2 -> copyToClipboard(selectedColor().toCMYK())
-                        3 -> copyToClipboard(selectedColor().toHSL())
+                        0 -> copyToClipboard(selectedColor().asRGB().toString())
+                        1 -> copyToClipboard(selectedColor().asHex().toString())
+                        2 -> copyToClipboard(selectedColor().asCMYK().toString())
+                        3 -> copyToClipboard(selectedColor().asHSL().toString())
                     }
                     true
                 }
@@ -184,18 +184,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun generateComplimentary(selectedColor: Int) {
-        val hexColor = selectedColor.toHex()
+        val hexColor = selectedColor.asHex()
         complimentaryColorTitle.text = resources.getString(R.string.complimentary)
         complimentaryColorBase.setColor(selectedColor)
         complimentaryColor.setColor(selectedColor.complimentary())
 
-        val hexColorComplimentary = selectedColor.complimentary().toHex()
-        complimentaryColorBaseHex.text = hexColor
-        complimentaryColorHex.text = hexColorComplimentary
+        val hexColorComplimentary = selectedColor.complimentary().asHex()
+        complimentaryColorBaseHex.text = hexColor.toString()
+        complimentaryColorHex.text = hexColorComplimentary.toString()
     }
 
     private fun generateAnalogous(selectedColor: Int) {
-        val hexColor = selectedColor.toHex()
+        val hexColor = selectedColor.asHex().toString()
         analogousColorsTitle.text = resources.getString(R.string.analogous)
         analogousColorBase.setColor(selectedColor)
         val analogousColors = selectedColor.analogous()
@@ -203,25 +203,25 @@ class MainActivity : AppCompatActivity() {
         analogousColor2.setColor(analogousColors.second)
 
         analogousColorBaseHex.text = hexColor
-        analogousColor1Hex.text = analogousColors.first.toHex()
-        analogousColor2Hex.text = analogousColors.second.toHex()
+        analogousColor1Hex.text = analogousColors.first.asHex().toString()
+        analogousColor2Hex.text = analogousColors.second.asHex().toString()
     }
 
     private fun generateTriadic(selectedColor: Int) {
-        val hexColor = selectedColor.toHex()
+        val hexColor = selectedColor.asHex()
         triadicColorsTitle.text = resources.getString(R.string.triadic)
         triadicColorBase.setColor(selectedColor)
         val triadicColors = selectedColor.triadic()
         triadicColor1.setColor(triadicColors.first)
         triadicColor2.setColor(triadicColors.second)
 
-        triadicColorBaseHex.text = hexColor
-        triadicColor1Hex.text = triadicColors.first.toHex()
-        triadicColor2Hex.text = triadicColors.second.toHex()
+        triadicColorBaseHex.text = hexColor.toString()
+        triadicColor1Hex.text = triadicColors.first.asHex().toString()
+        triadicColor2Hex.text = triadicColors.second.asHex().toString()
     }
 
     private fun generateTetradic(selectedColor: Int) {
-        val hexColor = selectedColor.toHex()
+        val hexColor = selectedColor.asHex()
         tetradicColorsTitle.text = resources.getString(R.string.tetradic)
         tetradicColorBase.setColor(selectedColor)
         val tetradicColors = selectedColor.tetradic()
@@ -229,9 +229,9 @@ class MainActivity : AppCompatActivity() {
         tetradicColor2.setColor(tetradicColors.second)
         tetradicColor3.setColor(tetradicColors.third)
 
-        tetradicColorBaseHex.text = hexColor
-        tetradicColor1Hex.text = tetradicColors.first.toHex()
-        tetradicColor2Hex.text = tetradicColors.second.toHex()
-        tetradicColor3Hex.text = tetradicColors.third.toHex()
+        tetradicColorBaseHex.text = hexColor.toString()
+        tetradicColor1Hex.text = tetradicColors.first.asHex().toString()
+        tetradicColor2Hex.text = tetradicColors.second.asHex().toString()
+        tetradicColor3Hex.text = tetradicColors.third.asHex().toString()
     }
 }

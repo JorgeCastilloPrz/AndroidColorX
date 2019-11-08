@@ -7,27 +7,28 @@ import androidx.core.graphics.ColorUtils
 import kotlin.math.max
 import kotlin.math.roundToInt
 
-fun @receiver:ColorInt Int.toRGB(): String =
-    "${Color.red(this)} / ${Color.green(this)} / ${Color.blue(this)}"
+fun @receiver:ColorInt Int.asRGB(): RGBColor =
+    RGBColor(Color.red(this), Color.green(this), Color.blue(this))
 
-fun @receiver:ColorInt Int.toHex(): String = String.format("#%06X", 0xFFFFFF and this)
+fun @receiver:ColorInt Int.asARGB(): ARGBColor =
+    ARGBColor(Color.alpha(this), Color.red(this), Color.green(this), Color.blue(this))
 
-fun @receiver:ColorInt Int.toHexPureValue(): String = toHex().drop(1)
+/**
+ * Returns the color in complete hex format as in #FFFFFF.
+ */
+fun @receiver:ColorInt Int.asHex(): HEXColor = HEXColor(String.format("#%06X", 0xFFFFFF and this))
 
 @NonNull
-fun @receiver:ColorInt Int.toHSL(): String = this.let { color ->
+fun @receiver:ColorInt Int.asHSL(): HSLColor = this.let { color ->
     FloatArray(3).apply { ColorUtils.colorToHSL(color, this) }.let {
-        "${String.format("%.2f", it[0])}º / ${String.format(
-            "%.2f",
-            it[1]
-        )} / ${String.format("%.2f", it[2])}"
+        HSLColor(it[0], it[1], it[2])
     }
 }
 
 /**
  * Formula extracted from {@see https://www.rapidtables.com/convert/color/rgb-to-cmyk.html}.
  */
-fun @receiver:ColorInt Int.toCMYK(): String {
+fun @receiver:ColorInt Int.asCMYK(): CMYKColor {
     val r = Color.red(this)
     val g = Color.green(this)
     val b = Color.blue(this)
@@ -41,12 +42,14 @@ fun @receiver:ColorInt Int.toCMYK(): String {
     val cyan = (1.0f - r1 - k) / (1.0f - k)
     val magenta = (1.0f - g1 - k) / (1.0f - k)
     val yellow = (1.0f - b1 - k) / (1.0f - k)
-    return "${String.format("%.2f", cyan)} / ${String.format("%.2f", magenta)} / ${String.format(
-        "%.2f",
-        yellow
-    )} / ${String.format("%.2f", k)}"
+
+    return CMYKColor(cyan, magenta, yellow, k)
 }
 
+/**
+ * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
+ * Each one of the colors is a ColorInt.
+ */
 fun @receiver:ColorInt Int.getShades(): List<Int> {
     val colorHSL = FloatArray(3)
     ColorUtils.colorToHSL(this, colorHSL)
@@ -61,6 +64,10 @@ fun @receiver:ColorInt Int.getShades(): List<Int> {
     }
 }
 
+/**
+ * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
+ * Each one of the colors is a ColorInt.
+ */
 fun @receiver:ColorInt Int.getTints(): List<Int> {
     val colorHSL = FloatArray(3)
     ColorUtils.colorToHSL(this, colorHSL)
