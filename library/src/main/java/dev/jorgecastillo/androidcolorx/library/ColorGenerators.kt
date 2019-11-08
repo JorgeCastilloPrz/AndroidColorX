@@ -4,7 +4,6 @@ import androidx.annotation.ColorInt
 import androidx.core.graphics.ColorUtils
 import kotlin.math.roundToInt
 
-
 /**
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a ColorInt.
@@ -38,7 +37,6 @@ fun @receiver:ColorInt Int.getTints(): List<Int> {
         ColorUtils.HSLToColor(colorHSL)
     }
 }
-
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
