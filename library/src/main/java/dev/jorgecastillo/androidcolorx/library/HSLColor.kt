@@ -4,7 +4,6 @@ import androidx.annotation.ColorInt
 import androidx.annotation.NonNull
 import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.ColorUtils.HSLToColor
-import androidx.core.graphics.ColorUtils.colorToHSL
 
 data class HSLColor(
     val hue: Float,
