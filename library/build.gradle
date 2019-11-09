@@ -22,6 +22,8 @@ android {
     }
 
     testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
         unitTests.all {
             testLogging {
                 events "passed", "skipped", "failed", "standardOut", "standardError"
@@ -53,8 +55,10 @@ dependencies {
 
     // test
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation("androidx.test:runner:1.2.0")
+    testImplementation 'androidx.test.ext:junit:1.1.1'
+    testImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation "org.robolectric:robolectric:4.3"
 }
 
 apply from: '../ktlint/ktlint.gradle'
