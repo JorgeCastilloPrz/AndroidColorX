@@ -99,11 +99,11 @@ You can darken or lighten a color by an amount:
 ```kotlin
 val color = Color.parseColor("#e91e63")
 
-// Pass in an Int in the 0...100 range. Anything else is clamped to 0...100
+// Int in the 0...100 range. Anything else is clamped to 0...100
 val darkerColor = color.darken(50)
 val lighterColor = color.lighten(50)
 
-// Pass in a Float in the 0...1 range. Anything else is clamped to 0...1
+// Float in the 0...1 range. Anything else is clamped to 0...1
 val darkerColor = color.darken(0.5)
 val lighterColor = color.lighten(0.5)
 ```
