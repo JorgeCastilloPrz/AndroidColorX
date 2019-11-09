@@ -72,19 +72,14 @@ fun @receiver:ColorInt Int.triadic(): Pair<Int, Int> {
  * Tetradic colors for h0 would be (hue + 90) % 360, (hue + 180) % 360 and (hue + 270) % 360.
  */
 fun @receiver:ColorInt Int.tetradic(): Triple<Int, Int, Int> {
-    val colorHSL = FloatArray(3)
-    ColorUtils.colorToHSL(this, colorHSL)
-    val hue = colorHSL[0] // 0° to 359°
+    val colorHSL = this.asHSL()
+    val hue = colorHSL.hue // 0° to 359°
 
-    val h1 = colorHSL.copyOf()
-    val h2 = colorHSL.copyOf()
-    val h3 = colorHSL.copyOf()
+    val h1 = colorHSL.copy(hue = (hue + 90) % 360)
+    val h2 = colorHSL.copy(hue = (hue + 180) % 360)
+    val h3 = colorHSL.copy(hue = (hue + 270) % 360)
 
-    h1[0] = (hue + 90) % 360
-    h2[0] = (hue + 180) % 360
-    h3[0] = (hue + 270) % 360
-
-    return Triple(ColorUtils.HSLToColor(h1), ColorUtils.HSLToColor(h2), ColorUtils.HSLToColor(h3))
+    return Triple(h1.asColorInt(), h2.asColorInt(), h3.asColorInt())
 }
 
 /**
