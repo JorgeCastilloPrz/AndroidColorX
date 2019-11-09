@@ -17,12 +17,16 @@ data class CMYKColor(
                 "${String.format("%.2f", yellow)} / " +
                 String.format("%.2f", key)
     }
+
+    override fun equals(other: Any?): Boolean {
+        return other is CMYKColor && this.toString() == other.toString()
+    }
 }
 
 /**
  * Formula extracted from {@see https://www.rapidtables.com/convert/color/rgb-to-cmyk.html}.
  */
-fun @receiver:ColorInt Int.asCMYK(): CMYKColor {
+fun @receiver:ColorInt Int.asCmyk(): CMYKColor {
     val r = Color.red(this)
     val g = Color.green(this)
     val b = Color.blue(this)
@@ -33,9 +37,9 @@ fun @receiver:ColorInt Int.asCMYK(): CMYKColor {
 
     val k = 1.0f - max(r1, max(g1, b1))
 
-    val cyan = (1.0f - r1 - k) / (1.0f - k)
-    val magenta = (1.0f - g1 - k) / (1.0f - k)
-    val yellow = (1.0f - b1 - k) / (1.0f - k)
+    val cyan = if (k == 1f) 0f else (1.0f - r1 - k) / (1.0f - k)
+    val magenta = if (k == 1f) 0f else (1.0f - g1 - k) / (1.0f - k)
+    val yellow = if (k == 1f) 0f else (1.0f - b1 - k) / (1.0f - k)
 
     return CMYKColor(cyan, magenta, yellow, k)
 }
@@ -53,7 +57,7 @@ fun CMYKColor.asRgb(): RGBColor = asColorInt().asRGB()
 
 fun CMYKColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
-fun CMYKColor.asCmyk(): CMYKColor = asColorInt().asCMYK()
+fun CMYKColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
 
 fun CMYKColor.asHex(): HEXColor = asColorInt().asHex()
 
@@ -62,41 +66,41 @@ fun CMYKColor.asHsl(): HSLColor = asColorInt().asHSL()
 /**
  * @param value amount to lighten in the range 0...1
  */
-fun CMYKColor.lighten(value: Float): CMYKColor = this.asColorInt().lighten(value).asCMYK()
+fun CMYKColor.lighten(value: Float): CMYKColor = this.asColorInt().lighten(value).asCmyk()
 
 /**
  * @param value amount to lighten in the range 0...100
  */
-fun CMYKColor.lighten(value: Int): CMYKColor = this.asColorInt().lighten(value).asCMYK()
+fun CMYKColor.lighten(value: Int): CMYKColor = this.asColorInt().lighten(value).asCmyk()
 
 /**
  * @param value amount to darken in the range 0...1
  */
-fun CMYKColor.darken(value: Float): CMYKColor = this.asColorInt().darken(value).asCMYK()
+fun CMYKColor.darken(value: Float): CMYKColor = this.asColorInt().darken(value).asCmyk()
 
 /**
  * @param value amount to darken in the range 0...100
  */
-fun CMYKColor.darken(value: Int): CMYKColor = this.asColorInt().darken(value).asCMYK()
+fun CMYKColor.darken(value: Int): CMYKColor = this.asColorInt().darken(value).asCmyk()
 
 /**
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a CMYKColor.
  */
-fun CMYKColor.getShades(): List<CMYKColor> = asColorInt().getShades().map { it.asCMYK() }
+fun CMYKColor.getShades(): List<CMYKColor> = asColorInt().getShades().map { it.asCmyk() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a CMYKColor.
  */
-fun CMYKColor.getTints(): List<CMYKColor> = asColorInt().getTints().map { it.asCMYK() }
+fun CMYKColor.getTints(): List<CMYKColor> = asColorInt().getTints().map { it.asCmyk() }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
  * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The complimentary color stands for the
  * color in the opposite side of the circle, so it's (hue + 180) % 360.
  */
-fun CMYKColor.complimentary(): CMYKColor = asColorInt().complimentary().asCMYK()
+fun CMYKColor.complimentary(): CMYKColor = asColorInt().complimentary().asCmyk()
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
@@ -106,7 +110,7 @@ fun CMYKColor.complimentary(): CMYKColor = asColorInt().complimentary().asCMYK()
  * Triadic colors for h0 would be (hue + 120) % 360 and (hue + 240) % 360.
  */
 fun CMYKColor.triadic(): Pair<CMYKColor, CMYKColor> =
-    asColorInt().triadic().let { Pair(it.first.asCMYK(), it.second.asCMYK()) }
+    asColorInt().triadic().let { Pair(it.first.asCmyk(), it.second.asCmyk()) }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
@@ -116,7 +120,7 @@ fun CMYKColor.triadic(): Pair<CMYKColor, CMYKColor> =
  * Tetradic colors for h0 would be (hue + 90) % 360, (hue + 180) % 360 and (hue + 270) % 360.
  */
 fun CMYKColor.tetradic(): Triple<CMYKColor, CMYKColor, CMYKColor> =
-    asColorInt().tetradic().let { Triple(it.first.asCMYK(), it.second.asCMYK(), it.third.asCMYK()) }
+    asColorInt().tetradic().let { Triple(it.first.asCmyk(), it.second.asCmyk(), it.third.asCmyk()) }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
@@ -126,7 +130,7 @@ fun CMYKColor.tetradic(): Triple<CMYKColor, CMYKColor, CMYKColor> =
  * Analogous colors for h0 would be (hue + 30) % 360 & (hue - 30) % 360.
  */
 fun CMYKColor.analogous(): Pair<CMYKColor, CMYKColor> =
-    asColorInt().analogous().let { Pair(it.first.asCMYK(), it.second.asCMYK()) }
+    asColorInt().analogous().let { Pair(it.first.asCmyk(), it.second.asCmyk()) }
 
 /**
  * Check if a color is dark (convert to XYZ & check Y component)

@@ -22,7 +22,7 @@ fun RGBColor.asColorInt(): Int = Color.rgb(red, green, blue)
 
 fun RGBColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
-fun RGBColor.asCmyk(): CMYKColor = asColorInt().asCMYK()
+fun RGBColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
 
 fun RGBColor.asHex(): HEXColor = asColorInt().asHex()
 

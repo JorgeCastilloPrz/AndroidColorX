@@ -18,7 +18,7 @@ import dev.jorgecastillo.androidcolorx.library.getShades
 import dev.jorgecastillo.androidcolorx.library.getTints
 import dev.jorgecastillo.androidcolorx.library.isDark
 import dev.jorgecastillo.androidcolorx.library.tetradic
-import dev.jorgecastillo.androidcolorx.library.asCMYK
+import dev.jorgecastillo.androidcolorx.library.asCmyk
 import dev.jorgecastillo.androidcolorx.library.asHSL
 import dev.jorgecastillo.androidcolorx.library.asHex
 import dev.jorgecastillo.androidcolorx.library.asRGB
@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity() {
                     when (it.itemId) {
                         0 -> copyToClipboard(selectedColor().asRGB().toString())
                         1 -> copyToClipboard(selectedColor().asHex().toString())
-                        2 -> copyToClipboard(selectedColor().asCMYK().toString())
+                        2 -> copyToClipboard(selectedColor().asCmyk().toString())
                         3 -> copyToClipboard(selectedColor().asHSL().toString())
                     }
                     true

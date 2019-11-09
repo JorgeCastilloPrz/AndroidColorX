@@ -44,7 +44,7 @@ fun HSLColor.asRgb(): RGBColor = asColorInt().asRGB()
 
 fun HSLColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
-fun HSLColor.asCmyk(): CMYKColor = asColorInt().asCMYK()
+fun HSLColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
 
 fun HSLColor.asHex(): HEXColor = asColorInt().asHex()
 

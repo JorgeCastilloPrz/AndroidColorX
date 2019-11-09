@@ -39,7 +39,7 @@ fun HEXColor.asRgb(): RGBColor = asColorInt().asRGB()
 
 fun HEXColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
-fun HEXColor.asCmyk(): CMYKColor = asColorInt().asCMYK()
+fun HEXColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
 
 fun HEXColor.asHex(): HEXColor = asColorInt().asHex()
 
