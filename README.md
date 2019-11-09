@@ -43,7 +43,7 @@ If you're aware of webs like [Color-Hex](https://www.color-hex.com/color/6dc066)
 
 <img src="./assets/shades_and_tints.gif" width="300px"/>
 
-Here's the code:
+Here's the code for all the color types available:
 
 ```kotlin
 
