@@ -46,20 +46,27 @@ If you're aware of webs like [Color-Hex](https://www.color-hex.com/color/6dc066)
 Here's the code:
 
 ```kotlin
+
 val color = Color.parseColor("#e91e63")
+
+// shades
 val shades: List<Int> = color.getShades()
+val shadesHsl: List<HSLColor> = color.asHsl().getShades()
+val shadesCmyk: List<CMYKColor> = color.asCmyk().getShades()
+val shadesHex: List<HEXColor> = color.asHex().getShades()
+val shadesRgb: List<RGBColor> = color.asRgb().getShades()
+val shadesArgb: List<ARGBColor> = color.asArgb().getShades()
 
-val colorHsl = HSLColor(hue = 210, saturation = 0.5, lightness = 0.5)
-val shades: List<HSLColor> = colorHsl.getShades()
-
-val color = Color.parseColor("#e91e63")
+// tints
 val tints: List<Int> = color.getTints()
-
-val colorHsl = HSLColor(hue = 210, saturation = 0.5, lightness = 0.5)
-val tints: List<HSLColor> = colorHsl.getTints()
+val tintsHsl: List<HSLColor> = color.asHsl().getTints()
+val tintsCmyk: List<CMYKColor> = color.asCmyk().getTints()
+val tintsHex: List<HEXColor> = color.asHex().getTints()
+val tintsRgb: List<RGBColor> = color.asRgb().getTints()
+val tintsArgb: List<ARGBColor> = color.asArgb().getTints()
 ```
 
-These extensions **are available for all the mentioned color types**.
+As you can see, these extensions **are available for all the mentioned color types**.
 
 License
 -------
