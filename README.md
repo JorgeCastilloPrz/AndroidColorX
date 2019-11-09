@@ -37,7 +37,7 @@ val hex = colorHsl.asHex()
 val cmyk = colorHsl.asCmyk()
 ```
 
-The same extensions **are available for all the mentioned color types**.
+The same extensions **are available for all the mentioned color types**. Note that when converting from a color with an alpha component (i.e: `ARGB` or `HSLA`) to one without it (i.e: `RGB` or `HSL`) it will be a lossy conversion. If it's the other way around, conversions will assume full alpha (255 or 1f).
 
 ### Shades and tints
 
