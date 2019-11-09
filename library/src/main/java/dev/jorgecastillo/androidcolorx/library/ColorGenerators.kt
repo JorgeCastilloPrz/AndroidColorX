@@ -55,16 +55,13 @@ fun @receiver:ColorInt Int.complimentary(): Int {
  * Triadic colors for h0 would be (hue + 120) % 360 and (hue + 240) % 360.
  */
 fun @receiver:ColorInt Int.triadic(): Pair<Int, Int> {
-    val colorHSL = FloatArray(3)
-    ColorUtils.colorToHSL(this, colorHSL)
-    val hue = colorHSL[0] // 0° to 359°
+    val colorHSL = this.asHSL()
+    val hue = colorHSL.hue // 0° to 359°
 
-    val h1 = colorHSL.copyOf()
-    val h2 = colorHSL.copyOf()
+    val h1 = colorHSL.copy(hue = (hue + 120) % 360)
+    val h2 = colorHSL.copy(hue = (hue + 240) % 360)
 
-    h1[0] = (hue + 120) % 360
-    h2[0] = (hue + 240) % 360
-    return Pair(ColorUtils.HSLToColor(h1), ColorUtils.HSLToColor(h2))
+    return Pair(h1.asColorInt(), h2.asColorInt())
 }
 
 /**
