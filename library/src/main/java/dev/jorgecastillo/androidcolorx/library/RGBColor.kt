@@ -17,4 +17,12 @@ fun @receiver:ColorInt Int.asRGB(): RGBColor =
     RGBColor(Color.red(this), Color.green(this), Color.blue(this))
 
 @ColorInt
-fun RGBColor.toColorInt(): Int = Color.rgb(red, green, blue)
+fun RGBColor.asColorInt(): Int = Color.rgb(red, green, blue)
+
+fun RGBColor.asArgb(): ARGBColor = asColorInt().asARGB()
+
+fun RGBColor.asCmyk(): CMYKColor = asColorInt().asCMYK()
+
+fun RGBColor.asHex(): HEXColor = asColorInt().asHex()
+
+fun RGBColor.asHsl(): HSLColor = asColorInt().asHSL()
