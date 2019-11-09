@@ -4,7 +4,7 @@ AndroidColorX [![CircleCI](https://circleci.com/gh/JorgeCastilloPrz/AndroidColor
 AndroidColorX (i.e: Android Color Extensions) is an Android library written in Kotlin that provides color utilities as [Kotlin extension functions](https://kotlinlang.org/docs/tutorials/kotlin-for-py/extension-functionsproperties.html). The library relies on AndroidX [`ColorUtils`](https://developer.android.com/reference/kotlin/androidx/core/graphics/ColorUtils) for some of its calculations.
 
 
-### Features
+### Color conversion
 
 This library provides seamless conversion between the following color types:
 
@@ -36,6 +36,12 @@ val cmyk = colorHsl.asCmyk()
 ```
 
 The same extensions **are available for all the mentioned color types**.
+
+### Shades and tints
+
+If you're aware of webs like [Color-Hex](https://www.color-hex.com/color/6dc066) you've probably seen those shades and tints palettes. AndroidColorX provides extensions for calculating those:
+
+<img src="./assets/shades_and_tints.gif" width="300px"/>
 
 License
 -------
