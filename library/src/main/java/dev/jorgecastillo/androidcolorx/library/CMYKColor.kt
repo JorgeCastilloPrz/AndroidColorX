@@ -38,3 +38,22 @@ fun @receiver:ColorInt Int.asCMYK(): CMYKColor {
 
     return CMYKColor(cyan, magenta, yellow, k)
 }
+
+@ColorInt
+fun CMYKColor.asColorInt(): Int {
+    val red = 255 * (1 - cyan) * (1 - key)
+    val green = 255 * (1 - magenta) * (1 - key)
+    val blue = 255 * (1 - yellow) * (1 - key)
+
+    return Color.rgb(red, green, blue)
+}
+
+fun CMYKColor.asRgb(): RGBColor = asColorInt().asRGB()
+
+fun CMYKColor.asArgb(): ARGBColor = asColorInt().asArgb()
+
+fun CMYKColor.asCmyk(): CMYKColor = asColorInt().asCMYK()
+
+fun CMYKColor.asHex(): HEXColor = asColorInt().asHex()
+
+fun CMYKColor.asHsl(): HSLColor = asColorInt().asHSL()
