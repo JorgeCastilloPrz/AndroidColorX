@@ -128,6 +128,8 @@ icon.setImageDrawable(
 )
 ```
 
+This extension can be used over any color types provided by the library.
+
 License
 -------
 
