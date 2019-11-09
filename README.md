@@ -43,6 +43,24 @@ If you're aware of webs like [Color-Hex](https://www.color-hex.com/color/6dc066)
 
 <img src="./assets/shades_and_tints.gif" width="300px"/>
 
+Here's the code:
+
+```kotlin
+val color = Color.parseColor("#e91e63")
+val shades: List<Int> = color.getShades()
+
+val colorHsl = HSLColor(hue = 210, saturation = 0.5, lightness = 0.5)
+val shades: List<HSLColor> = colorHsl.getShades()
+
+val color = Color.parseColor("#e91e63")
+val tints: List<Int> = color.getTints()
+
+val colorHsl = HSLColor(hue = 210, saturation = 0.5, lightness = 0.5)
+val tints: List<HSLColor> = colorHsl.getTints()
+```
+
+These extensions **are available for all the mentioned color types**.
+
 License
 -------
 
