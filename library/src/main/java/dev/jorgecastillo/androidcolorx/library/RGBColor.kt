@@ -1,5 +1,8 @@
 package dev.jorgecastillo.androidcolorx.library
 
+import android.graphics.Color
+import androidx.annotation.ColorInt
+
 data class RGBColor(
     val red: Int,
     val green: Int,
@@ -9,3 +12,9 @@ data class RGBColor(
         return "$red / $green / $blue"
     }
 }
+
+fun @receiver:ColorInt Int.asRGB(): RGBColor =
+    RGBColor(Color.red(this), Color.green(this), Color.blue(this))
+
+@ColorInt
+fun RGBColor.toColorInt(): Int = Color.rgb(red, green, blue)

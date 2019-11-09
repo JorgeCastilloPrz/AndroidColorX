@@ -1,5 +1,8 @@
 package dev.jorgecastillo.androidcolorx.library
 
+import android.graphics.Color
+import androidx.annotation.ColorInt
+
 data class ARGBColor(
     val alpha: Int,
     val red: Int,
@@ -10,3 +13,6 @@ data class ARGBColor(
         return "$alpha / $red / $green / $blue"
     }
 }
+
+fun @receiver:ColorInt Int.asARGB(): ARGBColor =
+    ARGBColor(Color.alpha(this), Color.red(this), Color.green(this), Color.blue(this))
