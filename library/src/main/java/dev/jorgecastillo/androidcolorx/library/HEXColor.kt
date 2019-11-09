@@ -2,6 +2,7 @@ package dev.jorgecastillo.androidcolorx.library
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.core.graphics.ColorUtils
 
 /**
  * Constructor:
@@ -93,7 +94,6 @@ fun HEXColor.complimentary(): HEXColor = asColorInt().complimentary().asHex()
 fun HEXColor.triadic(): Pair<HEXColor, HEXColor> =
     asColorInt().triadic().let { Pair(it.first.asHex(), it.second.asHex()) }
 
-
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
  * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The tetradic colors stand for 4 colors
@@ -113,3 +113,8 @@ fun HEXColor.tetradic(): Triple<HEXColor, HEXColor, HEXColor> =
  */
 fun HEXColor.analogous(): Pair<HEXColor, HEXColor> =
     asColorInt().analogous().let { Pair(it.first.asHex(), it.second.asHex()) }
+
+/**
+ * Check if a color is dark (convert to XYZ & check Y component)
+ */
+fun HEXColor.isDark(): Boolean = ColorUtils.calculateLuminance(this.asColorInt()) < 0.5

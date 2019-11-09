@@ -2,6 +2,7 @@ package dev.jorgecastillo.androidcolorx.library
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.core.graphics.ColorUtils
 
 data class RGBColor(
     val red: Int,
@@ -76,7 +77,6 @@ fun RGBColor.complimentary(): RGBColor = asColorInt().complimentary().asRGB()
 fun RGBColor.triadic(): Pair<RGBColor, RGBColor> =
     asColorInt().triadic().let { Pair(it.first.asRGB(), it.second.asRGB()) }
 
-
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
  * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The tetradic colors stand for 4 colors
@@ -96,3 +96,8 @@ fun RGBColor.tetradic(): Triple<RGBColor, RGBColor, RGBColor> =
  */
 fun RGBColor.analogous(): Pair<RGBColor, RGBColor> =
     asColorInt().analogous().let { Pair(it.first.asRGB(), it.second.asRGB()) }
+
+/**
+ * Check if a color is dark (convert to XYZ & check Y component)
+ */
+fun RGBColor.isDark(): Boolean = ColorUtils.calculateLuminance(this.asColorInt()) < 0.5

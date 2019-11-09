@@ -95,7 +95,6 @@ fun HSLColor.complimentary(): HSLColor = asColorInt().complimentary().asHSL()
 fun HSLColor.triadic(): Pair<HSLColor, HSLColor> =
     asColorInt().triadic().let { Pair(it.first.asHSL(), it.second.asHSL()) }
 
-
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
  * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The tetradic colors stand for 4 colors
@@ -115,3 +114,8 @@ fun HSLColor.tetradic(): Triple<HSLColor, HSLColor, HSLColor> =
  */
 fun HSLColor.analogous(): Pair<HSLColor, HSLColor> =
     asColorInt().analogous().let { Pair(it.first.asHSL(), it.second.asHSL()) }
+
+/**
+ * Check if a color is dark (convert to XYZ & check Y component)
+ */
+fun HSLColor.isDark(): Boolean = ColorUtils.calculateLuminance(this.asColorInt()) < 0.5

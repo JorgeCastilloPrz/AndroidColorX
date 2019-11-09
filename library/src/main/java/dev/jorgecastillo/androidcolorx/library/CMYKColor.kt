@@ -2,6 +2,7 @@ package dev.jorgecastillo.androidcolorx.library
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.core.graphics.ColorUtils
 import kotlin.math.max
 
 data class CMYKColor(
@@ -107,7 +108,6 @@ fun CMYKColor.complimentary(): CMYKColor = asColorInt().complimentary().asCMYK()
 fun CMYKColor.triadic(): Pair<CMYKColor, CMYKColor> =
     asColorInt().triadic().let { Pair(it.first.asCMYK(), it.second.asCMYK()) }
 
-
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
  * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The tetradic colors stand for 4 colors
@@ -127,3 +127,8 @@ fun CMYKColor.tetradic(): Triple<CMYKColor, CMYKColor, CMYKColor> =
  */
 fun CMYKColor.analogous(): Pair<CMYKColor, CMYKColor> =
     asColorInt().analogous().let { Pair(it.first.asCMYK(), it.second.asCMYK()) }
+
+/**
+ * Check if a color is dark (convert to XYZ & check Y component)
+ */
+fun CMYKColor.isDark(): Boolean = ColorUtils.calculateLuminance(this.asColorInt()) < 0.5
