@@ -24,6 +24,14 @@ val argb = color.asArgb()
 val hex = color.asHex()
 val hsl = color.asHsl()
 val cmyk = color.asCmyk()
+
+val colorHsl = HSLColor(hue = 210, saturation = 0.5, lightness = 0.5)
+
+val colorInt = colorHsl.asColorInt()
+val rgb = colorHsl.asRgb()
+val argb = colorHsl.asArgb()
+val hex = colorHsl.asHex()
+val cmyk = colorHsl.asCmyk()
 ```
 
 The same extensions **are available for all the mentioned color types**.
