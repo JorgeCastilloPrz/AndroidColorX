@@ -27,3 +27,23 @@ fun ARGBColor.asCmyk(): CMYKColor = asColorInt().asCMYK()
 fun ARGBColor.asHex(): HEXColor = asColorInt().asHex()
 
 fun ARGBColor.asHsl(): HSLColor = asColorInt().asHSL()
+
+/**
+ * @param value amount to lighten in the range 0...1
+ */
+fun ARGBColor.lighten(value: Float): ARGBColor = this.asColorInt().lighten(value).asArgb()
+
+/**
+ * @param value amount to lighten in the range 0...100
+ */
+fun ARGBColor.lighten(value: Int): ARGBColor = this.asColorInt().lighten(value).asArgb()
+
+/**
+ * @param value amount to darken in the range 0...1
+ */
+fun ARGBColor.darken(value: Float): ARGBColor = this.asColorInt().darken(value).asArgb()
+
+/**
+ * @param value amount to darken in the range 0...100
+ */
+fun ARGBColor.darken(value: Int): ARGBColor = this.asColorInt().darken(value).asArgb()

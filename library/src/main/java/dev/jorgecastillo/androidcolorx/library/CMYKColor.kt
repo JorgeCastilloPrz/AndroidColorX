@@ -57,3 +57,23 @@ fun CMYKColor.asCmyk(): CMYKColor = asColorInt().asCMYK()
 fun CMYKColor.asHex(): HEXColor = asColorInt().asHex()
 
 fun CMYKColor.asHsl(): HSLColor = asColorInt().asHSL()
+
+/**
+ * @param value amount to lighten in the range 0...1
+ */
+fun CMYKColor.lighten(value: Float): CMYKColor = this.asColorInt().lighten(value).asCMYK()
+
+/**
+ * @param value amount to lighten in the range 0...100
+ */
+fun CMYKColor.lighten(value: Int): CMYKColor = this.asColorInt().lighten(value).asCMYK()
+
+/**
+ * @param value amount to darken in the range 0...1
+ */
+fun CMYKColor.darken(value: Float): CMYKColor = this.asColorInt().darken(value).asCMYK()
+
+/**
+ * @param value amount to darken in the range 0...100
+ */
+fun CMYKColor.darken(value: Int): CMYKColor = this.asColorInt().darken(value).asCMYK()
