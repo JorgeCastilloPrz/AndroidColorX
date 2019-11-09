@@ -26,6 +26,10 @@ data class HSLAColor(
                 "${String.format("%.2f", lightness)} / " +
                 String.format("%.2f", alpha)
     }
+
+    override fun equals(other: Any?): Boolean {
+        return other is HSLAColor && this.toString() == other.toString()
+    }
 }
 
 @NonNull

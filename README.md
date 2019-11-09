@@ -28,7 +28,7 @@ val hsl = color.asHsl()
 val hsla = color.asHsla()
 val cmyk = color.asCmyk()
 
-val colorHsl = HSLColor(hue = 210, saturation = 0.5, lightness = 0.5)
+val colorHsl = HSLColor(hue = 210f, saturation = 0.5f, lightness = 0.5f)
 
 val colorInt = colorHsl.asColorInt()
 val rgb = colorHsl.asRgb()
