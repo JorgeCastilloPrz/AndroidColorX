@@ -77,3 +77,41 @@ fun HSLColor.getShades(): List<HSLColor> = asColorInt().getShades().map { it.asH
  * Each one of the colors is a HSLColor.
  */
 fun HSLColor.getTints(): List<HSLColor> = asColorInt().getTints().map { it.asHSL() }
+
+/**
+ * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
+ * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The complimentary color stands for the
+ * color in the opposite side of the circle, so it's (hue + 180) % 360.
+ */
+fun HSLColor.complimentary(): HSLColor = asColorInt().complimentary().asHSL()
+
+/**
+ * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
+ * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The triadic colors stand for 3 colors that
+ * compose a perfect triangle (equal sides) over the circle, so they are equally far from each other.
+ *
+ * Triadic colors for h0 would be (hue + 120) % 360 and (hue + 240) % 360.
+ */
+fun HSLColor.triadic(): Pair<HSLColor, HSLColor> =
+    asColorInt().triadic().let { Pair(it.first.asHSL(), it.second.asHSL()) }
+
+
+/**
+ * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
+ * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The tetradic colors stand for 4 colors
+ * that compose a perfect square (equal sides) over the circle, so they are equally far from each other.
+ *
+ * Tetradic colors for h0 would be (hue + 90) % 360, (hue + 180) % 360 and (hue + 270) % 360.
+ */
+fun HSLColor.tetradic(): Triple<HSLColor, HSLColor, HSLColor> =
+    asColorInt().tetradic().let { Triple(it.first.asHSL(), it.second.asHSL(), it.third.asHSL()) }
+
+/**
+ * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
+ * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The analogous colors stand for 3 colors
+ * that are together in the circle, separated by 30 degrees each.
+ *
+ * Analogous colors for h0 would be (hue + 30) % 360 & (hue - 30) % 360.
+ */
+fun HSLColor.analogous(): Pair<HSLColor, HSLColor> =
+    asColorInt().analogous().let { Pair(it.first.asHSL(), it.second.asHSL()) }
