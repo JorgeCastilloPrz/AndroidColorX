@@ -1,11 +1,32 @@
 AndroidColorX [![CircleCI](https://circleci.com/gh/JorgeCastilloPrz/AndroidColorX/tree/master.svg?style=svg&circle-token=5cd5f9a1d941936290fde62a8321f9bf9d60f2c5)](https://circleci.com/gh/JorgeCastilloPrz/AndroidColorX/tree/master)
 ======
 
-AndroidColorX (i.e: Android Color Extensions) is an Android library written in Kotlin that provides color utilities as extension functions.
+AndroidColorX (i.e: Android Color Extensions) is an Android library written in Kotlin that provides color utilities as [Kotlin extension functions](https://kotlinlang.org/docs/tutorials/kotlin-for-py/extension-functionsproperties.html).
 
 ### Features
 
-TBD
+This library provides seamless conversion between the following color types:
+
+* `android.graphics.Color (ColorInt)`
+* `RGBColor`
+* `ARGBColor`
+* `HEXColor`
+* `HSLColor`
+* `CMYKColor`
+
+To convert a color type to any of the other types, use the `asColorInt()`, `asRgb()`, `asArgb()`, `asHex()`, `asHsl()`, `asCmyk()` functions.
+
+```kotlin
+val color = Color.RED
+
+val rgb = color.asRgb()
+val argb = color.asArgb()
+val hex = color.asHex()
+val hsl = color.asHsl()
+val cmyk = color.asCmyk()
+```
+
+The same extensions **are available for all the mentioned color types**.
 
 License
 -------
