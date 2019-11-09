@@ -90,6 +90,8 @@ val tetradic: Triple<Int, Int, Int> = color.tetradic()
 val analogous: Pair<Int, Int> = color.analogous()
 ```
 
+Once again, you've got those extensions available for all the color types in the library.
+
 License
 -------
 
