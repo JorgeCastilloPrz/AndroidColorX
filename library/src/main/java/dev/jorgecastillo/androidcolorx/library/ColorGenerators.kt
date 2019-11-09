@@ -40,12 +40,11 @@ fun @receiver:ColorInt Int.getTints(): List<Int> {
  * color in the opposite side of the circle, so it's (hue + 180) % 360.
  */
 fun @receiver:ColorInt Int.complimentary(): Int {
-    val colorHSL = FloatArray(3)
-    ColorUtils.colorToHSL(this, colorHSL)
-    val hue = colorHSL[0] // 0° to 359°
+    val colorHSL = this.asHSL()
+
+    val hue = colorHSL.hue // 0° to 359°
     val complimentaryHue = (hue + 180) % 360
-    colorHSL[0] = complimentaryHue
-    return ColorUtils.HSLToColor(colorHSL)
+    return colorHSL.copy(hue = complimentaryHue).asColorInt()
 }
 
 /**
