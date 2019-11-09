@@ -46,3 +46,15 @@ fun RGBColor.darken(value: Float): RGBColor = this.asColorInt().darken(value).as
  * @param value amount to darken in the range 0...100
  */
 fun RGBColor.darken(value: Int): RGBColor = this.asColorInt().darken(value).asRGB()
+
+/**
+ * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
+ * Each one of the colors is a RGBColor.
+ */
+fun RGBColor.getShades(): List<RGBColor> = asColorInt().getShades().map { it.asRGB() }
+
+/**
+ * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
+ * Each one of the colors is a RGBColor.
+ */
+fun RGBColor.getTints(): List<RGBColor> = asColorInt().getTints().map { it.asRGB() }

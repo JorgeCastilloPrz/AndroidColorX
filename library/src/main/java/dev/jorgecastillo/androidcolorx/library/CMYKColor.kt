@@ -77,3 +77,15 @@ fun CMYKColor.darken(value: Float): CMYKColor = this.asColorInt().darken(value).
  * @param value amount to darken in the range 0...100
  */
 fun CMYKColor.darken(value: Int): CMYKColor = this.asColorInt().darken(value).asCMYK()
+
+/**
+ * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
+ * Each one of the colors is a CMYKColor.
+ */
+fun CMYKColor.getShades(): List<CMYKColor> = asColorInt().getShades().map { it.asCMYK() }
+
+/**
+ * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
+ * Each one of the colors is a CMYKColor.
+ */
+fun CMYKColor.getTints(): List<CMYKColor> = asColorInt().getTints().map { it.asCMYK() }

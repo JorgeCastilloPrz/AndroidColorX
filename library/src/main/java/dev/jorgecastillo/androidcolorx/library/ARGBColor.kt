@@ -47,3 +47,15 @@ fun ARGBColor.darken(value: Float): ARGBColor = this.asColorInt().darken(value).
  * @param value amount to darken in the range 0...100
  */
 fun ARGBColor.darken(value: Int): ARGBColor = this.asColorInt().darken(value).asArgb()
+
+/**
+ * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
+ * Each one of the colors is a ARGBColor.
+ */
+fun ARGBColor.getShades(): List<ARGBColor> = asColorInt().getShades().map { it.asArgb() }
+
+/**
+ * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
+ * Each one of the colors is a ARGBColor.
+ */
+fun ARGBColor.getTints(): List<ARGBColor> = asColorInt().getTints().map { it.asArgb() }
