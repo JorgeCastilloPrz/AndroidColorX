@@ -5,6 +5,13 @@ import androidx.annotation.NonNull
 import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.ColorUtils.HSLToColor
 
+/**
+ * HSL stands for hue-saturation-lightness.
+ *
+ * Hue is a value from 0...360
+ * Saturation is a value from 0...1
+ * Lightness is a value from 0...1
+ */
 data class HSLColor(
     val hue: Float,
     val saturation: Float,
