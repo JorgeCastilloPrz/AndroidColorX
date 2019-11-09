@@ -68,6 +68,28 @@ val tintsArgb: List<ARGBColor> = color.asArgb().getTints()
 
 As you can see, these extensions **are available for all the mentioned color types**.
 
+### Complimentary, triadic, tetradic and analogous colors
+
+The library provides extensions to calculate all those. There is a brief but very useful [post to understand all those here](https://www.tigercolor.com/color-lab/color-theory/color-harmonies.htm).
+
+<img src="./assets/sample_app.gif" width="300px"/>
+
+```kotlin
+val color = Color.parseColor("#e91e63")
+
+// Returns the complimentary color to the given one.
+val complimentary: Int = color.complimentary()
+
+// Returns the other 2 colors to complete the triadic color scheme.
+val triadic: Pair<Int, Int> = color.triadic()
+
+// Returns the other 3 colors to complete the tetradic color scheme.
+val tetradic: Triple<Int, Int, Int> = color.tetradic()
+
+// Returns the other 2 colors to complete the analogous color scheme.
+val analogous: Pair<Int, Int> = color.analogous()
+```
+
 License
 -------
 
