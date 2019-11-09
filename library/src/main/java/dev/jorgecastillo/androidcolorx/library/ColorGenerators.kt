@@ -9,16 +9,14 @@ import kotlin.math.roundToInt
  * Each one of the colors is a ColorInt.
  */
 fun @receiver:ColorInt Int.getShades(): List<Int> {
-    val colorHSL = FloatArray(3)
-    ColorUtils.colorToHSL(this, colorHSL)
+    val colorHSL = this.asHSL()
 
-    val start = (colorHSL[2] * 10000000).roundToInt()
+    val start = (colorHSL.lightness * 10000000).roundToInt()
     val step = if (start > 0) {
         -1 * start / 10
     } else 1
     return IntProgression.fromClosedRange(start, 0, step).map { i ->
-        colorHSL[2] = i / 10000000f
-        ColorUtils.HSLToColor(colorHSL)
+        colorHSL.copy(lightness = i / 10000000f).asColorInt()
     }
 }
 
@@ -27,14 +25,12 @@ fun @receiver:ColorInt Int.getShades(): List<Int> {
  * Each one of the colors is a ColorInt.
  */
 fun @receiver:ColorInt Int.getTints(): List<Int> {
-    val colorHSL = FloatArray(3)
-    ColorUtils.colorToHSL(this, colorHSL)
+    val colorHSL = this.asHSL()
 
-    val start = (colorHSL[2] * 10000000).roundToInt()
+    val start = (colorHSL.lightness * 10000000).roundToInt()
     val step = if (start < 10000000) (10000000 - start) / 10 else 1
     return IntProgression.fromClosedRange(start, 10000000, step).map { i ->
-        colorHSL[2] = i / 10000000f
-        ColorUtils.HSLToColor(colorHSL)
+        colorHSL.copy(lightness = i / 10000000f).asColorInt()
     }
 }
 
