@@ -45,7 +45,7 @@ fun CMYKColor.asColorInt(): Int {
     val green = 255 * (1 - magenta) * (1 - key)
     val blue = 255 * (1 - yellow) * (1 - key)
 
-    return Color.rgb(red, green, blue)
+    return Color.rgb(red.toInt(), green.toInt(), blue.toInt())
 }
 
 fun CMYKColor.asRgb(): RGBColor = asColorInt().asRGB()
