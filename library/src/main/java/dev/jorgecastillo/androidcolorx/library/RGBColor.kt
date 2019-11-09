@@ -19,7 +19,7 @@ fun @receiver:ColorInt Int.asRGB(): RGBColor =
 @ColorInt
 fun RGBColor.asColorInt(): Int = Color.rgb(red, green, blue)
 
-fun RGBColor.asArgb(): ARGBColor = asColorInt().asARGB()
+fun RGBColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
 fun RGBColor.asCmyk(): CMYKColor = asColorInt().asCMYK()
 

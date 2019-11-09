@@ -14,7 +14,7 @@ data class ARGBColor(
     }
 }
 
-fun @receiver:ColorInt Int.asARGB(): ARGBColor =
+fun @receiver:ColorInt Int.asArgb(): ARGBColor =
     ARGBColor(Color.alpha(this), Color.red(this), Color.green(this), Color.blue(this))
 
 @ColorInt
