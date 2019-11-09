@@ -28,7 +28,7 @@ fun @receiver:ColorInt Int.lighten(value: Float): Int {
 fun @receiver:ColorInt Int.lighten(value: Int): Int {
     val hsl = this.asHSL()
     var lightness = hsl.lightness
-    lightness += value / 100
+    lightness += value / 100f
     lightness = 0f.coerceAtLeast(lightness.coerceAtMost(1f))
     return HSLColor(hsl.hue, hsl.saturation, lightness).asColorInt()
 }
@@ -52,7 +52,7 @@ fun @receiver:ColorInt Int.darken(value: Float): Int {
 fun @receiver:ColorInt Int.darken(value: Int): Int {
     val hsl = this.asHSL()
     var lightness = hsl.lightness
-    lightness -= value / 100
+    lightness -= value / 100f
     lightness = 0f.coerceAtLeast(lightness.coerceAtMost(1f))
     return HSLColor(hsl.hue, hsl.saturation, lightness).asColorInt()
 }
