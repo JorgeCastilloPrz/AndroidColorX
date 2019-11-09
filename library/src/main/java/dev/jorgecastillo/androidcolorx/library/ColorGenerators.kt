@@ -1,7 +1,6 @@
 package dev.jorgecastillo.androidcolorx.library
 
 import androidx.annotation.ColorInt
-import androidx.core.graphics.ColorUtils
 import kotlin.math.roundToInt
 
 /**
@@ -90,15 +89,11 @@ fun @receiver:ColorInt Int.tetradic(): Triple<Int, Int, Int> {
  * Analogous colors for h0 would be (hue + 30) % 360 & (hue - 30) % 360.
  */
 fun @receiver:ColorInt Int.analogous(): Pair<Int, Int> {
-    val colorHSL = FloatArray(3)
-    ColorUtils.colorToHSL(this, colorHSL)
-    val hue = colorHSL[0] // 0° to 359°
+    val colorHSL = this.asHSL()
+    val hue = colorHSL.hue // 0° to 359°
 
-    val h1 = colorHSL.copyOf()
-    val h2 = colorHSL.copyOf()
+    val h1 = colorHSL.copy(hue = (hue + 30) % 360)
+    val h2 = colorHSL.copy(hue = (hue + 330) % 360)
 
-    h1[0] = (hue + 30) % 360
-    h2[0] = (hue + 330) % 360
-
-    return Pair(ColorUtils.HSLToColor(h1), ColorUtils.HSLToColor(h2))
+    return Pair(h1.asColorInt(), h2.asColorInt())
 }
