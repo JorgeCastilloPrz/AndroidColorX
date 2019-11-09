@@ -30,7 +30,8 @@ data class HEXColor(val hex: String) {
 /**
  * Returns the color in complete hex format as in #FFFFFF.
  */
-fun @receiver:ColorInt Int.asHex(): HEXColor = HEXColor(String.format("#%06X", 0xFFFFFFFF and this.toLong()))
+fun @receiver:ColorInt Int.asHex(): HEXColor =
+    HEXColor(String.format("#%06X", 0xFFFFFFFF and this.toLong()))
 
 @ColorInt
 fun HEXColor.asColorInt(): Int = Color.parseColor(hex)
@@ -41,9 +42,9 @@ fun HEXColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
 fun HEXColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
 
-fun HEXColor.asHex(): HEXColor = asColorInt().asHex()
-
 fun HEXColor.asHsl(): HSLColor = asColorInt().asHSL()
+
+fun HEXColor.asHsla(): HSLAColor = asColorInt().asHSLA()
 
 /**
  * @param value amount to lighten in the range 0...1

@@ -48,6 +48,8 @@ fun HSLColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
 
 fun HSLColor.asHex(): HEXColor = asColorInt().asHex()
 
+fun HSLColor.asHsla(): HSLAColor = asColorInt().asHSLA()
+
 /**
  * @param value amount to lighten in the range 0...1
  */

@@ -57,11 +57,11 @@ fun CMYKColor.asRgb(): RGBColor = asColorInt().asRGB()
 
 fun CMYKColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
-fun CMYKColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
-
 fun CMYKColor.asHex(): HEXColor = asColorInt().asHex()
 
 fun CMYKColor.asHsl(): HSLColor = asColorInt().asHSL()
+
+fun CMYKColor.asHsla(): HSLAColor = asColorInt().asHSLA()
 
 /**
  * @param value amount to lighten in the range 0...1

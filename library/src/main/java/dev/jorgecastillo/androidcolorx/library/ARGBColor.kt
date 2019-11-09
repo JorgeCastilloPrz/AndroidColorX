@@ -29,6 +29,8 @@ fun ARGBColor.asHex(): HEXColor = asColorInt().asHex()
 
 fun ARGBColor.asHsl(): HSLColor = asColorInt().asHSL()
 
+fun ARGBColor.asHsla(): HSLAColor = asColorInt().asHSLA()
+
 /**
  * @param value amount to lighten in the range 0...1
  */

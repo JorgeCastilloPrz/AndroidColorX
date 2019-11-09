@@ -28,6 +28,8 @@ fun RGBColor.asHex(): HEXColor = asColorInt().asHex()
 
 fun RGBColor.asHsl(): HSLColor = asColorInt().asHSL()
 
+fun RGBColor.asHsla(): HSLAColor = asColorInt().asHSLA()
+
 /**
  * @param value amount to lighten in the range 0...1
  */
