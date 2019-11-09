@@ -110,6 +110,21 @@ val lighterColor = color.lighten(0.5)
 
 You can use this extensions over any color type available.
 
+### Other interesting extensions
+
+#### isDark
+
+You can use this one to detect whether a color is considered "dark" or not. It delegates in `ColorUtils.calculateLuminance(this) < 0.5`. This is frequently used for inferring which color you should tint an icon with, so it can have a good contrast on top of the underlying background.
+
+```kotlin
+val color = Color.parseColor("#e91e63")
+icon.setDrawable = if (bgColor.isDark()) {
+    R.drawable.ic_fav_light
+} else {
+    R.drawable.ic_fav_dark
+}
+```
+
 License
 -------
 
