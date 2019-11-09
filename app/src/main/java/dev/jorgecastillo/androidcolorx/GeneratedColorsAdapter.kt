@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import dev.jorgecastillo.androidcolorx.library.asHex
 
 class GeneratedColorsAdapter : RecyclerView.Adapter<GeneratedColorsAdapter.ViewHolder>() {
 
@@ -32,8 +33,7 @@ class GeneratedColorsAdapter : RecyclerView.Adapter<GeneratedColorsAdapter.ViewH
             colorSquare.setColor(color)
 
             val colorText = itemView.findViewById<TextView>(R.id.colorText)
-            val hexColor = String.format("#%06X", 0xFFFFFF and color)
-            colorText.text = hexColor
+            colorText.text = color.asHex().toString()
         }
     }
 }

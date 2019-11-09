@@ -30,7 +30,7 @@ data class HEXColor(val hex: String) {
 /**
  * Returns the color in complete hex format as in #FFFFFF.
  */
-fun @receiver:ColorInt Int.asHex(): HEXColor = HEXColor(String.format("#%06X", 0xFFFFFF and this))
+fun @receiver:ColorInt Int.asHex(): HEXColor = HEXColor(String.format("#%06X", 0xFFFFFFFF and this.toLong()))
 
 @ColorInt
 fun HEXColor.asColorInt(): Int = Color.parseColor(hex)

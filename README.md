@@ -13,6 +13,7 @@ This library provides seamless conversion between the following color types:
 * `ARGBColor`
 * `HEXColor`
 * `HSLColor`
+* `HSLAColor`
 * `CMYKColor`
 
 To convert a color type to any of the other types, you can use the extensions provided for it.
