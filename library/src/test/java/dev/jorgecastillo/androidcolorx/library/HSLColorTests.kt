@@ -80,7 +80,7 @@ class HSLColorTests {
                 HSLColor(338.18f, 0.85f, 0.05f),
                 HSLColor(0.00f, 0.00f, 0.00f)
             ),
-            color.getShades().map { it }
+            color.shades().map { it }
         )
     }
 
@@ -102,7 +102,7 @@ class HSLColorTests {
                 HSLColor(342.00f, 0.83f, 0.95f),
                 HSLColor(0.00f, 0.00f, 1.00f)
             ),
-            color.getTints().map { it }
+            color.tints().map { it }
         )
     }
 

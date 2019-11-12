@@ -80,7 +80,7 @@ class CMYKColorTests {
                 CMYKColor(0f, 0.92f, 0.58f, 0.91f),
                 CMYKColor(0f, 0f, 0f, 1.00f)
             ),
-            color.getShades()
+            color.shades()
         )
     }
 
@@ -102,7 +102,7 @@ class CMYKColorTests {
                 CMYKColor(0f, 0.08f, 0.06f, 0.01f),
                 CMYKColor(0f, 0f, 0f, 0.00f)
             ),
-            color.getTints()
+            color.tints()
         )
     }
 

@@ -81,7 +81,7 @@ class ColorIntTests {
                 -15203830,
                 -16777216
             ),
-            color.getShades())
+            color.shades())
     }
 
     @Test
@@ -102,7 +102,7 @@ class ColorIntTests {
                 -136977,
                 -1
             ),
-            color.getTints())
+            color.tints())
     }
 
     @Test

@@ -80,7 +80,7 @@ class ARGBColorTests {
                 ARGBColor(20, 24, 2, 10),
                 ARGBColor(20, 0, 0, 0)
             ),
-            color.getShades()
+            color.shades()
         )
     }
 
@@ -102,7 +102,7 @@ class ARGBColorTests {
                 ARGBColor(20, 253, 232, 239),
                 ARGBColor(20, 255, 255, 255)
             ),
-            color.getTints()
+            color.tints()
         )
     }
 

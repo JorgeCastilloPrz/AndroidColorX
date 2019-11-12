@@ -80,7 +80,7 @@ class HEXColorTests {
                 HEXColor("#FF18020A"),
                 HEXColor("#FF000000")
             ),
-            color.getShades()
+            color.shades()
         )
     }
 
@@ -102,7 +102,7 @@ class HEXColorTests {
                 HEXColor("#FFFDE8EF"),
                 HEXColor("#FFFFFFFF")
             ),
-            color.getTints()
+            color.tints()
         )
     }
 

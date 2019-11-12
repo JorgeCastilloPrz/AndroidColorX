@@ -14,8 +14,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.jorgecastillo.androidcolorx.library.analogous
 import dev.jorgecastillo.androidcolorx.library.complimentary
-import dev.jorgecastillo.androidcolorx.library.getShades
-import dev.jorgecastillo.androidcolorx.library.getTints
+import dev.jorgecastillo.androidcolorx.library.shades
+import dev.jorgecastillo.androidcolorx.library.tints
 import dev.jorgecastillo.androidcolorx.library.isDark
 import dev.jorgecastillo.androidcolorx.library.tetradic
 import dev.jorgecastillo.androidcolorx.library.asCmyk
@@ -170,7 +170,7 @@ class MainActivity : AppCompatActivity() {
         colorShadesList.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         colorShadesList.setHasFixedSize(true)
-        adapter.colors = selectedColor.getShades()
+        adapter.colors = selectedColor.shades()
         shadesTitle.text = resources.getString(R.string.shades)
     }
 
@@ -179,7 +179,7 @@ class MainActivity : AppCompatActivity() {
         tintsList.adapter = adapter
         tintsList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         tintsList.setHasFixedSize(true)
-        adapter.colors = selectedColor.getTints()
+        adapter.colors = selectedColor.tints()
         tintsTitle.text = resources.getString(R.string.tints)
     }
 

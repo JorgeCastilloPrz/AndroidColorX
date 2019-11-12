@@ -81,13 +81,13 @@ fun HSLAColor.darken(value: Int): HSLAColor = this.asColorInt().darken(value).as
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a HSLColor.
  */
-fun HSLAColor.getShades(): List<HSLAColor> = asColorInt().getShades().map { it.asHSLA() }
+fun HSLAColor.shades(): List<HSLAColor> = asColorInt().shades().map { it.asHSLA() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a HSLColor.
  */
-fun HSLAColor.getTints(): List<HSLAColor> = asColorInt().getTints().map { it.asHSLA() }
+fun HSLAColor.tints(): List<HSLAColor> = asColorInt().tints().map { it.asHSLA() }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of

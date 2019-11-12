@@ -54,13 +54,13 @@ fun RGBColor.darken(value: Int): RGBColor = this.asColorInt().darken(value).asRG
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a RGBColor.
  */
-fun RGBColor.getShades(): List<RGBColor> = asColorInt().getShades().map { it.asRGB() }
+fun RGBColor.shades(): List<RGBColor> = asColorInt().shades().map { it.asRGB() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a RGBColor.
  */
-fun RGBColor.getTints(): List<RGBColor> = asColorInt().getTints().map { it.asRGB() }
+fun RGBColor.tints(): List<RGBColor> = asColorInt().tints().map { it.asRGB() }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of

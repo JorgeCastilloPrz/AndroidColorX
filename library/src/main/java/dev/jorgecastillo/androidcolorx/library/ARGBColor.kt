@@ -55,13 +55,13 @@ fun ARGBColor.darken(value: Int): ARGBColor = this.asColorInt().darken(value).as
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a ARGBColor.
  */
-fun ARGBColor.getShades(): List<ARGBColor> = asColorInt().getShades().map { it.asArgb() }
+fun ARGBColor.shades(): List<ARGBColor> = asColorInt().shades().map { it.asArgb() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a ARGBColor.
  */
-fun ARGBColor.getTints(): List<ARGBColor> = asColorInt().getTints().map { it.asArgb() }
+fun ARGBColor.tints(): List<ARGBColor> = asColorInt().tints().map { it.asArgb() }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of

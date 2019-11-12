@@ -61,7 +61,7 @@ fun @receiver:ColorInt Int.darken(value: Int): Int {
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a ColorInt.
  */
-fun @receiver:ColorInt Int.getShades(): List<Int> {
+fun @receiver:ColorInt Int.shades(): List<Int> {
     val colorHSLA = this.asHSLA()
 
     val start = (colorHSLA.lightness * 10000000).roundToInt()
@@ -77,7 +77,7 @@ fun @receiver:ColorInt Int.getShades(): List<Int> {
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a ColorInt.
  */
-fun @receiver:ColorInt Int.getTints(): List<Int> {
+fun @receiver:ColorInt Int.tints(): List<Int> {
     val colorHSLA = this.asHSLA()
 
     val start = (colorHSLA.lightness * 10000000).roundToInt()

@@ -87,13 +87,13 @@ fun CMYKColor.darken(value: Int): CMYKColor = this.asColorInt().darken(value).as
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a CMYKColor.
  */
-fun CMYKColor.getShades(): List<CMYKColor> = asColorInt().getShades().map { it.asCmyk() }
+fun CMYKColor.shades(): List<CMYKColor> = asColorInt().shades().map { it.asCmyk() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a CMYKColor.
  */
-fun CMYKColor.getTints(): List<CMYKColor> = asColorInt().getTints().map { it.asCmyk() }
+fun CMYKColor.tints(): List<CMYKColor> = asColorInt().tints().map { it.asCmyk() }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of

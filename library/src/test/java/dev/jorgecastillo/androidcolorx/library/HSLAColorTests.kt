@@ -80,7 +80,7 @@ class HSLAColorTests {
                 HSLAColor(338.18f, 0.85f, 0.05f, 0.2f),
                 HSLAColor(0.00f, 0.00f, 0.00f, 0.2f)
             ),
-            color.getShades()
+            color.shades()
         )
     }
 
@@ -102,7 +102,7 @@ class HSLAColorTests {
                 HSLAColor(342.00f, 0.83f, 0.95f, 0.2f),
                 HSLAColor(0.00f, 0.00f, 1.00f, 0.2f)
             ),
-            color.getTints()
+            color.tints()
         )
     }
 

@@ -80,7 +80,7 @@ class RGBColorTests {
                 RGBColor(24, 2, 10),
                 RGBColor(0, 0, 0)
             ),
-            color.getShades()
+            color.shades()
         )
     }
 
@@ -102,7 +102,7 @@ class RGBColorTests {
                 RGBColor(253, 232, 239),
                 RGBColor(255, 255, 255)
             ),
-            color.getTints()
+            color.tints()
         )
     }
 
