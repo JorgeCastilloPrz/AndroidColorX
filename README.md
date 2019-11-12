@@ -43,8 +43,7 @@ The same extensions **are available for all the mentioned color types**. Note th
 
 If you're aware of webs like [Color-Hex](https://www.color-hex.com/color/6dc066) you've probably seen those shades and tints palettes. AndroidColorX provides extensions for calculating those:
 
-<img src="./assets/shades_and_tints.gif" width="300px"/>
-![shades and tints](https://drive.google.com/open?id=1JiQLN_AlTGCUiEUXXEh8pwTAStONMGH5)
+<img src="https://drive.google.com/uc?id=1JiQLN_AlTGCUiEUXXEh8pwTAStONMGH5" width="300px"/>
 
 Here's the code for all the color types available:
 
@@ -75,7 +74,7 @@ As you can see, these extensions **are available for all the mentioned color typ
 
 The library provides extensions to calculate all those. There is a brief but very useful [post to understand all those here](https://www.tigercolor.com/color-lab/color-theory/color-harmonies.htm).
 
-<img src="./assets/sample_app.gif" width="300px"/>
+<img src="https://drive.google.com/uc?id=1QXswFgCHjS2ar_w7-44e9iNanHHl0n8v" width="300px"/>
 
 ```kotlin
 val color = Color.parseColor("#e91e63")
