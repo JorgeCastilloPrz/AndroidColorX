@@ -32,13 +32,13 @@ fun HSLColor.asColorInt(): Int = hslToColor(floatArrayOf(hue, saturation, lightn
 
 fun HSLColor.asRgb(): RGBColor = asColorInt().asRgb()
 
-fun HSLColor.asArgb(): ARGBColor = asColorInt().asArgb()
+fun HSLColor.asArgb(): ARGBColor = asRgb().asArgb()
 
 fun HSLColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
 
 fun HSLColor.asHex(): HEXColor = asColorInt().asHex()
 
-fun HSLColor.asHsla(): HSLAColor = asColorInt().asHsla()
+fun HSLColor.asHsla(): HSLAColor = HSLAColor(hue, saturation, lightness, 1f)
 
 /**
  * @param value amount to lighten in the range 0...1

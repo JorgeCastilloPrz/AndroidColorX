@@ -57,7 +57,8 @@ fun CMYKColor.asHex(): HEXColor = asColorInt().asHex()
 
 fun CMYKColor.asHsl(): HSLColor = asColorInt().asHsl()
 
-fun CMYKColor.asHsla(): HSLAColor = asColorInt().asHsla()
+fun CMYKColor.asHsla(): HSLAColor =
+    asHsl().let { HSLAColor(it.hue, it.saturation, it.lightness, 1f) }
 
 /**
  * @param value amount to lighten in the range 0...1

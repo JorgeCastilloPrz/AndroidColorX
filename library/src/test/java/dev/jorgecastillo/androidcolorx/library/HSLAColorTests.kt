@@ -29,28 +29,28 @@ class HSLAColorTests {
     fun `lighten integer should enlighten the color`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        assertEquals(HSLAColor(339.49f, 0.82f, 0.72f, 0.2f), color.lighten(20))
+        HSLAColor(339.49f, 0.82f, 0.72f, 0.2f) eqWithUnderstandablePrecisionLoss color.lighten(20)
     }
 
     @Test
     fun `lighten float should enlighten the color`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        assertEquals(HSLAColor(339.49f, 0.82f, 0.72f, 0.2f), color.lighten(0.2f))
+        HSLAColor(339.49f, 0.82f, 0.72f, 0.2f) eqWithUnderstandablePrecisionLoss color.lighten(0.2f)
     }
 
     @Test
     fun `darken integer should darken the color`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        assertEquals(HSLAColor(339.70f, 0.82f, 0.32f, 0.2f), color.darken(20))
+        HSLAColor(339.70f, 0.82f, 0.32f, 0.2f) eqWithUnderstandablePrecisionLoss color.darken(20)
     }
 
     @Test
     fun `darken float should darken the color`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        assertEquals(HSLAColor(339.70f, 0.82f, 0.32f, 0.2f), color.darken(0.2f))
+        HSLAColor(339.70f, 0.82f, 0.32f, 0.2f) eqWithUnderstandablePrecisionLoss color.darken(0.2f)
     }
 
     @Test
@@ -64,139 +64,117 @@ class HSLAColorTests {
     fun `shades should be properly calculated`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        assertEquals(
-            listOf(
-                HSLAColor(339.70f, 0.82f, 0.52f, 0.2f),
-                HSLAColor(339.49f, 0.82f, 0.47f, 0.2f),
-                HSLAColor(339.66f, 0.82f, 0.42f, 0.2f),
-                HSLAColor(339.87f, 0.82f, 0.36f, 0.2f),
-                HSLAColor(339.85f, 0.82f, 0.31f, 0.2f),
-                HSLAColor(339.63f, 0.82f, 0.26f, 0.2f),
-                HSLAColor(339.77f, 0.81f, 0.21f, 0.2f),
-                HSLAColor(339.69f, 0.82f, 0.15f, 0.2f),
-                HSLAColor(340.47f, 0.81f, 0.10f, 0.2f),
-                HSLAColor(338.18f, 0.85f, 0.05f, 0.2f),
-                HSLAColor(0.00f, 0.00f, 0.00f, 0.2f)
-            ),
-            color.shades()
-        )
+        listOf(
+            HSLAColor(339.70f, 0.82f, 0.52f, 0.2f),
+            HSLAColor(339.49f, 0.82f, 0.47f, 0.2f),
+            HSLAColor(339.66f, 0.82f, 0.42f, 0.2f),
+            HSLAColor(339.87f, 0.82f, 0.36f, 0.2f),
+            HSLAColor(339.85f, 0.82f, 0.31f, 0.2f),
+            HSLAColor(339.63f, 0.82f, 0.26f, 0.2f),
+            HSLAColor(339.77f, 0.81f, 0.21f, 0.2f),
+            HSLAColor(339.69f, 0.82f, 0.15f, 0.2f),
+            HSLAColor(340.47f, 0.81f, 0.10f, 0.2f),
+            HSLAColor(338.18f, 0.85f, 0.05f, 0.2f),
+            HSLAColor(0.00f, 0.00f, 0.00f, 0.2f)
+        ) eqWithUnderstandablePrecisionLoss color.shades()
     }
 
     @Test
     fun `tints should be properly calculated`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        assertEquals(
-            listOf(
-                HSLAColor(339.70f, 0.82f, 0.52f, 0.2f),
-                HSLAColor(339.78f, 0.82f, 0.57f, 0.2f),
-                HSLAColor(339.75f, 0.82f, 0.62f, 0.2f),
-                HSLAColor(340.00f, 0.82f, 0.66f, 0.2f),
-                HSLAColor(339.67f, 0.82f, 0.71f, 0.2f),
-                HSLAColor(339.80f, 0.82f, 0.76f, 0.2f),
-                HSLAColor(339.75f, 0.82f, 0.81f, 0.2f),
-                HSLAColor(340.00f, 0.81f, 0.85f, 0.2f),
-                HSLAColor(339.51f, 0.84f, 0.90f, 0.2f),
-                HSLAColor(342.00f, 0.83f, 0.95f, 0.2f),
-                HSLAColor(0.00f, 0.00f, 1.00f, 0.2f)
-            ),
-            color.tints()
-        )
+        listOf(
+            HSLAColor(339.70f, 0.82f, 0.52f, 0.2f),
+            HSLAColor(339.78f, 0.82f, 0.57f, 0.2f),
+            HSLAColor(339.75f, 0.82f, 0.62f, 0.2f),
+            HSLAColor(340.00f, 0.82f, 0.66f, 0.2f),
+            HSLAColor(339.67f, 0.82f, 0.71f, 0.2f),
+            HSLAColor(339.80f, 0.82f, 0.76f, 0.2f),
+            HSLAColor(339.75f, 0.82f, 0.81f, 0.2f),
+            HSLAColor(340.00f, 0.81f, 0.85f, 0.2f),
+            HSLAColor(339.51f, 0.84f, 0.90f, 0.2f),
+            HSLAColor(342.00f, 0.83f, 0.95f, 0.2f),
+            HSLAColor(0.00f, 0.00f, 1.00f, 0.2f)
+        ) eqWithUnderstandablePrecisionLoss color.tints()
     }
 
     @Test
     fun `complimentary colors should be calculated as expected`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        assertEquals(HSLAColor(159.70f, 0.82f, 0.52f, 0.2f), color.complimentary())
+        HSLAColor(159.70f, 0.82f, 0.52f, 0.2f) eqWithUnderstandablePrecisionLoss color.complimentary()
     }
 
     @Test
     fun `triadic colors should be calculated as expected`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        assertEquals(
-            Pair(
-                HSLAColor(99.70f, 0.82f, 0.52f, 0.2f),
-                HSLAColor(219.70f, 0.82f, 0.52f, 0.2f)
-            ),
-            color.triadic()
-        )
+        Pair(
+            HSLAColor(99.70f, 0.82f, 0.52f, 0.2f),
+            HSLAColor(219.70f, 0.82f, 0.52f, 0.2f)
+        ) eqWithUnderstandablePrecisionLoss color.triadic()
     }
 
     @Test
     fun `tetradic colors should be calculated as expected`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        assertEquals(
-            Triple(
-                HSLAColor(69.85f, 0.82f, 0.52f, 0.2f),
-                HSLAColor(159.70f, 0.82f, 0.52f, 0.2f),
-                HSLAColor(249.85f, 0.82f, 0.52f, 0.2f)
-            ),
-            color.tetradic()
-        )
+        Triple(
+            HSLAColor(69.85f, 0.82f, 0.52f, 0.2f),
+            HSLAColor(159.70f, 0.82f, 0.52f, 0.2f),
+            HSLAColor(249.85f, 0.82f, 0.52f, 0.2f)
+        ) eqWithUnderstandablePrecisionLoss color.tetradic()
     }
 
     @Test
     fun `analogous colors should be calculated as expected`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        assertEquals(
-            Pair(
-                HSLAColor(9.85f, 0.82f, 0.52f, 0.2f),
-                HSLAColor(309.85f, 0.82f, 0.52f, 0.2f)
-            ),
-            color.analogous()
-        )
+        Pair(
+            HSLAColor(9.85f, 0.82f, 0.52f, 0.2f),
+            HSLAColor(309.85f, 0.82f, 0.52f, 0.2f)
+        ) eqWithUnderstandablePrecisionLoss color.analogous()
     }
 
     @Test
     fun `converts to ColorInt and back is idempotent with understandable precision loss`() {
-        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+        val color = HSLAColor(339.7f, 0.82f, 0.52f, 0.2f)
 
         color eqWithUnderstandablePrecisionLoss color.asColorInt().asHsla()
     }
 
     @Test
-    fun `converts to RGB and back is idempotent with understandable precision loss`() {
-        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+    fun `converts to RGB and back just loses information about alpha`() {
+        val color = HSLAColor(339.7f, 0.82f, 0.52f, 0.2f)
 
-        color eqWithUnderstandablePrecisionLoss color.asRgb().asHsla()
+        color.copy(alpha = 1f) eqWithUnderstandablePrecisionLoss color.asRgb().asHsla()
     }
 
     @Test
     fun `converts to ARGB and back is idempotent with understandable precision loss`() {
-        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+        val color = HSLAColor(339.7f, 0.82f, 0.52f, 0.2f)
 
         color eqWithUnderstandablePrecisionLoss color.asArgb().asHsla()
     }
 
     @Test
-    fun `converts to ARGB assumes 255 alpha`() {
-        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
-
-        assertEquals(255, color.asArgb().alpha)
-    }
-
-    @Test
     fun `converts to HEX and back is idempotent`() {
-        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+        val color = HSLAColor(339.7f, 0.82f, 0.52f, 0.2f)
 
         color eqWithUnderstandablePrecisionLoss color.asHex().asHsla()
     }
 
     @Test
     fun `converts to HSL and back just loses information about alpha`() {
-        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+        val color = HSLAColor(339.7f, 0.82f, 0.52f, 0.2f)
 
-        color eqWithUnderstandablePrecisionLoss color.asHsl().asHsla()
+        color.copy(alpha = 1f) eqWithUnderstandablePrecisionLoss color.asHsl().asHsla()
     }
 
     @Test
-    fun `converts to CMYK and back is idempotent`() {
-        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+    fun `converts to CMYK and back just loses information about alpha`() {
+        val color = HSLAColor(339.7f, 0.82f, 0.52f, 0.2f)
 
-        color eqWithUnderstandablePrecisionLoss color.asCmyk().asHsla()
+        color.copy(alpha = 1f) eqWithUnderstandablePrecisionLoss color.asCmyk().asHsla()
     }
 }

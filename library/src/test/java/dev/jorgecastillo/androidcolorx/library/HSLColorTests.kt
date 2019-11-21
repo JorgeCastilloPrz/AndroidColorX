@@ -153,49 +153,56 @@ class HSLColorTests {
 
     @Test
     fun `converts to ColorInt and back is idempotent with understandable precision loss`() {
-        val color = HSLColor(339.61f, 0.82f, 0.52f)
+        val color = HSLColor(339.7f, 0.82f, 0.52f)
 
         color eqWithUnderstandablePrecisionLoss color.asColorInt().asHsl()
     }
 
     @Test
     fun `converts to RGB and back is idempotent with understandable precision loss`() {
-        val color = HSLColor(339.61f, 0.82f, 0.52f)
+        val color = HSLColor(339.7f, 0.82f, 0.52f)
 
         color eqWithUnderstandablePrecisionLoss color.asRgb().asHsl()
     }
 
     @Test
     fun `converts to ARGB and back is idempotent with understandable precision loss`() {
-        val color = HSLColor(339.61f, 0.82f, 0.52f)
+        val color = HSLColor(339.7f, 0.82f, 0.52f)
 
         color eqWithUnderstandablePrecisionLoss color.asArgb().asHsl()
     }
 
     @Test
     fun `converts to ARGB assumes 255 alpha`() {
-        val color = HSLColor(339.61f, 0.82f, 0.52f)
+        val color = HSLColor(339.7f, 0.82f, 0.52f)
 
         assertEquals(255, color.asArgb().alpha)
     }
 
     @Test
     fun `converts to HEX and back is idempotent`() {
-        val color = HSLColor(339.61f, 0.82f, 0.52f)
+        val color = HSLColor(339.7f, 0.82f, 0.52f)
 
         color eqWithUnderstandablePrecisionLoss color.asHex().asHsl()
     }
 
     @Test
     fun `converts to HSLA and back is idempotent`() {
-        val color = HSLColor(339.61f, 0.82f, 0.52f)
+        val color = HSLColor(339.7f, 0.82f, 0.52f)
 
         color eqWithUnderstandablePrecisionLoss color.asHsla().asHsl()
     }
 
     @Test
+    fun `converts to HSLA assumes 1f alpha`() {
+        val color = HSLColor(339.7f, 0.82f, 0.52f)
+
+        assertEquals(1f, color.asHsla().alpha)
+    }
+
+    @Test
     fun `converts to CMYK and back is idempotent`() {
-        val color = HSLColor(339.61f, 0.82f, 0.52f)
+        val color = HSLColor(339.7f, 0.82f, 0.52f)
 
         color eqWithUnderstandablePrecisionLoss color.asCmyk().asHsl()
     }
