@@ -3,6 +3,15 @@ AndroidColorX [![CircleCI](https://circleci.com/gh/JorgeCastilloPrz/AndroidColor
 
 AndroidColorX (i.e: Android Color Extensions) is an Android library written in Kotlin that provides color utilities as [Kotlin extension functions](https://kotlinlang.org/docs/tutorials/kotlin-for-py/extension-functionsproperties.html). The library relies on AndroidX [`ColorUtils`](https://developer.android.com/reference/kotlin/androidx/core/graphics/ColorUtils) for some of its calculations.
 
+### How to use
+
+Add the following dependency to your `build.gradle`. It's available in **Maven Central**.
+
+```groovy
+dependencies{
+    implementation 'me.jorgecastillo:androidcolorx:0.1.0'
+}
+```
 
 ### Color conversion
 
