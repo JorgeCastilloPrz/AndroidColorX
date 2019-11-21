@@ -35,6 +35,7 @@ val rgb = colorHsl.asRgb()
 val argb = colorHsl.asArgb()
 val hex = colorHsl.asHex()
 val cmyk = colorHsl.asCmyk()
+val hsla = colorHsl.asHsla()
 ```
 
 The same extensions **are available for all the mentioned color types**. Note that when converting from a color with an alpha component (i.e: `ARGB` or `HSLA`) to one without it (i.e: `RGB` or `HSL`) it will be a lossy conversion. If it's the other way around, conversions will assume full alpha (255 or 1f).
@@ -52,20 +53,22 @@ Here's the code for all the color types available:
 val color = Color.parseColor("#e91e63")
 
 // shades
-val shades: List<Int> = color.getShades()
-val shadesHsl: List<HSLColor> = color.asHsl().getShades()
-val shadesCmyk: List<CMYKColor> = color.asCmyk().getShades()
-val shadesHex: List<HEXColor> = color.asHex().getShades()
-val shadesRgb: List<RGBColor> = color.asRgb().getShades()
-val shadesArgb: List<ARGBColor> = color.asArgb().getShades()
+val shades: List<Int> = color.shades()
+val shadesHsl: List<HSLColor> = color.asHsl().shades()
+val shadesHsla: List<HSLAColor> = color.asHsla().shades()
+val shadesCmyk: List<CMYKColor> = color.asCmyk().shades()
+val shadesHex: List<HEXColor> = color.asHex().shades()
+val shadesRgb: List<RGBColor> = color.asRgb().shades()
+val shadesArgb: List<ARGBColor> = color.asArgb().shades()
 
 // tints
-val tints: List<Int> = color.getTints()
-val tintsHsl: List<HSLColor> = color.asHsl().getTints()
-val tintsCmyk: List<CMYKColor> = color.asCmyk().getTints()
-val tintsHex: List<HEXColor> = color.asHex().getTints()
-val tintsRgb: List<RGBColor> = color.asRgb().getTints()
-val tintsArgb: List<ARGBColor> = color.asArgb().getTints()
+val tints: List<Int> = color.tints()
+val tintsHsl: List<HSLColor> = color.asHsl().tints()
+val tintsHsla: List<HSLAColor> = color.asHsla().tints()
+val tintsCmyk: List<CMYKColor> = color.asCmyk().tints()
+val tintsHex: List<HEXColor> = color.asHex().tints()
+val tintsRgb: List<RGBColor> = color.asRgb().tints()
+val tintsArgb: List<ARGBColor> = color.asArgb().tints()
 ```
 
 As you can see, these extensions **are available for all the mentioned color types**.
