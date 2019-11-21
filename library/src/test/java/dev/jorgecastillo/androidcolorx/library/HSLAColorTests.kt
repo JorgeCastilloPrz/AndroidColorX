@@ -2,7 +2,9 @@ package dev.jorgecastillo.androidcolorx.library
 
 import android.os.Build
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import junit.framework.TestCase.*
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertFalse
+import junit.framework.TestCase.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
@@ -102,7 +104,12 @@ class HSLAColorTests {
     fun `complimentary colors should be calculated as expected`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        HSLAColor(159.70f, 0.82f, 0.52f, 0.2f) eqWithUnderstandablePrecisionLoss color.complimentary()
+        HSLAColor(
+            159.70f,
+            0.82f,
+            0.52f,
+            0.2f
+        ) eqWithUnderstandablePrecisionLoss color.complimentary()
     }
 
     @Test

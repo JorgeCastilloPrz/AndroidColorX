@@ -122,9 +122,9 @@ private fun constrain(amount: Float, low: Float, high: Float): Float {
  *  * outHsl[2] is Lightness [0...1]
  *
  *
- * @param r      red component value [0..255]
- * @param g      green component value [0..255]
- * @param b      blue component value [0..255]
+ * @param r red component value [0..255]
+ * @param g green component value [0..255]
+ * @param b blue component value [0..255]
  * @param outHsl 3-element array which holds the resulting HSL components
  */
 fun rgbToHsl(

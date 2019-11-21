@@ -25,12 +25,12 @@ infix fun <T> T.eqWithUnderstandablePrecisionLoss(other: T): Unit = when (this) 
     else -> fail()
 }
 
-infix fun <T> Pair<T, T>.eqWithUnderstandablePrecisionLoss(other: Pair<T, T>): Unit {
+infix fun <T> Pair<T, T>.eqWithUnderstandablePrecisionLoss(other: Pair<T, T>) {
     first eqWithUnderstandablePrecisionLoss other.first
     second eqWithUnderstandablePrecisionLoss other.second
 }
 
-infix fun <T> Triple<T, T, T>.eqWithUnderstandablePrecisionLoss(other: Triple<T, T, T>): Unit {
+infix fun <T> Triple<T, T, T>.eqWithUnderstandablePrecisionLoss(other: Triple<T, T, T>) {
     first eqWithUnderstandablePrecisionLoss other.first
     second eqWithUnderstandablePrecisionLoss other.second
     third eqWithUnderstandablePrecisionLoss other.third
