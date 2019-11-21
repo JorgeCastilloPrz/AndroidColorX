@@ -1,9 +1,175 @@
 package dev.jorgecastillo.androidcolorx.library
 
 import androidx.annotation.ColorInt
+import androidx.annotation.IntRange
 import androidx.core.graphics.ColorUtils
+import kotlin.math.abs
 import kotlin.math.roundToInt
 
+/**
+ * Return a color-int from red, green, blue float components
+ * in the range \([0..1]\). The alpha component is implicitly
+ * 1.0 (fully opaque). If the components are out of range, the
+ * returned color is undefined.
+ *
+ * @param red Red component \([0..1]\) of the color
+ * @param green Green component \([0..1]\) of the color
+ * @param blue Blue component \([0..1]\) of the color
+ */
+@ColorInt
+fun rgbColorInt(red: Float, green: Float, blue: Float): Int {
+    return -0x1000000 or
+            ((red * 255.0f + 0.5f).toInt() shl 16) or
+            ((green * 255.0f + 0.5f).toInt() shl 8) or
+            (blue * 255.0f + 0.5f).toInt()
+}
+
+/**
+ * Return a color-int from alpha, red, green, blue float components
+ * in the range \([0..1]\). If the components are out of range, the
+ * returned color is undefined.
+ *
+ * @param alpha Alpha component \([0..1]\) of the color
+ * @param red Red component \([0..1]\) of the color
+ * @param green Green component \([0..1]\) of the color
+ * @param blue Blue component \([0..1]\) of the color
+ */
+@ColorInt
+fun argbColorInt(alpha: Float, red: Float, green: Float, blue: Float): Int {
+    return (alpha * 255.0f + 0.5f).toInt() shl 24 or
+            ((red * 255.0f + 0.5f).toInt() shl 16) or
+            ((green * 255.0f + 0.5f).toInt() shl 8) or
+            (blue * 255.0f + 0.5f).toInt()
+}
+
+/**
+ * Convert HSL (hue-saturation-lightness) components to a RGB color.
+ *
+ *  * hsl[0] is Hue [0 .. 360)
+ *  * hsl[1] is Saturation [0...1]
+ *  * hsl[2] is Lightness [0...1]
+ *
+ * If hsv values are out of range, they are pinned.
+ *
+ * @param hsl 3-element array which holds the input HSL components
+ * @return the resulting RGB color
+ */
+@ColorInt
+fun hslToColor(hsl: FloatArray): Int {
+    val h = hsl[0]
+    val s = hsl[1]
+    val l = hsl[2]
+
+    val c = (1f - abs(2 * l - 1f)) * s
+    val m = l - 0.5f * c
+    val x = c * (1f - abs(h / 60f % 2f - 1f))
+
+    val hueSegment = h.toInt() / 60
+
+    var r = 0f
+    var g = 0f
+    var b = 0f
+
+    when (hueSegment) {
+        0 -> {
+            r = (c + m)
+            g = (x + m)
+            b = m
+        }
+        1 -> {
+            r = (x + m)
+            g = (c + m)
+            b = m
+        }
+        2 -> {
+            r = m
+            g = (c + m)
+            b = (x + m)
+        }
+        3 -> {
+            r = m
+            g = (x + m)
+            b = (c + m)
+        }
+        4 -> {
+            r = (x + m)
+            g = m
+            b = (c + m)
+        }
+        5, 6 -> {
+            r = (c + m)
+            g = m
+            b = (x + m)
+        }
+    }
+
+    r = constrain(r, 0f, 1f)
+    g = constrain(g, 0f, 1f)
+    b = constrain(b, 0f, 1f)
+
+    return rgbColorInt(r, g, b)
+}
+
+private fun constrain(amount: Float, low: Float, high: Float): Float {
+    return if (amount < low) low else if (amount > high) high else amount
+}
+
+/**
+ * Convert RGB components to HSL (hue-saturation-lightness).
+ *
+ *  * outHsl[0] is Hue [0 .. 360)
+ *  * outHsl[1] is Saturation [0...1]
+ *  * outHsl[2] is Lightness [0...1]
+ *
+ *
+ * @param r      red component value [0..255]
+ * @param g      green component value [0..255]
+ * @param b      blue component value [0..255]
+ * @param outHsl 3-element array which holds the resulting HSL components
+ */
+fun rgbToHsl(
+    @IntRange(from = 0x0, to = 0xFF) r: Int,
+    @IntRange(from = 0x0, to = 0xFF) g: Int,
+    @IntRange(from = 0x0, to = 0xFF) b: Int,
+    outHsl: FloatArray
+) {
+    val rf = r / 255f
+    val gf = g / 255f
+    val bf = b / 255f
+
+    val max = Math.max(rf, Math.max(gf, bf))
+    val min = Math.min(rf, Math.min(gf, bf))
+    val deltaMaxMin = max - min
+
+    var h: Float
+    val s: Float
+    val l = (max + min) / 2f
+
+    if (max == min) {
+        // Monochromatic
+        s = 0f
+        h = s
+    } else {
+        if (max == rf) {
+            h = (gf - bf) / deltaMaxMin % 6f
+        } else if (max == gf) {
+            h = (bf - rf) / deltaMaxMin + 2f
+        } else {
+            h = (rf - gf) / deltaMaxMin + 4f
+        }
+
+        s = deltaMaxMin / (1f - Math.abs(2f * l - 1f))
+    }
+
+    h = h * 60f % 360f
+    if (h < 0) {
+        h += 360f
+    }
+
+    outHsl[0] = constrain(h, 0f, 360f)
+    outHsl[1] = constrain(s, 0f, 1f)
+    outHsl[2] = constrain(l, 0f, 1f)
+}
 /**
  * Check if a color is dark (convert to XYZ & check Y component)
  */
@@ -14,7 +180,7 @@ fun @receiver:ColorInt Int.isDark(): Boolean = ColorUtils.calculateLuminance(thi
  */
 @ColorInt
 fun @receiver:ColorInt Int.lighten(value: Float): Int {
-    val hsla = this.asHSLA()
+    val hsla = this.asHsla()
     var lightness = hsla.lightness
     lightness += value
     lightness = 0f.coerceAtLeast(lightness.coerceAtMost(1f))
@@ -26,7 +192,7 @@ fun @receiver:ColorInt Int.lighten(value: Float): Int {
  */
 @ColorInt
 fun @receiver:ColorInt Int.lighten(value: Int): Int {
-    val hsla = this.asHSLA()
+    val hsla = this.asHsla()
     var lightness = hsla.lightness
     lightness += value / 100f
     lightness = 0f.coerceAtLeast(lightness.coerceAtMost(1f))
@@ -38,7 +204,7 @@ fun @receiver:ColorInt Int.lighten(value: Int): Int {
  */
 @ColorInt
 fun @receiver:ColorInt Int.darken(value: Float): Int {
-    val hsla = this.asHSLA()
+    val hsla = this.asHsla()
     var lightness = hsla.lightness
     lightness -= value
     lightness = 0f.coerceAtLeast(lightness.coerceAtMost(1f))
@@ -50,7 +216,7 @@ fun @receiver:ColorInt Int.darken(value: Float): Int {
  */
 @ColorInt
 fun @receiver:ColorInt Int.darken(value: Int): Int {
-    val hsla = this.asHSLA()
+    val hsla = this.asHsla()
     var lightness = hsla.lightness
     lightness -= value / 100f
     lightness = 0f.coerceAtLeast(lightness.coerceAtMost(1f))
@@ -62,7 +228,7 @@ fun @receiver:ColorInt Int.darken(value: Int): Int {
  * Each one of the colors is a ColorInt.
  */
 fun @receiver:ColorInt Int.shades(): List<Int> {
-    val colorHSLA = this.asHSLA()
+    val colorHSLA = this.asHsla()
 
     val start = (colorHSLA.lightness * 10000000).roundToInt()
     val step = if (start > 0) {
@@ -78,7 +244,7 @@ fun @receiver:ColorInt Int.shades(): List<Int> {
  * Each one of the colors is a ColorInt.
  */
 fun @receiver:ColorInt Int.tints(): List<Int> {
-    val colorHSLA = this.asHSLA()
+    val colorHSLA = this.asHsla()
 
     val start = (colorHSLA.lightness * 10000000).roundToInt()
     val step = if (start < 10000000) (10000000 - start) / 10 else 1
@@ -93,7 +259,7 @@ fun @receiver:ColorInt Int.tints(): List<Int> {
  * color in the opposite side of the circle, so it's (hue + 180) % 360.
  */
 fun @receiver:ColorInt Int.complimentary(): Int {
-    val colorHSLA = this.asHSLA()
+    val colorHSLA = this.asHsla()
 
     val hue = colorHSLA.hue // 0° to 359°
     val complimentaryHue = (hue + 180) % 360
@@ -108,7 +274,7 @@ fun @receiver:ColorInt Int.complimentary(): Int {
  * Triadic colors for h0 would be (hue + 120) % 360 and (hue + 240) % 360.
  */
 fun @receiver:ColorInt Int.triadic(): Pair<Int, Int> {
-    val colorHSLA = this.asHSLA()
+    val colorHSLA = this.asHsla()
     val hue = colorHSLA.hue // 0° to 359°
 
     val h1 = colorHSLA.copy(hue = (hue + 120) % 360)
@@ -125,7 +291,7 @@ fun @receiver:ColorInt Int.triadic(): Pair<Int, Int> {
  * Tetradic colors for h0 would be (hue + 90) % 360, (hue + 180) % 360 and (hue + 270) % 360.
  */
 fun @receiver:ColorInt Int.tetradic(): Triple<Int, Int, Int> {
-    val colorHSLA = this.asHSLA()
+    val colorHSLA = this.asHsla()
     val hue = colorHSLA.hue // 0° to 359°
 
     val h1 = colorHSLA.copy(hue = (hue + 90) % 360)
@@ -143,7 +309,7 @@ fun @receiver:ColorInt Int.tetradic(): Triple<Int, Int, Int> {
  * Analogous colors for h0 would be (hue + 30) % 360 & (hue - 30) % 360.
  */
 fun @receiver:ColorInt Int.analogous(): Pair<Int, Int> {
-    val colorHSLA = this.asHSLA()
+    val colorHSLA = this.asHsla()
     val hue = colorHSLA.hue // 0° to 359°
 
     val h1 = colorHSLA.copy(hue = (hue + 30) % 360)

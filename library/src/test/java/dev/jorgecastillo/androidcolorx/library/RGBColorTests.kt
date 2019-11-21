@@ -142,4 +142,53 @@ class RGBColorTests {
             color.analogous()
         )
     }
+
+    @Test
+    fun `converts to ARGB and back is idempotent`() {
+        val color = RGBColor(233, 30, 99)
+
+        assertEquals(color, color.asArgb().asRgb())
+    }
+
+    @Test
+    fun `converts to ARGB assumes 255 alpha`() {
+        val color = RGBColor(233, 30, 99)
+
+        assertEquals(255, color.asArgb().alpha)
+    }
+
+    @Test
+    fun `converts to HEX and back is idempotent`() {
+        val color = RGBColor(233, 30, 99)
+
+        assertEquals(color, color.asHex().asRgb())
+    }
+
+    @Test
+    fun `converts to ColorInt and back is idempotent`() {
+        val color = RGBColor(233, 30, 99)
+
+        assertEquals(color, color.asColorInt().asRgb())
+    }
+
+    @Test
+    fun `converts to HSL and back is idempotent`() {
+        val color = RGBColor(233, 30, 99)
+
+        assertEquals(color, color.asHsl().asRgb())
+    }
+
+    @Test
+    fun `converts to HSLA and back is idempotent`() {
+        val color = RGBColor(233, 30, 99)
+
+        assertEquals(color, color.asHsla().asRgb())
+    }
+
+    @Test
+    fun `converts to CMYK and back is idempotent`() {
+        val color = RGBColor(233, 30, 99)
+
+        assertEquals(color, color.asCmyk().asRgb())
+    }
 }

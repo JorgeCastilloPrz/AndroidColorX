@@ -14,7 +14,7 @@ data class RGBColor(
     }
 }
 
-fun @receiver:ColorInt Int.asRGB(): RGBColor =
+fun @receiver:ColorInt Int.asRgb(): RGBColor =
     RGBColor(Color.red(this), Color.green(this), Color.blue(this))
 
 @ColorInt
@@ -26,48 +26,48 @@ fun RGBColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
 
 fun RGBColor.asHex(): HEXColor = asColorInt().asHex()
 
-fun RGBColor.asHsl(): HSLColor = asColorInt().asHSL()
+fun RGBColor.asHsl(): HSLColor = asColorInt().asHsl()
 
-fun RGBColor.asHsla(): HSLAColor = asColorInt().asHSLA()
+fun RGBColor.asHsla(): HSLAColor = asColorInt().asHsla()
 
 /**
  * @param value amount to lighten in the range 0...1
  */
-fun RGBColor.lighten(value: Float): RGBColor = this.asColorInt().lighten(value).asRGB()
+fun RGBColor.lighten(value: Float): RGBColor = this.asColorInt().lighten(value).asRgb()
 
 /**
  * @param value amount to lighten in the range 0...100
  */
-fun RGBColor.lighten(value: Int): RGBColor = this.asColorInt().lighten(value).asRGB()
+fun RGBColor.lighten(value: Int): RGBColor = this.asColorInt().lighten(value).asRgb()
 
 /**
  * @param value amount to darken in the range 0...1
  */
-fun RGBColor.darken(value: Float): RGBColor = this.asColorInt().darken(value).asRGB()
+fun RGBColor.darken(value: Float): RGBColor = this.asColorInt().darken(value).asRgb()
 
 /**
  * @param value amount to darken in the range 0...100
  */
-fun RGBColor.darken(value: Int): RGBColor = this.asColorInt().darken(value).asRGB()
+fun RGBColor.darken(value: Int): RGBColor = this.asColorInt().darken(value).asRgb()
 
 /**
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a RGBColor.
  */
-fun RGBColor.shades(): List<RGBColor> = asColorInt().shades().map { it.asRGB() }
+fun RGBColor.shades(): List<RGBColor> = asColorInt().shades().map { it.asRgb() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a RGBColor.
  */
-fun RGBColor.tints(): List<RGBColor> = asColorInt().tints().map { it.asRGB() }
+fun RGBColor.tints(): List<RGBColor> = asColorInt().tints().map { it.asRgb() }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
  * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The complimentary color stands for the
  * color in the opposite side of the circle, so it's (hue + 180) % 360.
  */
-fun RGBColor.complimentary(): RGBColor = asColorInt().complimentary().asRGB()
+fun RGBColor.complimentary(): RGBColor = asColorInt().complimentary().asRgb()
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
@@ -77,7 +77,7 @@ fun RGBColor.complimentary(): RGBColor = asColorInt().complimentary().asRGB()
  * Triadic colors for h0 would be (hue + 120) % 360 and (hue + 240) % 360.
  */
 fun RGBColor.triadic(): Pair<RGBColor, RGBColor> =
-    asColorInt().triadic().let { Pair(it.first.asRGB(), it.second.asRGB()) }
+    asColorInt().triadic().let { Pair(it.first.asRgb(), it.second.asRgb()) }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
@@ -87,7 +87,7 @@ fun RGBColor.triadic(): Pair<RGBColor, RGBColor> =
  * Tetradic colors for h0 would be (hue + 90) % 360, (hue + 180) % 360 and (hue + 270) % 360.
  */
 fun RGBColor.tetradic(): Triple<RGBColor, RGBColor, RGBColor> =
-    asColorInt().tetradic().let { Triple(it.first.asRGB(), it.second.asRGB(), it.third.asRGB()) }
+    asColorInt().tetradic().let { Triple(it.first.asRgb(), it.second.asRgb(), it.third.asRgb()) }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
@@ -97,7 +97,7 @@ fun RGBColor.tetradic(): Triple<RGBColor, RGBColor, RGBColor> =
  * Analogous colors for h0 would be (hue + 30) % 360 & (hue - 30) % 360.
  */
 fun RGBColor.analogous(): Pair<RGBColor, RGBColor> =
-    asColorInt().analogous().let { Pair(it.first.asRGB(), it.second.asRGB()) }
+    asColorInt().analogous().let { Pair(it.first.asRgb(), it.second.asRgb()) }
 
 /**
  * Check if a color is dark (convert to XYZ & check Y component)

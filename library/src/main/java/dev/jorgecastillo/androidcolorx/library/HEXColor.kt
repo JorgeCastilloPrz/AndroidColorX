@@ -25,6 +25,10 @@ data class HEXColor(val hex: String) {
     override fun toString(): String {
         return hex
     }
+
+    override fun equals(other: Any?): Boolean {
+        return other is HEXColor && asColorInt() == other.asColorInt()
+    }
 }
 
 /**
@@ -36,15 +40,15 @@ fun @receiver:ColorInt Int.asHex(): HEXColor =
 @ColorInt
 fun HEXColor.asColorInt(): Int = Color.parseColor(hex)
 
-fun HEXColor.asRgb(): RGBColor = asColorInt().asRGB()
+fun HEXColor.asRgb(): RGBColor = asColorInt().asRgb()
 
 fun HEXColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
 fun HEXColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
 
-fun HEXColor.asHsl(): HSLColor = asColorInt().asHSL()
+fun HEXColor.asHsl(): HSLColor = asColorInt().asHsl()
 
-fun HEXColor.asHsla(): HSLAColor = asColorInt().asHSLA()
+fun HEXColor.asHsla(): HSLAColor = asColorInt().asHsla()
 
 /**
  * @param value amount to lighten in the range 0...1

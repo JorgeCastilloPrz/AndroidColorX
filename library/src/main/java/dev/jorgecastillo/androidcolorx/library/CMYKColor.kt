@@ -17,10 +17,6 @@ data class CMYKColor(
                 "${String.format("%.2f", yellow)} / " +
                 String.format("%.2f", key)
     }
-
-    override fun equals(other: Any?): Boolean {
-        return other is CMYKColor && this.toString() == other.toString()
-    }
 }
 
 /**
@@ -46,22 +42,22 @@ fun @receiver:ColorInt Int.asCmyk(): CMYKColor {
 
 @ColorInt
 fun CMYKColor.asColorInt(): Int {
-    val red = 255 * (1 - cyan) * (1 - key)
-    val green = 255 * (1 - magenta) * (1 - key)
-    val blue = 255 * (1 - yellow) * (1 - key)
+    val red = (1 - cyan) * (1 - key)
+    val green = (1 - magenta) * (1 - key)
+    val blue = (1 - yellow) * (1 - key)
 
-    return Color.rgb(red.toInt(), green.toInt(), blue.toInt())
+    return rgbColorInt(red, green, blue)
 }
 
-fun CMYKColor.asRgb(): RGBColor = asColorInt().asRGB()
+fun CMYKColor.asRgb(): RGBColor = asColorInt().asRgb()
 
 fun CMYKColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
 fun CMYKColor.asHex(): HEXColor = asColorInt().asHex()
 
-fun CMYKColor.asHsl(): HSLColor = asColorInt().asHSL()
+fun CMYKColor.asHsl(): HSLColor = asColorInt().asHsl()
 
-fun CMYKColor.asHsla(): HSLAColor = asColorInt().asHSLA()
+fun CMYKColor.asHsla(): HSLAColor = asColorInt().asHsla()
 
 /**
  * @param value amount to lighten in the range 0...1

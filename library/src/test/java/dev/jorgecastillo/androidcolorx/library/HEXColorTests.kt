@@ -146,4 +146,46 @@ class HEXColorTests {
             color.analogous()
         )
     }
+
+    @Test
+    fun `converts to RGB and back is idempotent`() {
+        val color = HEXColor("#e91e63")
+
+        assertEquals(color, color.asRgb().asHex())
+    }
+
+    @Test
+    fun `converts to ARGB and back is idempotent`() {
+        val color = HEXColor("#e91e63")
+
+        assertEquals(color, color.asArgb().asHex())
+    }
+
+    @Test
+    fun `converts to ColorInt and back is idempotent`() {
+        val color = HEXColor("#e91e63")
+
+        assertEquals(color, color.asColorInt().asHex())
+    }
+
+    @Test
+    fun `converts to HSL and back is just loses information about alpha`() {
+        val color = HEXColor("#55e91e63")
+
+        assertEquals(color.copy(hex = "#FF${color.hex.drop(3)}"), color.asHsl().asHex())
+    }
+
+    @Test
+    fun `converts to HSLA and back is idempotent`() {
+        val color = HEXColor("#55e91e63")
+
+        assertEquals(color, color.asHsla().asHex())
+    }
+
+    @Test
+    fun `converts to CMYK and back just loses information about alpha`() {
+        val color = HEXColor("#55e91e63")
+
+        assertEquals(color.copy(hex = "#FF${color.hex.drop(3)}"), color.asCmyk().asHex())
+    }
 }

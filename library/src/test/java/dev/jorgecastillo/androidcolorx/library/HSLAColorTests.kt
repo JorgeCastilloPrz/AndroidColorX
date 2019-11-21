@@ -2,9 +2,7 @@ package dev.jorgecastillo.androidcolorx.library
 
 import android.os.Build
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import junit.framework.TestCase.assertEquals
-import junit.framework.TestCase.assertFalse
-import junit.framework.TestCase.assertTrue
+import junit.framework.TestCase.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
@@ -151,5 +149,54 @@ class HSLAColorTests {
             ),
             color.analogous()
         )
+    }
+
+    @Test
+    fun `converts to ColorInt and back is idempotent with understandable precision loss`() {
+        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+
+        color eqWithUnderstandablePrecisionLoss color.asColorInt().asHsla()
+    }
+
+    @Test
+    fun `converts to RGB and back is idempotent with understandable precision loss`() {
+        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+
+        color eqWithUnderstandablePrecisionLoss color.asRgb().asHsla()
+    }
+
+    @Test
+    fun `converts to ARGB and back is idempotent with understandable precision loss`() {
+        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+
+        color eqWithUnderstandablePrecisionLoss color.asArgb().asHsla()
+    }
+
+    @Test
+    fun `converts to ARGB assumes 255 alpha`() {
+        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+
+        assertEquals(255, color.asArgb().alpha)
+    }
+
+    @Test
+    fun `converts to HEX and back is idempotent`() {
+        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+
+        color eqWithUnderstandablePrecisionLoss color.asHex().asHsla()
+    }
+
+    @Test
+    fun `converts to HSL and back just loses information about alpha`() {
+        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+
+        color eqWithUnderstandablePrecisionLoss color.asHsl().asHsla()
+    }
+
+    @Test
+    fun `converts to CMYK and back is idempotent`() {
+        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+
+        color eqWithUnderstandablePrecisionLoss color.asCmyk().asHsla()
     }
 }

@@ -1,9 +1,9 @@
 package dev.jorgecastillo.androidcolorx.library
 
+import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.annotation.NonNull
 import androidx.core.graphics.ColorUtils
-import androidx.core.graphics.ColorUtils.HSLToColor
 
 /**
  * HSL stands for hue-saturation-lightness.
@@ -16,31 +16,21 @@ data class HSLColor(
     val hue: Float,
     val saturation: Float,
     val lightness: Float
-) {
-    override fun toString(): String {
-        return "${String.format("%.2f", hue)}º / " +
-                "${String.format("%.2f", saturation)} / " +
-                String.format("%.2f", lightness)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        return other is HSLColor && toString() == other.toString()
-    }
-}
+)
 
 @NonNull
-fun @receiver:ColorInt Int.asHSL(): HSLColor = this.let { color ->
-    FloatArray(3).apply { ColorUtils.colorToHSL(color, this) }.let {
+fun @receiver:ColorInt Int.asHsl(): HSLColor = this.let { color ->
+    FloatArray(3).apply {
+        rgbToHsl(Color.red(color), Color.green(color), Color.blue(color), this)
+    }.let {
         HSLColor(it[0], it[1], it[2])
     }
 }
 
-fun HSLColor.asFloatArray(): FloatArray = floatArrayOf(hue, saturation, lightness)
-
 @ColorInt
-fun HSLColor.asColorInt(): Int = HSLToColor(asFloatArray())
+fun HSLColor.asColorInt(): Int = hslToColor(floatArrayOf(hue, saturation, lightness))
 
-fun HSLColor.asRgb(): RGBColor = asColorInt().asRGB()
+fun HSLColor.asRgb(): RGBColor = asColorInt().asRgb()
 
 fun HSLColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
@@ -48,46 +38,46 @@ fun HSLColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
 
 fun HSLColor.asHex(): HEXColor = asColorInt().asHex()
 
-fun HSLColor.asHsla(): HSLAColor = asColorInt().asHSLA()
+fun HSLColor.asHsla(): HSLAColor = asColorInt().asHsla()
 
 /**
  * @param value amount to lighten in the range 0...1
  */
-fun HSLColor.lighten(value: Float): HSLColor = this.asColorInt().lighten(value).asHSL()
+fun HSLColor.lighten(value: Float): HSLColor = this.asColorInt().lighten(value).asHsl()
 
 /**
  * @param value amount to lighten in the range 0...100
  */
-fun HSLColor.lighten(value: Int): HSLColor = this.asColorInt().lighten(value).asHSL()
+fun HSLColor.lighten(value: Int): HSLColor = this.asColorInt().lighten(value).asHsl()
 
 /**
  * @param value amount to darken in the range 0...1
  */
-fun HSLColor.darken(value: Float): HSLColor = this.asColorInt().darken(value).asHSL()
+fun HSLColor.darken(value: Float): HSLColor = this.asColorInt().darken(value).asHsl()
 
 /**
  * @param value amount to darken in the range 0...100
  */
-fun HSLColor.darken(value: Int): HSLColor = this.asColorInt().darken(value).asHSL()
+fun HSLColor.darken(value: Int): HSLColor = this.asColorInt().darken(value).asHsl()
 
 /**
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a HSLColor.
  */
-fun HSLColor.shades(): List<HSLColor> = asColorInt().shades().map { it.asHSL() }
+fun HSLColor.shades(): List<HSLColor> = asColorInt().shades().map { it.asHsl() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a HSLColor.
  */
-fun HSLColor.tints(): List<HSLColor> = asColorInt().tints().map { it.asHSL() }
+fun HSLColor.tints(): List<HSLColor> = asColorInt().tints().map { it.asHsl() }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
  * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The complimentary color stands for the
  * color in the opposite side of the circle, so it's (hue + 180) % 360.
  */
-fun HSLColor.complimentary(): HSLColor = asColorInt().complimentary().asHSL()
+fun HSLColor.complimentary(): HSLColor = asColorInt().complimentary().asHsl()
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
@@ -97,7 +87,7 @@ fun HSLColor.complimentary(): HSLColor = asColorInt().complimentary().asHSL()
  * Triadic colors for h0 would be (hue + 120) % 360 and (hue + 240) % 360.
  */
 fun HSLColor.triadic(): Pair<HSLColor, HSLColor> =
-    asColorInt().triadic().let { Pair(it.first.asHSL(), it.second.asHSL()) }
+    asColorInt().triadic().let { Pair(it.first.asHsl(), it.second.asHsl()) }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
@@ -107,7 +97,7 @@ fun HSLColor.triadic(): Pair<HSLColor, HSLColor> =
  * Tetradic colors for h0 would be (hue + 90) % 360, (hue + 180) % 360 and (hue + 270) % 360.
  */
 fun HSLColor.tetradic(): Triple<HSLColor, HSLColor, HSLColor> =
-    asColorInt().tetradic().let { Triple(it.first.asHSL(), it.second.asHSL(), it.third.asHSL()) }
+    asColorInt().tetradic().let { Triple(it.first.asHsl(), it.second.asHsl(), it.third.asHsl()) }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
@@ -117,7 +107,7 @@ fun HSLColor.tetradic(): Triple<HSLColor, HSLColor, HSLColor> =
  * Analogous colors for h0 would be (hue + 30) % 360 & (hue - 30) % 360.
  */
 fun HSLColor.analogous(): Pair<HSLColor, HSLColor> =
-    asColorInt().analogous().let { Pair(it.first.asHSL(), it.second.asHSL()) }
+    asColorInt().analogous().let { Pair(it.first.asHsl(), it.second.asHsl()) }
 
 /**
  * Check if a color is dark (convert to XYZ & check Y component)

@@ -21,15 +21,15 @@ fun @receiver:ColorInt Int.asArgb(): ARGBColor =
 @ColorInt
 fun ARGBColor.asColorInt(): Int = Color.argb(alpha, red, green, blue)
 
-fun ARGBColor.asRgb(): RGBColor = asColorInt().asRGB()
+fun ARGBColor.asRgb(): RGBColor = asColorInt().asRgb()
 
 fun ARGBColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
 
 fun ARGBColor.asHex(): HEXColor = asColorInt().asHex()
 
-fun ARGBColor.asHsl(): HSLColor = asColorInt().asHSL()
+fun ARGBColor.asHsl(): HSLColor = asColorInt().asHsl()
 
-fun ARGBColor.asHsla(): HSLAColor = asColorInt().asHSLA()
+fun ARGBColor.asHsla(): HSLAColor = asColorInt().asHsla()
 
 /**
  * @param value amount to lighten in the range 0...1

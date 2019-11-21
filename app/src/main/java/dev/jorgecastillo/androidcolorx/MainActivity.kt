@@ -19,9 +19,9 @@ import dev.jorgecastillo.androidcolorx.library.tints
 import dev.jorgecastillo.androidcolorx.library.isDark
 import dev.jorgecastillo.androidcolorx.library.tetradic
 import dev.jorgecastillo.androidcolorx.library.asCmyk
-import dev.jorgecastillo.androidcolorx.library.asHSL
+import dev.jorgecastillo.androidcolorx.library.asHsl
 import dev.jorgecastillo.androidcolorx.library.asHex
-import dev.jorgecastillo.androidcolorx.library.asRGB
+import dev.jorgecastillo.androidcolorx.library.asRgb
 import dev.jorgecastillo.androidcolorx.library.triadic
 import kotlinx.android.synthetic.main.activity_main.analogousColor1
 import kotlinx.android.synthetic.main.activity_main.analogousColor1Hex
@@ -141,10 +141,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 popup.setOnMenuItemClickListener {
                     when (it.itemId) {
-                        0 -> copyToClipboard(selectedColor().asRGB().toString())
+                        0 -> copyToClipboard(selectedColor().asRgb().toString())
                         1 -> copyToClipboard(selectedColor().asHex().toString())
                         2 -> copyToClipboard(selectedColor().asCmyk().toString())
-                        3 -> copyToClipboard(selectedColor().asHSL().toString())
+                        3 -> copyToClipboard(selectedColor().asHsl().toString())
                     }
                     true
                 }

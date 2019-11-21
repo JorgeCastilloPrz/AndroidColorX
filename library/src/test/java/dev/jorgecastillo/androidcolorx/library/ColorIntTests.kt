@@ -141,4 +141,53 @@ class ColorIntTests {
             color.analogous()
         )
     }
+
+    @Test
+    fun `converts to RGB and back is idempotent`() {
+        val color = Color.parseColor("#e91e63")
+
+        assertEquals(color, color.asRgb().asColorInt())
+    }
+
+    @Test
+    fun `converts to ARGB and back is idempotent`() {
+        val color = Color.parseColor("#e91e63")
+
+        assertEquals(color, color.asArgb().asColorInt())
+    }
+
+    @Test
+    fun `converts to ARGB assumes 255 alpha`() {
+        val color = Color.parseColor("#e91e63")
+
+        assertEquals(255, color.asArgb().alpha)
+    }
+
+    @Test
+    fun `converts to HEX and back is idempotent`() {
+        val color = Color.parseColor("#e91e63")
+
+        assertEquals(color, color.asHex().asColorInt())
+    }
+
+    @Test
+    fun `converts to HSL and back is idempotent`() {
+        val color = Color.parseColor("#e91e63")
+
+        assertEquals(color, color.asHsl().asColorInt())
+    }
+
+    @Test
+    fun `converts to HSLA and back is idempotent`() {
+        val color = Color.parseColor("#e91e63")
+
+        assertEquals(color, color.asHsla().asColorInt())
+    }
+
+    @Test
+    fun `converts to CMYK and back is idempotent`() {
+        val color = Color.parseColor("#e91e63")
+
+        assertEquals(color, color.asCmyk().asColorInt())
+    }
 }

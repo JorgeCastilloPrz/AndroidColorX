@@ -146,4 +146,46 @@ class ARGBColorTests {
             color.analogous()
         )
     }
+
+    @Test
+    fun `converts to RGB and back just loses information about alpha`() {
+        val color = ARGBColor(20, 233, 30, 99)
+
+        assertEquals(color.copy(alpha = 255), color.asRgb().asArgb())
+    }
+
+    @Test
+    fun `converts to HEX and back is idempotent`() {
+        val color = ARGBColor(20, 233, 30, 99)
+
+        assertEquals(color, color.asHex().asArgb())
+    }
+
+    @Test
+    fun `converts to ColorInt and back is idempotent`() {
+        val color = ARGBColor(20, 233, 30, 99)
+
+        assertEquals(color, color.asColorInt().asArgb())
+    }
+
+    @Test
+    fun `converts to HSL and back is just loses information about alpha`() {
+        val color = ARGBColor(20, 233, 30, 99)
+
+        assertEquals(color.copy(alpha = 255), color.asHsl().asArgb())
+    }
+
+    @Test
+    fun `converts to HSLA and back is idempotent`() {
+        val color = ARGBColor(20, 233, 30, 99)
+
+        assertEquals(color, color.asHsla().asArgb())
+    }
+
+    @Test
+    fun `converts to CMYK and back just loses information about alpha`() {
+        val color = ARGBColor(20, 233, 30, 99)
+
+        assertEquals(color.copy(alpha = 255), color.asCmyk().asArgb())
+    }
 }
