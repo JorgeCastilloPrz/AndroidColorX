@@ -8,7 +8,7 @@ AndroidColorX (i.e: Android Color Extensions) is an Android library written in K
 Add the following dependency to your `build.gradle`. It's available in **Maven Central**.
 
 ```groovy
-dependencies{
+dependencies {
     implementation 'me.jorgecastillo:androidcolorx:0.1.0'
 }
 ```
