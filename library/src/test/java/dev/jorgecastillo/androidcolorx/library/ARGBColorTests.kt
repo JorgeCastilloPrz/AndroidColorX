@@ -134,7 +134,10 @@ class ARGBColorTests {
 
         assertEquals(
             lightColor,
-            color.contrasting(lightColor = lightColor, darkColor = ARGBColor(255,0, 0, 0))
+            color.contrasting(
+                lightColor = lightColor,
+                darkColor = ARGBColor(255, 0, 0, 0)
+            )
         )
     }
 
