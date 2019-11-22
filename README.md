@@ -153,7 +153,7 @@ val color = HEXColor("#e91e63")
 color.contrasting()
 
 // You can pass custom light and dark colors
-color.contrasting(lightColor = HEXColor("#ffffff"), darkColor = darkColor)
+color.contrasting(lightColor = HEXColor("#ffffff"), darkColor = HEXColor("#000000"))
 ```
 
 These extensions can be used over any color types provided by the library.
