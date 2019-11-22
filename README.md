@@ -23,6 +23,7 @@ This library provides seamless conversion between the following color types:
 * `HEXColor`
 * `HSLColor`
 * `HSLAColor`
+* `HSVColor`
 * `CMYKColor`
 
 To convert a color type to any of the other types, you can use the extensions provided for it.
@@ -35,6 +36,7 @@ val argb = color.asArgb()
 val hex = color.asHex()
 val hsl = color.asHsl()
 val hsla = color.asHsla()
+val hsv = color.asHsv()
 val cmyk = color.asCmyk()
 
 val colorHsl = HSLColor(hue = 210f, saturation = 0.5f, lightness = 0.5f)
@@ -45,9 +47,12 @@ val argb = colorHsl.asArgb()
 val hex = colorHsl.asHex()
 val cmyk = colorHsl.asCmyk()
 val hsla = colorHsl.asHsla()
+val hsv = colorHsl.asHsv()
 ```
 
 The same extensions **are available for all the mentioned color types**. Note that when converting from a color with an alpha component (i.e: `ARGB` or `HSLA`) to one without it (i.e: `RGB` or `HSL`) it will be a lossy conversion. If it's the other way around, conversions will assume full alpha (255 or 1f).
+
+Also note that conversions from colors that store their components as `Float` (i.e: cmyk, hsl, hsla) to colors that store them as `Int` (i.e: RGBColor, ColorInt) and back will imply precision loss.
 
 ### Shades and tints
 
@@ -65,6 +70,7 @@ val color = Color.parseColor("#e91e63")
 val shades: List<Int> = color.shades()
 val shadesHsl: List<HSLColor> = color.asHsl().shades()
 val shadesHsla: List<HSLAColor> = color.asHsla().shades()
+val shadesHsv: List<HSVColor> = color.asHsv().shades()
 val shadesCmyk: List<CMYKColor> = color.asCmyk().shades()
 val shadesHex: List<HEXColor> = color.asHex().shades()
 val shadesRgb: List<RGBColor> = color.asRgb().shades()
@@ -74,6 +80,7 @@ val shadesArgb: List<ARGBColor> = color.asArgb().shades()
 val tints: List<Int> = color.tints()
 val tintsHsl: List<HSLColor> = color.asHsl().tints()
 val tintsHsla: List<HSLAColor> = color.asHsla().tints()
+val tintsHsv: List<HSVColor> = color.asHsv().tints()
 val tintsCmyk: List<CMYKColor> = color.asCmyk().tints()
 val tintsHex: List<HEXColor> = color.asHex().tints()
 val tintsRgb: List<RGBColor> = color.asRgb().tints()
