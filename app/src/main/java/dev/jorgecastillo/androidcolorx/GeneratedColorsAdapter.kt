@@ -24,11 +24,11 @@ class GeneratedColorsAdapter : RecyclerView.Adapter<GeneratedColorsAdapter.ViewH
     override fun getItemCount(): Int = colors.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(colors[position], position)
+        holder.bind(colors[position])
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(color: Int, position: Int) {
+        fun bind(color: Int) {
             val colorSquare = itemView.findViewById<RoundedCornersColor>(R.id.colorSquare)
             colorSquare.setColor(color)
 
