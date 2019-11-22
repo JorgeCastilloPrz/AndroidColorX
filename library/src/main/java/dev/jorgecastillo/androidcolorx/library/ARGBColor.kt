@@ -31,6 +31,8 @@ fun ARGBColor.asHsl(): HSLColor = asColorInt().asHsl()
 
 fun ARGBColor.asHsla(): HSLAColor = asColorInt().asHsla()
 
+fun ARGBColor.asHsv(): HSVColor = asColorInt().asHsv()
+
 /**
  * @param value amount to lighten in the range 0...1
  */
