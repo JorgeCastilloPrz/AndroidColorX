@@ -114,6 +114,42 @@ class HEXColorTests {
     }
 
     @Test
+    fun `returns white as contrasting color for dark colors`() {
+        val color = HEXColor("#e91e63")
+
+        assertEquals(HEXColor("#ffffff"), color.contrasting())
+    }
+
+    @Test
+    fun `returns black as contrasting color for light colors`() {
+        val color = HEXColor("#FF1EE9A4")
+
+        assertEquals(HEXColor("#000000"), color.contrasting())
+    }
+
+    @Test
+    fun `returns passed light color as contrasting color for dark colors`() {
+        val color = HEXColor("#e91e63")
+        val lightColor = HEXColor("#FF1EE9A4")
+
+        assertEquals(
+            lightColor,
+            color.contrasting(lightColor = lightColor, darkColor = HEXColor("#000000"))
+        )
+    }
+
+    @Test
+    fun `returns passed dark color as contrasting color for light colors`() {
+        val color = HEXColor("#FF1EE9A4")
+        val darkColor = HEXColor("#e91e63")
+
+        assertEquals(
+            darkColor,
+            color.contrasting(lightColor = HEXColor("#ffffff"), darkColor = darkColor)
+        )
+    }
+
+    @Test
     fun `triadic colors should be calculated as expected`() {
         val color = HEXColor("#e91e63")
 

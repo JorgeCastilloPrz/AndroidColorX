@@ -1,5 +1,6 @@
 package dev.jorgecastillo.androidcolorx.library
 
+import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.annotation.IntRange
 import androidx.core.graphics.ColorUtils
@@ -19,24 +20,6 @@ import kotlin.math.roundToInt
 @ColorInt
 fun rgbColorInt(red: Float, green: Float, blue: Float): Int {
     return -0x1000000 or
-            ((red * 255.0f + 0.5f).toInt() shl 16) or
-            ((green * 255.0f + 0.5f).toInt() shl 8) or
-            (blue * 255.0f + 0.5f).toInt()
-}
-
-/**
- * Return a color-int from alpha, red, green, blue float components
- * in the range \([0..1]\). If the components are out of range, the
- * returned color is undefined.
- *
- * @param alpha Alpha component \([0..1]\) of the color
- * @param red Red component \([0..1]\) of the color
- * @param green Green component \([0..1]\) of the color
- * @param blue Blue component \([0..1]\) of the color
- */
-@ColorInt
-fun argbColorInt(alpha: Float, red: Float, green: Float, blue: Float): Int {
-    return (alpha * 255.0f + 0.5f).toInt() shl 24 or
             ((red * 255.0f + 0.5f).toInt() shl 16) or
             ((green * 255.0f + 0.5f).toInt() shl 8) or
             (blue * 255.0f + 0.5f).toInt()
@@ -170,10 +153,24 @@ fun rgbToHsl(
     outHsl[1] = constrain(s, 0f, 1f)
     outHsl[2] = constrain(l, 0f, 1f)
 }
+
 /**
  * Check if a color is dark (convert to XYZ & check Y component)
  */
 fun @receiver:ColorInt Int.isDark(): Boolean = ColorUtils.calculateLuminance(this) < 0.5
+
+/**
+ * Returns a color that contrasts nicely with the one given (receiver). Fallbacks to white and
+ * black, but optional light and dark colors can be passed.
+ */
+fun @receiver:ColorInt Int.contrasting(
+    @ColorInt lightColor: Int = Color.WHITE,
+    @ColorInt darkColor: Int = Color.BLACK
+) = if (isDark()) {
+    lightColor
+} else {
+    darkColor
+}
 
 /**
  * @param value amount to lighten in the range 0...1

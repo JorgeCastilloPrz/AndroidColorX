@@ -81,7 +81,8 @@ class ColorIntTests {
                 -15203830,
                 -16777216
             ),
-            color.shades())
+            color.shades()
+        )
     }
 
     @Test
@@ -102,7 +103,8 @@ class ColorIntTests {
                 -136977,
                 -1
             ),
-            color.tints())
+            color.tints()
+        )
     }
 
     @Test
@@ -110,6 +112,42 @@ class ColorIntTests {
         val color = Color.parseColor("#e91e63")
 
         assertEquals(-14751324, color.complimentary())
+    }
+
+    @Test
+    fun `returns white as contrasting color for dark colors`() {
+        val color = Color.parseColor("#e91e63")
+
+        assertEquals(Color.WHITE, color.contrasting())
+    }
+
+    @Test
+    fun `returns black as contrasting color for light colors`() {
+        val color = Color.parseColor("#d4e7e4")
+
+        assertEquals(Color.BLACK, color.contrasting())
+    }
+
+    @Test
+    fun `returns passed light color as contrasting color for dark colors`() {
+        val color = Color.parseColor("#e91e63")
+        val lightColor = Color.parseColor("#d4e7e4")
+
+        assertEquals(
+            lightColor,
+            color.contrasting(lightColor = lightColor, darkColor = Color.BLACK)
+        )
+    }
+
+    @Test
+    fun `returns passed dark color as contrasting color for light colors`() {
+        val color = Color.parseColor("#d4e7e4")
+        val darkColor = Color.parseColor("#e91e63")
+
+        assertEquals(
+            darkColor,
+            color.contrasting(lightColor = Color.WHITE, darkColor = darkColor)
+        )
     }
 
     @Test

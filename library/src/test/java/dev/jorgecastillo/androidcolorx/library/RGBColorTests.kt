@@ -114,6 +114,42 @@ class RGBColorTests {
     }
 
     @Test
+    fun `returns white as contrasting color for dark colors`() {
+        val color = RGBColor(233, 30, 99)
+
+        assertEquals(RGBColor(255, 255, 255), color.contrasting())
+    }
+
+    @Test
+    fun `returns black as contrasting color for light colors`() {
+        val color = RGBColor(251, 234, 248)
+
+        assertEquals(RGBColor(0, 0, 0), color.contrasting())
+    }
+
+    @Test
+    fun `returns passed light color as contrasting color for dark colors`() {
+        val color = RGBColor(233, 30, 99)
+        val lightColor = RGBColor(251, 234, 248)
+
+        assertEquals(
+            lightColor,
+            color.contrasting(lightColor = lightColor, darkColor = RGBColor(0, 0, 0))
+        )
+    }
+
+    @Test
+    fun `returns passed dark color as contrasting color for light colors`() {
+        val color = RGBColor(251, 234, 248)
+        val darkColor = RGBColor(233, 30, 99)
+
+        assertEquals(
+            darkColor,
+            color.contrasting(lightColor = RGBColor(255, 255, 255), darkColor = darkColor)
+        )
+    }
+
+    @Test
     fun `triadic colors should be calculated as expected`() {
         val color = RGBColor(233, 30, 99)
 

@@ -103,3 +103,16 @@ fun RGBColor.analogous(): Pair<RGBColor, RGBColor> =
  * Check if a color is dark (convert to XYZ & check Y component)
  */
 fun RGBColor.isDark(): Boolean = ColorUtils.calculateLuminance(this.asColorInt()) < 0.5
+
+/**
+ * Returns a color that contrasts nicely with the one given (receiver). Fallbacks to white and
+ * black, but optional light and dark colors can be passed.
+ */
+fun RGBColor.contrasting(
+    lightColor: RGBColor = RGBColor(255, 255, 255),
+    darkColor: RGBColor = RGBColor(0, 0, 0)
+) = if (isDark()) {
+    lightColor
+} else {
+    darkColor
+}

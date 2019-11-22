@@ -123,3 +123,16 @@ fun HEXColor.analogous(): Pair<HEXColor, HEXColor> =
  * Check if a color is dark (convert to XYZ & check Y component)
  */
 fun HEXColor.isDark(): Boolean = ColorUtils.calculateLuminance(this.asColorInt()) < 0.5
+
+/**
+ * Returns a color that contrasts nicely with the one given (receiver). Fallbacks to white and
+ * black, but optional light and dark colors can be passed.
+ */
+fun HEXColor.contrasting(
+    lightColor: HEXColor = HEXColor("#FFFFFF"),
+    darkColor: HEXColor = HEXColor("#000000")
+) = if (isDark()) {
+    lightColor
+} else {
+    darkColor
+}

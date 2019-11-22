@@ -114,6 +114,42 @@ class ARGBColorTests {
     }
 
     @Test
+    fun `returns white as contrasting color for dark colors`() {
+        val color = ARGBColor(255, 233, 30, 99)
+
+        assertEquals(ARGBColor(255, 255, 255, 255), color.contrasting())
+    }
+
+    @Test
+    fun `returns black as contrasting color for light colors`() {
+        val color = ARGBColor(255, 251, 234, 248)
+
+        assertEquals(ARGBColor(255, 0, 0, 0), color.contrasting())
+    }
+
+    @Test
+    fun `returns passed light color as contrasting color for dark colors`() {
+        val color = ARGBColor(255, 233, 30, 99)
+        val lightColor = ARGBColor(255, 251, 234, 248)
+
+        assertEquals(
+            lightColor,
+            color.contrasting(lightColor = lightColor, darkColor = ARGBColor(255,0, 0, 0))
+        )
+    }
+
+    @Test
+    fun `returns passed dark color as contrasting color for light colors`() {
+        val color = ARGBColor(255, 251, 234, 248)
+        val darkColor = ARGBColor(255, 233, 30, 99)
+
+        assertEquals(
+            darkColor,
+            color.contrasting(lightColor = ARGBColor(255, 255, 255, 255), darkColor = darkColor)
+        )
+    }
+
+    @Test
     fun `triadic colors should be calculated as expected`() {
         val color = ARGBColor(20, 233, 30, 99)
 
