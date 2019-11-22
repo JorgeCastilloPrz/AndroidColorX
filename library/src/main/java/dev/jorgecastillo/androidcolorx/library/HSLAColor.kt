@@ -126,3 +126,16 @@ fun HSLAColor.analogous(): Pair<HSLAColor, HSLAColor> =
  * Check if a color is dark (convert to XYZ & check Y component)
  */
 fun HSLAColor.isDark(): Boolean = ColorUtils.calculateLuminance(this.asColorInt()) < 0.5
+
+/**
+ * Returns a color that contrasts nicely with the one given (receiver). Fallbacks to white and
+ * black, but optional light and dark colors can be passed.
+ */
+fun HSLAColor.contrasting(
+    lightColor: HSLAColor = HSLAColor(0f, 0f, 1f, 1f), // white
+    darkColor: HSLAColor = HSLAColor(0f, 0f, 0f, 1f) // black
+) = if (isDark()) {
+    lightColor
+} else {
+    darkColor
+}

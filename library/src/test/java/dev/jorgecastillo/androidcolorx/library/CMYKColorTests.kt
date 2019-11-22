@@ -117,6 +117,48 @@ class CMYKColorTests {
     }
 
     @Test
+    fun `returns white as contrasting color for dark colors`() {
+        val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
+
+        assertEquals(CMYKColor(0f, 0f, 0f, 0f), color.contrasting())
+    }
+
+    @Test
+    fun `returns black as contrasting color for light colors`() {
+        val color = CMYKColor(0.87f, 0.00f, 0.29f, 0.09f)
+
+        assertEquals(CMYKColor(0f, 0f, 0f, 1f), color.contrasting())
+    }
+
+    @Test
+    fun `returns passed light color as contrasting color for dark colors`() {
+        val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
+        val lightColor = CMYKColor(0.87f, 0.00f, 0.29f, 0.09f)
+
+        assertEquals(
+            lightColor,
+            color.contrasting(
+                lightColor = lightColor,
+                darkColor = CMYKColor(0f, 0f, 0f, 1f)
+            )
+        )
+    }
+
+    @Test
+    fun `returns passed dark color as contrasting color for light colors`() {
+        val color = CMYKColor(0.87f, 0.00f, 0.29f, 0.09f)
+        val darkColor = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
+
+        assertEquals(
+            darkColor,
+            color.contrasting(
+                lightColor = CMYKColor(0f, 0f, 0f, 0f),
+                darkColor = darkColor
+            )
+        )
+    }
+
+    @Test
     fun `triadic colors should be calculated as expected`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 

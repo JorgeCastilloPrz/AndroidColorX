@@ -113,6 +113,48 @@ class HSLColorTests {
     }
 
     @Test
+    fun `returns white as contrasting color for dark colors`() {
+        val color = HSLColor(339.7f, 0.82f, 0.52f)
+
+        assertEquals(HSLColor(0f, 0f, 1f), color.contrasting())
+    }
+
+    @Test
+    fun `returns black as contrasting color for light colors`() {
+        val color = HSLColor(159.70f, 0.82f, 0.52f)
+
+        assertEquals(HSLColor(0f, 0f, 0f), color.contrasting())
+    }
+
+    @Test
+    fun `returns passed light color as contrasting color for dark colors`() {
+        val color = HSLColor(339.7f, 0.82f, 0.52f)
+        val lightColor = HSLColor(159.70f, 0.82f, 0.52f)
+
+        assertEquals(
+            lightColor,
+            color.contrasting(
+                lightColor = lightColor,
+                darkColor = HSLColor(0f, 0f, 0f)
+            )
+        )
+    }
+
+    @Test
+    fun `returns passed dark color as contrasting color for light colors`() {
+        val color = HSLColor(159.70f, 0.82f, 0.52f)
+        val darkColor = HSLColor(339.7f, 0.82f, 0.52f)
+
+        assertEquals(
+            darkColor,
+            color.contrasting(
+                lightColor = HSLColor(0f, 0f, 1f),
+                darkColor = darkColor
+            )
+        )
+    }
+
+    @Test
     fun `triadic colors should be calculated as expected`() {
         val color = HSLColor(339.61f, 0.82f, 0.52f)
 
