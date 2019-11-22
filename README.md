@@ -9,7 +9,7 @@ Add the following dependency to your `build.gradle`. It's available in **Maven C
 
 ```groovy
 dependencies {
-    implementation 'me.jorgecastillo:androidcolorx:0.1.0'
+    implementation 'me.jorgecastillo:androidcolorx:0.2.0'
 }
 ```
 
