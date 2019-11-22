@@ -228,4 +228,11 @@ class ColorIntTests {
 
         assertEquals(color, color.asCmyk().asColorInt())
     }
+
+    @Test
+    fun `converts to HSV and back is idempotent`() {
+        val color = Color.parseColor("#e91e63")
+
+        assertEquals(color, color.asHsv().asColorInt())
+    }
 }

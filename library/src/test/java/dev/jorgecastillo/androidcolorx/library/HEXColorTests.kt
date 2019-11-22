@@ -224,4 +224,11 @@ class HEXColorTests {
 
         assertEquals(color.copy(hex = "#FF${color.hex.drop(3)}"), color.asCmyk().asHex())
     }
+
+    @Test
+    fun `converts to HSV and back just loses information about alpha`() {
+        val color = HEXColor("#55e91e63")
+
+        assertEquals(color.copy(hex = "#FF${color.hex.drop(3)}"), color.asHsv().asHex())
+    }
 }

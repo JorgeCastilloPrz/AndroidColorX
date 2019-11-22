@@ -227,4 +227,11 @@ class RGBColorTests {
 
         assertEquals(color, color.asCmyk().asRgb())
     }
+
+    @Test
+    fun `converts to HSV and back is idempotent`() {
+        val color = RGBColor(233, 30, 99)
+
+        assertEquals(color, color.asHsv().asRgb())
+    }
 }
