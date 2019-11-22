@@ -250,4 +250,11 @@ class HSLColorTests {
 
         color eqWithUnderstandablePrecisionLoss color.asCmyk().asHsl()
     }
+
+    @Test
+    fun `converts to HSV and back is idempotent`() {
+        val color = HSLColor(339.7f, 0.82f, 0.52f)
+
+        color eqWithUnderstandablePrecisionLoss color.asHsv().asHsl()
+    }
 }

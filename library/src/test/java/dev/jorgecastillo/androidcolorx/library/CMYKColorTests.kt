@@ -230,4 +230,11 @@ class CMYKColorTests {
 
         color eqWithUnderstandablePrecisionLoss color.asHex().asCmyk()
     }
+
+    @Test
+    fun `converts to HSV and back is idempotent`() {
+        val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
+
+        color eqWithUnderstandablePrecisionLoss color.asHsv().asCmyk()
+    }
 }

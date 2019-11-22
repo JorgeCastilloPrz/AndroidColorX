@@ -53,6 +53,8 @@ fun HSLAColor.asHex(): HEXColor = asColorInt().asHex()
 
 fun HSLAColor.asHsl(): HSLColor = asColorInt().asHsl()
 
+fun HSLAColor.asHsv(): HSVColor = asColorInt().asHsv()
+
 /**
  * @param value amount to lighten in the range 0...1
  */

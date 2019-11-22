@@ -227,4 +227,11 @@ class ARGBColorTests {
 
         assertEquals(color.copy(alpha = 255), color.asCmyk().asArgb())
     }
+
+    @Test
+    fun `converts to HSV and back just loses information about alpha`() {
+        val color = ARGBColor(20, 233, 30, 99)
+
+        assertEquals(color.copy(alpha = 255), color.asHsv().asArgb())
+    }
 }
