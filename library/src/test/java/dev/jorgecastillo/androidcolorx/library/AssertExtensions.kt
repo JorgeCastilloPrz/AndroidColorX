@@ -22,6 +22,11 @@ infix fun <T> T.eqWithUnderstandablePrecisionLoss(other: T): Unit = when (this) 
         assertEquals(lightness.round(2), (other as HSLAColor).lightness.round(2))
         assertEquals(alpha.round(2), (other as HSLAColor).alpha.round(2))
     }
+    is HSVColor -> {
+        assertEquals(hue.round(2), (other as HSVColor).hue.round(2))
+        assertEquals(saturation.round(2), (other as HSVColor).saturation.round(2))
+        assertEquals(value.round(2), (other as HSVColor).value.round(2))
+    }
     else -> fail()
 }
 
