@@ -142,7 +142,19 @@ icon.setImageDrawable(
 )
 ```
 
-This extension can be used over any color types provided by the library.
+The library also provides a handy extension to get a nicely contrasting color for a given color. You can use it for the same purpose and to remove a bit of boilerplate.
+
+```kotlin
+val color = HEXColor("#e91e63")
+
+// Defaults to black or white, the one with better contrast
+color.contrasting()
+
+// You can pass custom light and dark colors
+color.contrasting(lightColor = HEXColor("#ffffff"), darkColor = darkColor)
+```
+
+These extensions can be used over any color types provided by the library.
 
 License
 -------
