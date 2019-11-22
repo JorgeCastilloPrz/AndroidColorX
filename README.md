@@ -142,6 +142,8 @@ icon.setImageDrawable(
 )
 ```
 
+#### contrasting
+
 The library also provides a handy extension to get a nicely contrasting color for a given color. You can use it for the same purpose and to remove a bit of boilerplate.
 
 ```kotlin
