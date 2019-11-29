@@ -84,10 +84,28 @@ val tintsHsv: List<HSVColor> = color.asHsv().tints()
 val tintsCmyk: List<CMYKColor> = color.asCmyk().tints()
 val tintsHex: List<HEXColor> = color.asHex().tints()
 val tintsRgb: List<RGBColor> = color.asRgb().tints()
-val tintsArgb: List<ARGBColor> = color.asArgb().tints()
+val tintsArgb: List<ARGBColor> = color.asArgb().tints()``
 ```
 
-As you can see, these extensions **are available for all the mentioned color types**.
+These functions calculate `10` shades or tints by default that will be returned **along with the original color**, but you can also generate an arbitrary amount if you need to:
+
+```kotlin
+val color = Color.parseColor("#e91e63")
+
+// shades
+val shades: List<Int> = color.shades(count = 3)
+val shadesHsl: List<HSLColor> = color.asHsl().shades(count = 3)
+...
+
+// tints
+val tints: List<Int> = color.tints(count = 15)
+val tintsHsl: List<HSLColor> = color.asHsl().tints(count = 15)
+...
+```
+
+Note that the colors will always range from 0 to 1 luminance for tinting or shading regardless of the amount of colors to generate, so the more you generate the more gradual the contrast will be between each consecutive pair of colors.
+
+These extensions **are available for all the mentioned color types**.
 
 ### Complimentary, triadic, tetradic and analogous colors
 
