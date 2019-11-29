@@ -171,11 +171,14 @@ class HSLAColorTests {
     fun `tetradic colors should be calculated as expected`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        Triple(
-            HSLAColor(69.85f, 0.82f, 0.52f, 0.2f),
-            HSLAColor(159.70f, 0.82f, 0.52f, 0.2f),
-            HSLAColor(249.85f, 0.82f, 0.52f, 0.2f)
-        ) eqWithUnderstandablePrecisionLoss color.tetradic()
+        assertEquals(
+            Triple(
+                HSLAColor(69.609985f, 0.82f, 0.52f, 0.2f),
+                HSLAColor(159.60999f, 0.82f, 0.52f, 0.2f),
+                HSLAColor(249.60999f, 0.82f, 0.52f, 0.2f)
+            ),
+            color.tetradic()
+        )
     }
 
     @Test

@@ -113,8 +113,15 @@ fun HSLAColor.triadic(): Pair<HSLAColor, HSLAColor> {
  *
  * Tetradic colors for h0 would be (hue + 90) % 360, (hue + 180) % 360 and (hue + 270) % 360.
  */
-fun HSLAColor.tetradic(): Triple<HSLAColor, HSLAColor, HSLAColor> =
-    asColorInt().tetradic().let { Triple(it.first.asHsla(), it.second.asHsla(), it.third.asHsla()) }
+fun HSLAColor.tetradic(): Triple<HSLAColor, HSLAColor, HSLAColor> {
+    val hue = this.hue // 0° to 359°
+
+    val h1 = this.copy(hue = (hue + 90) % 360)
+    val h2 = this.copy(hue = (hue + 180) % 360)
+    val h3 = this.copy(hue = (hue + 270) % 360)
+
+    return Triple(h1, h2, h3)
+}
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
