@@ -82,14 +82,19 @@ fun HSLColor.tints(): List<HSLColor> = asColorInt().tints().map { it.asHsl() }
 fun HSLColor.complimentary(): HSLColor = asColorInt().complimentary().asHsl()
 
 /**
- * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
- * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The triadic colors stand for 3 colors that
- * compose a perfect triangle (equal sides) over the circle, so they are equally far from each other.
+ * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°,
+ * representing the 360° of the wheel; 0° being red, 180° being red's opposite colour cyan, and so
+ * on. The triadic colors stand for 3 colors that compose a perfect triangle (equal sides) over the
+ * circle, so they are equally far from each other.
  *
  * Triadic colors for h0 would be (hue + 120) % 360 and (hue + 240) % 360.
  */
-fun HSLColor.triadic(): Pair<HSLColor, HSLColor> =
-    asColorInt().triadic().let { Pair(it.first.asHsl(), it.second.asHsl()) }
+fun HSLColor.triadic(): Pair<HSLColor, HSLColor> {
+    val h1 = this.copy(hue = (this.hue + 120) % 360f)
+    val h2 = this.copy(hue = (this.hue + 240) % 360f)
+
+    return Pair(h1, h2)
+}
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of

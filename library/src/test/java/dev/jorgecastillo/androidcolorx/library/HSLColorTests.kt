@@ -158,12 +158,12 @@ class HSLColorTests {
     fun `triadic colors should be calculated as expected`() {
         val color = HSLColor(339.61f, 0.82f, 0.52f)
 
-        Pair(
-            HSLColor(99.70f, 0.82f, 0.52f),
-            HSLColor(219.70f, 0.82f, 0.52f)
-        ) eqWithUnderstandablePrecisionLoss Pair(
-            color.triadic().first,
-            color.triadic().second
+        assertEquals(
+            Pair(
+                HSLColor(99.609985f, 0.82f, 0.52f),
+                HSLColor(219.60999f, 0.82f, 0.52f)
+            ),
+            color.triadic()
         )
     }
 
