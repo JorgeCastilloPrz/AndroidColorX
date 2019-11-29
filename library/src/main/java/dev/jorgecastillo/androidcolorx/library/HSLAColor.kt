@@ -83,8 +83,10 @@ fun HSLAColor.shades(count: Int = 10): List<HSLAColor> = asColorInt().shades(cou
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a HSLColor.
+ *
+ * @param count of tints to generate over the source color. It generates 10 by default.
  */
-fun HSLAColor.tints(): List<HSLAColor> = asColorInt().tints().map { it.asHsla() }
+fun HSLAColor.tints(count: Int = 10): List<HSLAColor> = asColorInt().tints(count).map { it.asHsla() }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of

@@ -122,6 +122,21 @@ class ARGBColorTests {
     }
 
     @Test
+    fun `tints for specific count should be properly calculated`() {
+        val color = ARGBColor(20, 233, 30, 99)
+
+        assertEquals(
+            listOf(
+                ARGBColor(20, 233, 30, 99),
+                ARGBColor(20, 240, 105, 151),
+                ARGBColor(20, 248, 180, 203),
+                ARGBColor(20, 255, 255, 255)
+            ),
+            color.tints(count = 3)
+        )
+    }
+
+    @Test
     fun `complimentary colors should be calculated as expected`() {
         val color = ARGBColor(20, 233, 30, 99)
 

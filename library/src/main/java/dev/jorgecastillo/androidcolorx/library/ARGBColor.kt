@@ -64,8 +64,10 @@ fun ARGBColor.shades(count: Int = 10): List<ARGBColor> = asColorInt().shades(cou
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a ARGBColor.
+ *
+ * @param count of tints to generate over the source color. It generates 10 by default.
  */
-fun ARGBColor.tints(): List<ARGBColor> = asColorInt().tints().map { it.asArgb() }
+fun ARGBColor.tints(count: Int = 10): List<ARGBColor> = asColorInt().tints(count).map { it.asArgb() }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of

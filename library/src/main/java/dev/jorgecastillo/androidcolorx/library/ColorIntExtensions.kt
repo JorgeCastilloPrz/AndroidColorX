@@ -242,12 +242,15 @@ fun @receiver:ColorInt Int.shades(count: Int = 10): List<Int> {
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a ColorInt.
+ *
+ * @param count of tints to generate over the source color. It generates 10 by default.
  */
-fun @receiver:ColorInt Int.tints(): List<Int> {
+fun @receiver:ColorInt Int.tints(count: Int = 10): List<Int> {
+    require(count > 0) { "count must be > 0" }
     val hsla = this.asHsla()
 
     val start = (hsla.lightness * 10000000).roundToInt()
-    val step = if (start < 10000000) (10000000 - start) / 10 else 1
+    val step = if (start < 10000000) (10000000 - start) / count else 1
     return IntProgression.fromClosedRange(start, 10000000, step).map { i ->
         hsla.copy(lightness = i / 10000000f).asColorInt()
     }

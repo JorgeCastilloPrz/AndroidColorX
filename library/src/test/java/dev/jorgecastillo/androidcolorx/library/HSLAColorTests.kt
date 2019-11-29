@@ -113,6 +113,18 @@ class HSLAColorTests {
     }
 
     @Test
+    fun `tints for specific count should be properly calculated`() {
+        val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
+
+        listOf(
+            HSLAColor(339.70f, 0.82f, 0.52f, 0.2f),
+            HSLAColor(339.4f, 0.82f, 0.68f, 0.2f),
+            HSLAColor(340.3f, 0.83f, 0.84f, 0.2f),
+            HSLAColor(0.00f, 0.00f, 1.00f, 0.2f)
+        ) eqWithUnderstandablePrecisionLoss color.tints(count = 3)
+    }
+
+    @Test
     fun `complimentary colors should be calculated as expected`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 

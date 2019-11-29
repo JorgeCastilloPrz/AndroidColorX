@@ -123,6 +123,21 @@ class ColorIntTests {
     }
 
     @Test
+    fun `tints for specific count should be properly calculated`() {
+        val color = Color.parseColor("#e91e63")
+
+        assertEquals(
+            listOf(
+                -1499549,
+                -1021545,
+                -478005,
+                -1
+            ),
+            color.tints(count = 3)
+        )
+    }
+
+    @Test
     fun `complimentary colors should be calculated as expected`() {
         val color = Color.parseColor("#e91e63")
 

@@ -1,31 +1,41 @@
 package dev.jorgecastillo.androidcolorx.library
 
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.fail
+import assertk.all
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import org.junit.Assert.fail
 import kotlin.math.round
 
 infix fun <T> T.eqWithUnderstandablePrecisionLoss(other: T): Unit = when (this) {
     is CMYKColor -> {
-        assertEquals(cyan.round(2), (other as CMYKColor).cyan.round(2))
-        assertEquals(magenta.round(2), (other as CMYKColor).magenta.round(2))
-        assertEquals(yellow.round(2), (other as CMYKColor).yellow.round(2))
-        assertEquals(key.round(2), (other as CMYKColor).key.round(2))
+        assertThat(this).all {
+            assertThat(cyan.round(2)).isEqualTo((other as CMYKColor).cyan.round(2))
+            assertThat(magenta.round(2)).isEqualTo((other as CMYKColor).magenta.round(2))
+            assertThat(yellow.round(2)).isEqualTo((other as CMYKColor).yellow.round(2))
+            assertThat(key.round(2)).isEqualTo((other as CMYKColor).key.round(2))
+        }
     }
     is HSLColor -> {
-        assertEquals(hue.round(2), (other as HSLColor).hue.round(2))
-        assertEquals(saturation.round(2), (other as HSLColor).saturation.round(2))
-        assertEquals(lightness.round(2), (other as HSLColor).lightness.round(2))
+        assertThat(this).all {
+            assertThat(hue.round(2)).isEqualTo((other as HSLColor).hue.round(2))
+            assertThat(saturation.round(2)).isEqualTo((other as HSLColor).saturation.round(2))
+            assertThat(lightness.round(2)).isEqualTo((other as HSLColor).lightness.round(2))
+        }
     }
     is HSLAColor -> {
-        assertEquals(hue.round(2), (other as HSLAColor).hue.round(2))
-        assertEquals(saturation.round(2), (other as HSLAColor).saturation.round(2))
-        assertEquals(lightness.round(2), (other as HSLAColor).lightness.round(2))
-        assertEquals(alpha.round(2), (other as HSLAColor).alpha.round(2))
+        assertThat(this).all {
+            assertThat(hue.round(2)).isEqualTo((other as HSLAColor).hue.round(2))
+            assertThat(saturation.round(2)).isEqualTo((other as HSLAColor).saturation.round(2))
+            assertThat(lightness.round(2)).isEqualTo((other as HSLAColor).lightness.round(2))
+            assertThat(alpha.round(2)).isEqualTo((other as HSLAColor).alpha.round(2))
+        }
     }
     is HSVColor -> {
-        assertEquals(hue.round(2), (other as HSVColor).hue.round(2))
-        assertEquals(saturation.round(2), (other as HSVColor).saturation.round(2))
-        assertEquals(value.round(2), (other as HSVColor).value.round(2))
+        assertThat(this).all {
+            assertThat(hue.round(2)).isEqualTo((other as HSVColor).hue.round(2))
+            assertThat(saturation.round(2)).isEqualTo((other as HSVColor).saturation.round(2))
+            assertThat(value.round(2)).isEqualTo((other as HSVColor).value.round(2))
+        }
     }
     else -> fail()
 }
@@ -41,8 +51,10 @@ infix fun <T> Triple<T, T, T>.eqWithUnderstandablePrecisionLoss(other: Triple<T,
     third eqWithUnderstandablePrecisionLoss other.third
 }
 
-infix fun <T> List<T>.eqWithUnderstandablePrecisionLoss(other: List<T>): Unit =
-    forEachIndexed { index, _ -> this[index] eqWithUnderstandablePrecisionLoss other[index] }
+infix fun <T> List<T>.eqWithUnderstandablePrecisionLoss(other: List<T>) =
+    assertThat(this).all {
+        forEachIndexed { index, _ -> get(index) eqWithUnderstandablePrecisionLoss other[index] }
+    }
 
 fun Float.round(decimals: Int): Double {
     var multiplier = 1.0

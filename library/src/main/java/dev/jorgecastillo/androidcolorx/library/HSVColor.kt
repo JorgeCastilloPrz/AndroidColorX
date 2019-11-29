@@ -71,8 +71,10 @@ fun HSVColor.shades(count: Int = 10): List<HSVColor> = asColorInt().shades(count
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a HSLColor.
+ *
+ * @param count of tints to generate over the source color. It generates 10 by default.
  */
-fun HSVColor.tints(): List<HSVColor> = asColorInt().tints().map { it.asHsv() }
+fun HSVColor.tints(count: Int = 10): List<HSVColor> = asColorInt().tints(count).map { it.asHsv() }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of

@@ -124,6 +124,18 @@ class HSVColorTests {
     }
 
     @Test
+    fun `tints with specific count should be properly calculated`() {
+        val color = HSVColor(339.61f, 0.82f, 0.52f)
+
+        listOf(
+            HSVColor(339.63f, 0.82f, 0.52f),
+            HSVColor(339.75f, 0.74f, 0.86f),
+            HSVColor(339.51f, 0.35f, 0.93f),
+            HSVColor(0.00f, 0.00f, 1.00f)
+        ) eqWithUnderstandablePrecisionLoss color.tints(count = 3)
+    }
+
+    @Test
     fun `complimentary colors should be calculated as expected`() {
         val color = HSVColor(339.61f, 0.82f, 0.52f)
 
