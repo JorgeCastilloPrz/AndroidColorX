@@ -84,7 +84,7 @@ val tintsHsv: List<HSVColor> = color.asHsv().tints()
 val tintsCmyk: List<CMYKColor> = color.asCmyk().tints()
 val tintsHex: List<HEXColor> = color.asHex().tints()
 val tintsRgb: List<RGBColor> = color.asRgb().tints()
-val tintsArgb: List<ARGBColor> = color.asArgb().tints()``
+val tintsArgb: List<ARGBColor> = color.asArgb().tints()
 ```
 
 These functions calculate `10` shades or tints by default that will be returned **along with the original color**, but you can also generate an arbitrary amount if you need to:
