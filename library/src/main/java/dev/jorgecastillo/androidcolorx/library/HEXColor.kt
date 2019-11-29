@@ -75,8 +75,10 @@ fun HEXColor.darken(value: Int): HEXColor = this.asColorInt().darken(value).asHe
 /**
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a HEXColor.
+ *
+ * @param count of shades to generate over the source color. It generates 10 by default.
  */
-fun HEXColor.shades(): List<HEXColor> = asColorInt().shades().map { it.asHex() }
+fun HEXColor.shades(count: Int = 10): List<HEXColor> = asColorInt().shades(count).map { it.asHex() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.

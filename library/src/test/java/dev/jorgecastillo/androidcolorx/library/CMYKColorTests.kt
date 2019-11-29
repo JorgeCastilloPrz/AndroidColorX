@@ -86,6 +86,18 @@ class CMYKColorTests {
     }
 
     @Test
+    fun `shades for a specific count should be properly calculated`() {
+        val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
+
+        listOf(
+            CMYKColor(0f, 0.87f, 0.58f, 0.09f),
+            CMYKColor(0f, 0.90f, 0.60f, 0.38f),
+            CMYKColor(0f, 0.90f, 0.59f, 0.69f),
+            CMYKColor(0f, 0f, 0f, 1f)
+        ) eqWithUnderstandablePrecisionLoss color.shades(count = 3)
+    }
+
+    @Test
     fun `tints should be properly calculated`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 

@@ -63,8 +63,10 @@ fun HSVColor.darken(value: Int): HSVColor = this.asColorInt().darken(value).asHs
 /**
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a HSLColor.
+ *
+ * @param count of shades to generate over the source color. It generates 10 by default.
  */
-fun HSVColor.shades(): List<HSVColor> = asColorInt().shades().map { it.asHsv() }
+fun HSVColor.shades(count: Int = 10): List<HSVColor> = asColorInt().shades(count).map { it.asHsv() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.

@@ -85,6 +85,21 @@ class RGBColorTests {
     }
 
     @Test
+    fun `shades with specific count should be properly calculated`() {
+        val color = RGBColor(233, 30, 99)
+
+        assertEquals(
+            listOf(
+                RGBColor(233, 30, 99),
+                RGBColor(160, 16, 65),
+                RGBColor(80, 8, 32),
+                RGBColor(0, 0, 0)
+            ),
+            color.shades(count = 3)
+        )
+    }
+
+    @Test
     fun `tints should be properly calculated`() {
         val color = RGBColor(233, 30, 99)
 

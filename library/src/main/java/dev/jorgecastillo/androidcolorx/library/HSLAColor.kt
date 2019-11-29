@@ -75,8 +75,10 @@ fun HSLAColor.darken(value: Int): HSLAColor = this.asColorInt().darken(value).as
 /**
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a HSLColor.
+ *
+ * @param count of shades to generate over the source color. It generates 10 by default.
  */
-fun HSLAColor.shades(): List<HSLAColor> = asColorInt().shades().map { it.asHsla() }
+fun HSLAColor.shades(count: Int = 10): List<HSLAColor> = asColorInt().shades(count).map { it.asHsla() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.

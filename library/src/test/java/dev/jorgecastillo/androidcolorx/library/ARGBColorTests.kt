@@ -85,6 +85,21 @@ class ARGBColorTests {
     }
 
     @Test
+    fun `shades for a specific count should be properly calculated`() {
+        val color = ARGBColor(20, 233, 30, 99)
+
+        assertEquals(
+            listOf(
+                ARGBColor(20, 233, 30, 99),
+                ARGBColor(20, 160, 16, 65),
+                ARGBColor(20, 80, 8, 32),
+                ARGBColor(20, 0, 0, 0)
+            ),
+            color.shades(count = 3)
+        )
+    }
+
+    @Test
     fun `tints should be properly calculated`() {
         val color = ARGBColor(20, 233, 30, 99)
 

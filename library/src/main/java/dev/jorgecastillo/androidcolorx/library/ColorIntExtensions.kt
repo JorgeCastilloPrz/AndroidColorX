@@ -223,16 +223,19 @@ fun @receiver:ColorInt Int.darken(value: Int): Int {
 /**
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a ColorInt.
+ *
+ * @param count of shades to generate over the source color. It generates 10 by default.
  */
-fun @receiver:ColorInt Int.shades(): List<Int> {
-    val colorHSLA = this.asHsla()
+fun @receiver:ColorInt Int.shades(count: Int = 10): List<Int> {
+    require(count > 0) { "count must be > 0" }
+    val hsla = this.asHsla()
 
-    val start = (colorHSLA.lightness * 10000000).roundToInt()
+    val start = (hsla.lightness * 10000000).roundToInt()
     val step = if (start > 0) {
-        -1 * start / 10
+        -1 * start / count
     } else 1
     return IntProgression.fromClosedRange(start, 0, step).map { i ->
-        colorHSLA.copy(lightness = i / 10000000f).asColorInt()
+        hsla.copy(lightness = i / 10000000f).asColorInt()
     }
 }
 
@@ -241,12 +244,12 @@ fun @receiver:ColorInt Int.shades(): List<Int> {
  * Each one of the colors is a ColorInt.
  */
 fun @receiver:ColorInt Int.tints(): List<Int> {
-    val colorHSLA = this.asHsla()
+    val hsla = this.asHsla()
 
-    val start = (colorHSLA.lightness * 10000000).roundToInt()
+    val start = (hsla.lightness * 10000000).roundToInt()
     val step = if (start < 10000000) (10000000 - start) / 10 else 1
     return IntProgression.fromClosedRange(start, 10000000, step).map { i ->
-        colorHSLA.copy(lightness = i / 10000000f).asColorInt()
+        hsla.copy(lightness = i / 10000000f).asColorInt()
     }
 }
 

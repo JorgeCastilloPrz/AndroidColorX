@@ -86,6 +86,21 @@ class ColorIntTests {
     }
 
     @Test
+    fun `shades for a specific count should be properly calculated`() {
+        val color = Color.parseColor("#e91e63")
+
+        assertEquals(
+            listOf(
+                -1499549,
+                -6287295,
+                -11532256,
+                -16777216
+            ),
+            color.shades(count = 3)
+        )
+    }
+
+    @Test
     fun `tints should be properly calculated`() {
         val color = Color.parseColor("#e91e63")
 

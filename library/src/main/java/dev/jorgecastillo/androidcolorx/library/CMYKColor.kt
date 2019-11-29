@@ -82,8 +82,10 @@ fun CMYKColor.darken(value: Int): CMYKColor = this.asColorInt().darken(value).as
 /**
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
  * Each one of the colors is a CMYKColor.
+ *
+ * @param count of shades to generate over the source color. It generates 10 by default.
  */
-fun CMYKColor.shades(): List<CMYKColor> = asColorInt().shades().map { it.asCmyk() }
+fun CMYKColor.shades(count: Int = 10): List<CMYKColor> = asColorInt().shades(count).map { it.asCmyk() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.

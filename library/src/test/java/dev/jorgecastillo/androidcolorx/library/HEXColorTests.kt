@@ -85,6 +85,21 @@ class HEXColorTests {
     }
 
     @Test
+    fun `shades for a specific count should be properly calculated`() {
+        val color = HEXColor("#e91e63")
+
+        assertEquals(
+            listOf(
+                HEXColor("#FFE91E63"),
+                HEXColor("#FFA01041"),
+                HEXColor("#FF500820"),
+                HEXColor("#FF000000")
+            ),
+            color.shades(count = 3)
+        )
+    }
+
+    @Test
     fun `tints should be properly calculated`() {
         val color = HEXColor("#e91e63")
 
