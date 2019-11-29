@@ -189,12 +189,12 @@ class HSVColorTests {
     fun `triadic colors should be calculated as expected`() {
         val color = HSVColor(339.61f, 0.82f, 0.52f)
 
-        Pair(
-            HSVColor(99.63f, 0.82f, 0.52f),
-            HSVColor(219.63f, 0.82f, 0.52f)
-        ) eqWithUnderstandablePrecisionLoss Pair(
-            color.triadic().first,
-            color.triadic().second
+        assertEquals(
+            Pair(
+                HSVColor(99.609985f, 0.82f, 0.52f),
+                HSVColor(219.60999f, 0.82f, 0.52f)
+            ),
+            color.triadic()
         )
     }
 
@@ -202,14 +202,13 @@ class HSVColorTests {
     fun `tetradic colors should be calculated as expected`() {
         val color = HSVColor(339.61f, 0.82f, 0.52f)
 
-        Triple(
-            HSVColor(69.36f, 0.82f, 0.52f),
-            HSVColor(159.63f, 0.82f, 0.52f),
-            HSVColor(249.91f, 0.82f, 0.52f)
-        ) eqWithUnderstandablePrecisionLoss Triple(
-            color.tetradic().first,
-            color.tetradic().second,
-            color.tetradic().third
+        assertEquals(
+            Triple(
+                HSVColor(69.609985f, 0.82f, 0.52f),
+                HSVColor(159.60999f, 0.82f, 0.52f),
+                HSVColor(249.60999f, 0.82f, 0.52f)
+            ),
+            color.tetradic()
         )
     }
 

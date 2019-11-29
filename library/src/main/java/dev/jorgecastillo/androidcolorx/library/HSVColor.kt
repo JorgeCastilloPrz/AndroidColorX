@@ -84,14 +84,19 @@ fun HSVColor.tints(count: Int = 10): List<HSVColor> = asColorInt().tints(count).
 fun HSVColor.complimentary(): HSVColor = asColorInt().complimentary().asHsv()
 
 /**
- * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
- * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The triadic colors stand for 3 colors that
- * compose a perfect triangle (equal sides) over the circle, so they are equally far from each other.
+ * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°,
+ * representing the 360° of the wheel; 0° being red, 180° being red's opposite colour cyan, and so
+ * on. The triadic colors stand for 3 colors that compose a perfect triangle (equal sides) over the
+ * circle, so they are equally far from each other.
  *
  * Triadic colors for h0 would be (hue + 120) % 360 and (hue + 240) % 360.
  */
-fun HSVColor.triadic(): Pair<HSVColor, HSVColor> =
-    asColorInt().triadic().let { Pair(it.first.asHsv(), it.second.asHsv()) }
+fun HSVColor.triadic(): Pair<HSVColor, HSVColor> {
+    val h1 = this.copy(hue = (this.hue + 120) % 360f)
+    val h2 = this.copy(hue = (this.hue + 240) % 360f)
+
+    return Pair(h1, h2)
+}
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
@@ -100,8 +105,15 @@ fun HSVColor.triadic(): Pair<HSVColor, HSVColor> =
  *
  * Tetradic colors for h0 would be (hue + 90) % 360, (hue + 180) % 360 and (hue + 270) % 360.
  */
-fun HSVColor.tetradic(): Triple<HSVColor, HSVColor, HSVColor> =
-    asColorInt().tetradic().let { Triple(it.first.asHsv(), it.second.asHsv(), it.third.asHsv()) }
+fun HSVColor.tetradic(): Triple<HSVColor, HSVColor, HSVColor> {
+    val hue = this.hue // 0° to 359°
+
+    val h1 = this.copy(hue = (hue + 90) % 360)
+    val h2 = this.copy(hue = (hue + 180) % 360)
+    val h3 = this.copy(hue = (hue + 270) % 360)
+
+    return Triple(h1, h2, h3)
+}
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
