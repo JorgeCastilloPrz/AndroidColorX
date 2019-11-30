@@ -66,19 +66,22 @@ class HSLAColorTests {
     fun `shades should be properly calculated`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        listOf(
-            HSLAColor(339.70f, 0.82f, 0.52f, 0.2f),
-            HSLAColor(339.49f, 0.82f, 0.47f, 0.2f),
-            HSLAColor(339.66f, 0.82f, 0.42f, 0.2f),
-            HSLAColor(339.87f, 0.82f, 0.36f, 0.2f),
-            HSLAColor(339.85f, 0.82f, 0.31f, 0.2f),
-            HSLAColor(339.63f, 0.82f, 0.26f, 0.2f),
-            HSLAColor(339.77f, 0.81f, 0.21f, 0.2f),
-            HSLAColor(339.69f, 0.82f, 0.15f, 0.2f),
-            HSLAColor(340.47f, 0.81f, 0.10f, 0.2f),
-            HSLAColor(338.18f, 0.85f, 0.05f, 0.2f),
-            HSLAColor(0.00f, 0.00f, 0.00f, 0.2f)
-        ) withQuiteBigPrecisionLoss color.shades()
+        assertEquals(
+            listOf(
+                HSLAColor(339.61f, 0.82f, 0.52f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.468f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.416f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.364f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.312f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.26f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.208f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.156f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.104f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.052f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.00f, 0.2f)
+            ),
+            color.shades()
+        )
     }
 
     @Test

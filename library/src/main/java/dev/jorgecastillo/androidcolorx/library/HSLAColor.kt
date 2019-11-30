@@ -5,6 +5,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.NonNull
 import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.ColorUtils.HSLToColor
+import kotlin.math.roundToInt
 
 /**
  * HSLA stands for hue-saturation-lightness-alpha.
@@ -98,7 +99,16 @@ fun HSLAColor.darken(value: Int): HSLAColor {
  *
  * @param count of shades to generate over the source color. It generates 10 by default.
  */
-fun HSLAColor.shades(count: Int = 10): List<HSLAColor> = asColorInt().shades(count).map { it.asHsla() }
+fun HSLAColor.shades(count: Int = 10): List<HSLAColor> {
+    require(count > 0) { "count must be > 0" }
+    val start = (this.lightness * 10000000).roundToInt()
+    val step = if (start > 0) {
+        -1 * start / count
+    } else 1
+    return IntProgression.fromClosedRange(start, 0, step).map { i ->
+        this.copy(lightness = i / 10000000f)
+    }
+}
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.

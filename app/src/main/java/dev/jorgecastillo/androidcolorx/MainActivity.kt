@@ -170,7 +170,7 @@ class MainActivity : AppCompatActivity() {
         colorShadesList.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         colorShadesList.setHasFixedSize(true)
-        adapter.colors = selectedColor.shades(count = 0)
+        adapter.colors = selectedColor.shades()
         shadesTitle.text = resources.getString(R.string.shades)
     }
 
