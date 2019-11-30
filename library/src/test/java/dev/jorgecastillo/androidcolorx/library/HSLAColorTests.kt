@@ -103,31 +103,37 @@ class HSLAColorTests {
     fun `tints should be properly calculated`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        listOf(
-            HSLAColor(339.61f, 0.82f, 0.52f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 0.57f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 0.62f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 0.66f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 0.71f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 0.76f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 0.81f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 0.86f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 0.90f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 0.95f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 1.00f, 0.2f)
-        ) withQuiteBigPrecisionLoss color.tints()
+        assertEquals(
+            listOf(
+                HSLAColor(339.61f, 0.82f, 0.52f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.568f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.616f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.664f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.712f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.76f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.808f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.856f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.904f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.952f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 1.00f, 0.2f)
+            ),
+            color.tints()
+        )
     }
 
     @Test
     fun `tints for specific count should be properly calculated`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        listOf(
-            HSLAColor(339.61f, 0.82f, 0.52f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 0.68f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 0.84f, 0.2f),
-            HSLAColor(339.61f, 0.82f, 1.00f, 0.2f)
-        ) withQuiteBigPrecisionLoss color.tints(count = 3)
+        assertEquals(
+            listOf(
+                HSLAColor(339.61f, 0.82f, 0.52f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.68f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 0.84f, 0.2f),
+                HSLAColor(339.61f, 0.82f, 1.00f, 0.2f)
+            ),
+            color.tints(count = 3)
+        )
     }
 
     @Test
