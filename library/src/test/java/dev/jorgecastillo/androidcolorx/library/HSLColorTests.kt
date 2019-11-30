@@ -125,12 +125,15 @@ class HSLColorTests {
     fun `tints for specific count should be properly calculated`() {
         val color = HSLColor(339.61f, 0.82f, 0.52f)
 
-        listOf(
-            HSLColor(339.61f, 0.82f, 0.52f),
-            HSLColor(339.61f, 0.82f, 0.68f),
-            HSLColor(339.61f, 0.82f, 0.84f),
-            HSLColor(339.61f, 0.82f, 1.00f)
-        ) withQuiteBigPrecisionLoss color.tints(count = 3)
+        assertEquals(
+            listOf(
+                HSLColor(339.61f, 0.82f, 0.52f),
+                HSLColor(339.61f, 0.82f, 0.68f),
+                HSLColor(339.61f, 0.82f, 0.84f),
+                HSLColor(339.61f, 0.82f, 1.00f)
+            ),
+            color.tints(count = 3)
+        )
     }
 
     @Test
