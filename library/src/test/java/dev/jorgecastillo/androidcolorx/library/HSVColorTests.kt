@@ -31,7 +31,7 @@ class HSVColorTests {
     fun `lighten integer should enlighten the color`() {
         val color = HSVColor(339.61f, 0.82f, 0.52f)
 
-        HSVColor(339.43f, 0.81f, 0.85f) withQuiteBigPrecisionLoss
+        HSVColor(339.43f, 0.81f, 0.85f) eqWithBigPrecisionLoss
                 color.lighten(20)
     }
 
@@ -39,7 +39,7 @@ class HSVColorTests {
     fun `lighten float should enlighten the color`() {
         val color = HSVColor(339.61f, 0.82f, 0.52f)
 
-        HSVColor(339.43f, 0.81f, 0.85f) withQuiteBigPrecisionLoss
+        HSVColor(339.43f, 0.81f, 0.85f) eqWithBigPrecisionLoss
                 color.lighten(0.2f)
     }
 
@@ -54,7 +54,7 @@ class HSVColorTests {
     fun `darken integer should darken the color`() {
         val color = HSVColor(339.61f, 0.82f, 0.52f)
 
-        HSVColor(340f, 0.83f, 0.18f) withQuiteBigPrecisionLoss
+        HSVColor(340f, 0.83f, 0.18f) eqWithBigPrecisionLoss
                 color.darken(20)
     }
 
@@ -62,7 +62,7 @@ class HSVColorTests {
     fun `darken float should darken the color`() {
         val color = HSVColor(339.61f, 0.82f, 0.52f)
 
-        HSVColor(340f, 0.83f, 0.18f) withQuiteBigPrecisionLoss
+        HSVColor(340f, 0.83f, 0.18f) eqWithBigPrecisionLoss
                 color.darken(0.2f)
     }
 
@@ -89,7 +89,7 @@ class HSVColorTests {
             HSVColor(340.91f, 0.81f, 0.11f),
             HSVColor(338.18f, 0.85f, 0.05f),
             HSVColor(0.00f, 0.00f, 0.00f)
-        ) withQuiteBigPrecisionLoss color.shades()
+        ) eqWithBigPrecisionLoss color.shades()
     }
 
     @Test
@@ -101,7 +101,7 @@ class HSVColorTests {
             HSVColor(339.45f, 0.82f, 0.35f),
             HSVColor(340f, 0.82f, 0.17f),
             HSVColor(0f, 0f, 0f)
-        ) withQuiteBigPrecisionLoss color.shades(count = 3)
+        ) eqWithBigPrecisionLoss color.shades(count = 3)
     }
 
     @Test
@@ -120,7 +120,7 @@ class HSVColorTests {
             HSVColor(339.18f, 0.2f, 0.96f),
             HSVColor(340.8f, 0.1f, 0.98f),
             HSVColor(0.00f, 0.00f, 1.00f)
-        ) withQuiteBigPrecisionLoss color.tints()
+        ) eqWithBigPrecisionLoss color.tints()
     }
 
     @Test
@@ -132,14 +132,14 @@ class HSVColorTests {
             HSVColor(339.75f, 0.74f, 0.86f),
             HSVColor(339.51f, 0.35f, 0.93f),
             HSVColor(0.00f, 0.00f, 1.00f)
-        ) withQuiteBigPrecisionLoss color.tints(count = 3)
+        ) eqWithBigPrecisionLoss color.tints(count = 3)
     }
 
     @Test
     fun `complimentary colors should be calculated as expected`() {
         val color = HSVColor(339.61f, 0.82f, 0.52f)
 
-        HSVColor(159.63f, 0.82f, 0.52f) withQuiteBigPrecisionLoss
+        HSVColor(159.63f, 0.82f, 0.52f) eqWithBigPrecisionLoss
                 color.complimentary()
     }
 
@@ -219,7 +219,7 @@ class HSVColorTests {
         Pair(
             HSVColor(9.36f, 0.82f, 0.52f),
             HSVColor(309.91f, 0.82f, 0.52f)
-        ) withQuiteBigPrecisionLoss Pair(
+        ) eqWithBigPrecisionLoss Pair(
             color.analogous().first,
             color.analogous().second
         )
@@ -229,21 +229,21 @@ class HSVColorTests {
     fun `converts to ColorInt and back is idempotent with understandable precision loss`() {
         val color = HSVColor(339.63f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asColorInt().asHsv()
+        color eqWithBigPrecisionLoss color.asColorInt().asHsv()
     }
 
     @Test
     fun `converts to RGB and back is idempotent with understandable precision loss`() {
         val color = HSVColor(339.63f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asRgb().asHsv()
+        color eqWithBigPrecisionLoss color.asRgb().asHsv()
     }
 
     @Test
     fun `converts to ARGB and back is idempotent with understandable precision loss`() {
         val color = HSVColor(339.63f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asArgb().asHsv()
+        color eqWithBigPrecisionLoss color.asArgb().asHsv()
     }
 
     @Test
@@ -257,21 +257,21 @@ class HSVColorTests {
     fun `converts to HEX and back is idempotent`() {
         val color = HSVColor(339.63f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asHex().asHsv()
+        color eqWithBigPrecisionLoss color.asHex().asHsv()
     }
 
     @Test
     fun `converts to HSL and back is idempotent`() {
         val color = HSVColor(339.63f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asHsl().asHsv()
+        color eqWithBigPrecisionLoss color.asHsl().asHsv()
     }
 
     @Test
     fun `converts to HSLA and back is idempotent`() {
         val color = HSVColor(339.63f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asHsla().asHsv()
+        color eqWithBigPrecisionLoss color.asHsla().asHsv()
     }
 
     @Test
@@ -285,6 +285,6 @@ class HSVColorTests {
     fun `converts to CMYK and back is idempotent`() {
         val color = HSVColor(339.63f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asCmyk().asHsv()
+        color eqWithBigPrecisionLoss color.asCmyk().asHsv()
     }
 }

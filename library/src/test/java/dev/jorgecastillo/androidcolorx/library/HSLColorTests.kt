@@ -232,21 +232,21 @@ class HSLColorTests {
     fun `converts to ColorInt and back is idempotent with understandable precision loss`() {
         val color = HSLColor(339.7f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asColorInt().asHsl()
+        color eqWithBigPrecisionLoss color.asColorInt().asHsl()
     }
 
     @Test
     fun `converts to RGB and back is idempotent with understandable precision loss`() {
         val color = HSLColor(339.7f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asRgb().asHsl()
+        color eqWithBigPrecisionLoss color.asRgb().asHsl()
     }
 
     @Test
     fun `converts to ARGB and back is idempotent with understandable precision loss`() {
         val color = HSLColor(339.7f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asArgb().asHsl()
+        color eqWithBigPrecisionLoss color.asArgb().asHsl()
     }
 
     @Test
@@ -260,7 +260,7 @@ class HSLColorTests {
     fun `converts to HEX and back is idempotent`() {
         val color = HSLColor(339.7f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asHex().asHsl()
+        color eqWithBigPrecisionLoss color.asHex().asHsl()
     }
 
     @Test
@@ -284,13 +284,13 @@ class HSLColorTests {
     fun `converts to CMYK and back is idempotent`() {
         val color = HSLColor(339.7f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asCmyk().asHsl()
+        color eqWithBigPrecisionLoss color.asCmyk().asHsl()
     }
 
     @Test
     fun `converts to HSV and back is idempotent`() {
         val color = HSLColor(339.7f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asHsv().asHsl()
+        color eqWithBigPrecisionLoss color.asHsv().asHsl()
     }
 }

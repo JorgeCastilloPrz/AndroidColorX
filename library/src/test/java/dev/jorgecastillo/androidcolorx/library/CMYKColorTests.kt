@@ -31,7 +31,7 @@ class CMYKColorTests {
     fun `lighten integer should enlighten the color`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 
-        CMYKColor(0f, 0.49f, 0.33f, 0.05f) withQuiteBigPrecisionLoss
+        CMYKColor(0f, 0.49f, 0.33f, 0.05f) eqWithBigPrecisionLoss
                 color.lighten(20)
     }
 
@@ -39,7 +39,7 @@ class CMYKColorTests {
     fun `lighten float should enlighten the color`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 
-        CMYKColor(0f, 0.49f, 0.33f, 0.05f) withQuiteBigPrecisionLoss
+        CMYKColor(0f, 0.49f, 0.33f, 0.05f) eqWithBigPrecisionLoss
                 color.lighten(0.2f)
     }
 
@@ -47,7 +47,7 @@ class CMYKColorTests {
     fun `darken integer should darken the color`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 
-        CMYKColor(0f, 0.90f, 0.60f, 0.43f) withQuiteBigPrecisionLoss
+        CMYKColor(0f, 0.90f, 0.60f, 0.43f) eqWithBigPrecisionLoss
                 color.darken(20)
     }
 
@@ -55,7 +55,7 @@ class CMYKColorTests {
     fun `darken float should darken the color`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 
-        CMYKColor(0f, 0.90f, 0.60f, 0.43f) withQuiteBigPrecisionLoss
+        CMYKColor(0f, 0.90f, 0.60f, 0.43f) eqWithBigPrecisionLoss
                 color.darken(0.2f)
     }
 
@@ -82,7 +82,7 @@ class CMYKColorTests {
             CMYKColor(0f, 0.90f, 0.60f, 0.81f),
             CMYKColor(0f, 0.92f, 0.58f, 0.91f),
             CMYKColor(0f, 0f, 0f, 1.00f)
-        ) withQuiteBigPrecisionLoss color.shades()
+        ) eqWithBigPrecisionLoss color.shades()
     }
 
     @Test
@@ -94,7 +94,7 @@ class CMYKColorTests {
             CMYKColor(0f, 0.90f, 0.60f, 0.38f),
             CMYKColor(0f, 0.90f, 0.59f, 0.69f),
             CMYKColor(0f, 0f, 0f, 1f)
-        ) withQuiteBigPrecisionLoss color.shades(count = 3)
+        ) eqWithBigPrecisionLoss color.shades(count = 3)
     }
 
     @Test
@@ -113,7 +113,7 @@ class CMYKColorTests {
             CMYKColor(0f, 0.16f, 0.11f, 0.02f),
             CMYKColor(0f, 0.08f, 0.06f, 0.01f),
             CMYKColor(0f, 0f, 0f, 0.00f)
-        ) withQuiteBigPrecisionLoss color.tints()
+        ) eqWithBigPrecisionLoss color.tints()
     }
 
     @Test
@@ -125,7 +125,7 @@ class CMYKColorTests {
             CMYKColor(0f, 0.56f, 0.37f, 0.06f),
             CMYKColor(0f, 0.27f, 0.18f, 0.03f),
             CMYKColor(0f, 0f, 0f, 0.00f)
-        ) withQuiteBigPrecisionLoss color.tints(count = 3)
+        ) eqWithBigPrecisionLoss color.tints(count = 3)
     }
 
     @Test
@@ -137,7 +137,7 @@ class CMYKColorTests {
             0.00f,
             0.29f,
             0.09f
-        ) withQuiteBigPrecisionLoss color.complimentary()
+        ) eqWithBigPrecisionLoss color.complimentary()
     }
 
     @Test
@@ -189,7 +189,7 @@ class CMYKColorTests {
         Pair(
             CMYKColor(0.58f, 0f, 0.87f, 0.09f),
             CMYKColor(0.87f, 0.58f, 0.00f, 0.09f)
-        ) withQuiteBigPrecisionLoss color.triadic()
+        ) eqWithBigPrecisionLoss color.triadic()
     }
 
     @Test
@@ -200,7 +200,7 @@ class CMYKColorTests {
             CMYKColor(0.15f, 0f, 0.87f, 0.09f),
             CMYKColor(0.87f, 0f, 0.29f, 0.09f),
             CMYKColor(0.72f, 0.87f, 0f, 0.09f)
-        ) withQuiteBigPrecisionLoss color.tetradic()
+        ) eqWithBigPrecisionLoss color.tetradic()
     }
 
     @Test
@@ -210,28 +210,28 @@ class CMYKColorTests {
         Pair(
             CMYKColor(0f, 0.72f, 0.87f, 0.09f),
             CMYKColor(0f, 0.87f, 0.15f, 0.09f)
-        ) withQuiteBigPrecisionLoss color.analogous()
+        ) eqWithBigPrecisionLoss color.analogous()
     }
 
     @Test
     fun `converts to RGB and back is idempotent with understandable precision loss`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 
-        color withQuiteBigPrecisionLoss color.asRgb().asCmyk()
+        color eqWithBigPrecisionLoss color.asRgb().asCmyk()
     }
 
     @Test
     fun `converts to ARGB and back is idempotent with understandable precision loss`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 
-        color withQuiteBigPrecisionLoss color.asArgb().asCmyk()
+        color eqWithBigPrecisionLoss color.asArgb().asCmyk()
     }
 
     @Test
     fun `converts to ColorInt and back is idempotent with understandable precision loss`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 
-        color withQuiteBigPrecisionLoss color.asColorInt().asCmyk()
+        color eqWithBigPrecisionLoss color.asColorInt().asCmyk()
     }
 
     @Test
@@ -252,13 +252,13 @@ class CMYKColorTests {
     fun `converts to HEX and back is idempotent with understandable precision loss`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 
-        color withQuiteBigPrecisionLoss color.asHex().asCmyk()
+        color eqWithBigPrecisionLoss color.asHex().asCmyk()
     }
 
     @Test
     fun `converts to HSV and back is idempotent`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 
-        color withQuiteBigPrecisionLoss color.asHsv().asCmyk()
+        color eqWithBigPrecisionLoss color.asHsv().asCmyk()
     }
 }

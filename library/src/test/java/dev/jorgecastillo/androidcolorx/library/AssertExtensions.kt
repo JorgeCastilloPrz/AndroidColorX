@@ -8,7 +8,7 @@ import org.junit.Assert.fail
 import kotlin.math.abs
 import kotlin.math.round
 
-infix fun <T> T.withQuiteBigPrecisionLoss(other: T): Unit = when (this) {
+infix fun <T> T.eqWithBigPrecisionLoss(other: T): Unit = when (this) {
     is CMYKColor -> {
         assertThat(this).all {
             assertThat(cyan.round(2)).isEqualTo((other as CMYKColor).cyan.round(2))
@@ -42,20 +42,20 @@ infix fun <T> T.withQuiteBigPrecisionLoss(other: T): Unit = when (this) {
     else -> fail()
 }
 
-infix fun <T> Pair<T, T>.withQuiteBigPrecisionLoss(other: Pair<T, T>) {
-    first withQuiteBigPrecisionLoss other.first
-    second withQuiteBigPrecisionLoss other.second
+infix fun <T> Pair<T, T>.eqWithBigPrecisionLoss(other: Pair<T, T>) {
+    first eqWithBigPrecisionLoss other.first
+    second eqWithBigPrecisionLoss other.second
 }
 
-infix fun <T> Triple<T, T, T>.withQuiteBigPrecisionLoss(other: Triple<T, T, T>) {
-    first withQuiteBigPrecisionLoss other.first
-    second withQuiteBigPrecisionLoss other.second
-    third withQuiteBigPrecisionLoss other.third
+infix fun <T> Triple<T, T, T>.eqWithBigPrecisionLoss(other: Triple<T, T, T>) {
+    first eqWithBigPrecisionLoss other.first
+    second eqWithBigPrecisionLoss other.second
+    third eqWithBigPrecisionLoss other.third
 }
 
-infix fun <T> List<T>.withQuiteBigPrecisionLoss(other: List<T>) =
+infix fun <T> List<T>.eqWithBigPrecisionLoss(other: List<T>) =
     assertThat(this).all {
-        forEachIndexed { index, _ -> get(index) withQuiteBigPrecisionLoss other[index] }
+        forEachIndexed { index, _ -> get(index) eqWithBigPrecisionLoss other[index] }
     }
 
 fun Float.round(decimals: Int): Double {
@@ -113,5 +113,5 @@ infix fun <T> Triple<T, T, T>.eqWithMinimumPrecisionLoss(other: Triple<T, T, T>)
 
 infix fun <T> List<T>.eqWithMinimumPrecisionLoss(other: List<T>) =
     assertThat(this).all {
-        forEachIndexed { index, _ -> get(index) withQuiteBigPrecisionLoss other[index] }
+        forEachIndexed { index, _ -> get(index) eqWithBigPrecisionLoss other[index] }
     }
