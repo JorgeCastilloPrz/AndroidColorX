@@ -247,7 +247,10 @@ class HSLAColorTests {
     fun `converts to HSL and back just loses information about alpha`() {
         val color = HSLAColor(339.7f, 0.82f, 0.52f, 0.2f)
 
-        color.copy(alpha = 1f) withQuiteBigPrecisionLoss color.asHsl().asHsla()
+        assertEquals(
+            color.copy(alpha = 1f),
+            color.asHsl().asHsla()
+        )
     }
 
     @Test

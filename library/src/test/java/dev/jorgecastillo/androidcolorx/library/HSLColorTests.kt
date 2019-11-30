@@ -250,7 +250,10 @@ class HSLColorTests {
     fun `converts to HSLA and back is idempotent`() {
         val color = HSLColor(339.7f, 0.82f, 0.52f)
 
-        color withQuiteBigPrecisionLoss color.asHsla().asHsl()
+        assertEquals(
+            color,
+            color.asHsla().asHsl()
+        )
     }
 
     @Test

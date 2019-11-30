@@ -44,11 +44,11 @@ fun HSLAColor.asRgb(): RGBColor = asColorInt().asRgb()
 
 fun HSLAColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
-fun HSLAColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
+fun HSLAColor.asCmyk(): CMYKColor = asHsl().asCmyk()
 
 fun HSLAColor.asHex(): HEXColor = asColorInt().asHex()
 
-fun HSLAColor.asHsl(): HSLColor = asColorInt().asHsl()
+fun HSLAColor.asHsl(): HSLColor = HSLColor(hue, saturation, lightness)
 
 fun HSLAColor.asHsv(): HSVColor = asColorInt().asHsv()
 

@@ -238,14 +238,14 @@ class CMYKColorTests {
     fun `converts to HSL and back is idempotent with minimum loss`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 
-        color withMinimumPrecisionLoss color.asHsl().asCmyk()
+        color eqWithMinimumPrecisionLoss color.asHsl().asCmyk()
     }
 
     @Test
     fun `converts to HSLA and back is idempotent with understandable precision loss`() {
         val color = CMYKColor(0f, 0.87f, 0.58f, 0.09f)
 
-        color withQuiteBigPrecisionLoss color.asHsla().asCmyk()
+        color eqWithMinimumPrecisionLoss color.asHsla().asCmyk()
     }
 
     @Test
