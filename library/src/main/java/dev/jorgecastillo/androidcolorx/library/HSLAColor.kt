@@ -55,12 +55,22 @@ fun HSLAColor.asHsv(): HSVColor = asColorInt().asHsv()
 /**
  * @param value amount to lighten in the range 0...1
  */
-fun HSLAColor.lighten(value: Float): HSLAColor = this.asColorInt().lighten(value).asHsla()
+fun HSLAColor.lighten(value: Float): HSLAColor {
+    var mutableLightness = this.lightness
+    mutableLightness += value
+    mutableLightness = 0f.coerceAtLeast(mutableLightness.coerceAtMost(1f))
+    return HSLAColor(hue, saturation, mutableLightness, alpha)
+}
 
 /**
  * @param value amount to lighten in the range 0...100
  */
-fun HSLAColor.lighten(value: Int): HSLAColor = this.asColorInt().lighten(value).asHsla()
+fun HSLAColor.lighten(value: Int): HSLAColor {
+    var mutableLightness = this.lightness
+    mutableLightness += value / 100f
+    mutableLightness = 0f.coerceAtLeast(mutableLightness.coerceAtMost(1f))
+    return HSLAColor(hue, saturation, mutableLightness, alpha)
+}
 
 /**
  * @param value amount to darken in the range 0...1

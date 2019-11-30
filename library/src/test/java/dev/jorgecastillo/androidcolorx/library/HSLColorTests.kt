@@ -31,16 +31,14 @@ class HSLColorTests {
     fun `lighten integer should enlighten the color`() {
         val color = HSLColor(339.61f, 0.82f, 0.52f)
 
-        HSLColor(339.49f, 0.82f, 0.72f) withQuiteBigPrecisionLoss
-                color.lighten(20)
+        HSLColor(339.61f, 0.82f, 0.72f) eqWithMinimumPrecisionLoss color.lighten(20)
     }
 
     @Test
     fun `lighten float should enlighten the color`() {
         val color = HSLColor(339.61f, 0.82f, 0.52f)
 
-        HSLColor(339.49f, 0.82f, 0.72f) withQuiteBigPrecisionLoss
-                color.lighten(0.2f)
+        HSLColor(339.61f, 0.82f, 0.72f) eqWithMinimumPrecisionLoss color.lighten(0.2f)
     }
 
     @Test
