@@ -237,8 +237,12 @@ fun HSLColor.tetradic(): Triple<HSLColor, HSLColor, HSLColor> {
  *
  * Analogous colors for h0 would be (hue + 30) % 360 & (hue - 30) % 360.
  */
-fun HSLColor.analogous(): Pair<HSLColor, HSLColor> =
-    asColorInt().analogous().let { Pair(it.first.asHsl(), it.second.asHsl()) }
+fun HSLColor.analogous(): Pair<HSLColor, HSLColor> {
+    val h1 = this.copy(hue = (hue + 30) % 360)
+    val h2 = this.copy(hue = (hue + 330) % 360)
+
+    return Pair(h1, h2)
+}
 
 /**
  * Check if a color is dark (convert to XYZ & check Y component)

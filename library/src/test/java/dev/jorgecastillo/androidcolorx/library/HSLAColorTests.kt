@@ -224,10 +224,13 @@ class HSLAColorTests {
     fun `analogous colors should be calculated as expected`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        Pair(
-            HSLAColor(9.85f, 0.82f, 0.52f, 0.2f),
-            HSLAColor(309.85f, 0.82f, 0.52f, 0.2f)
-        ) withQuiteBigPrecisionLoss color.analogous()
+        assertEquals(
+            Pair(
+                HSLAColor(9.609985f, 0.82f, 0.52f, 0.2f),
+                HSLAColor(309.61f, 0.82f, 0.52f, 0.2f)
+            ),
+            color.analogous()
+        )
     }
 
     @Test
