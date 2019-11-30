@@ -140,12 +140,15 @@ class HSLAColorTests {
     fun `complimentary colors should be calculated as expected`() {
         val color = HSLAColor(339.61f, 0.82f, 0.52f, 0.2f)
 
-        HSLAColor(
-            159.70f,
-            0.82f,
-            0.52f,
-            0.2f
-        ) withQuiteBigPrecisionLoss color.complimentary()
+        assertEquals(
+            HSLAColor(
+                159.60999f,
+                0.82f,
+                0.52f,
+                0.2f
+            ),
+            color.complimentary()
+        )
     }
 
     @Test

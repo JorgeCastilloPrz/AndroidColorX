@@ -131,7 +131,10 @@ fun HSLAColor.tints(count: Int = 10): List<HSLAColor> {
  * the wheel; 0° being red, 180° being red's opposite colour cyan, and so on. The complimentary color stands for the
  * color in the opposite side of the circle, so it's (hue + 180) % 360.
  */
-fun HSLAColor.complimentary(): HSLAColor = asColorInt().complimentary().asHsla()
+fun HSLAColor.complimentary(): HSLAColor {
+    val complimentaryHue = (hue + 180) % 360
+    return this.copy(hue = complimentaryHue)
+}
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°,
