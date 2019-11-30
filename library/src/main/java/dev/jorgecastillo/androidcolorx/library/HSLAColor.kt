@@ -116,7 +116,15 @@ fun HSLAColor.shades(count: Int = 10): List<HSLAColor> {
  *
  * @param count of tints to generate over the source color. It generates 10 by default.
  */
-fun HSLAColor.tints(count: Int = 10): List<HSLAColor> = asColorInt().tints(count).map { it.asHsla() }
+fun HSLAColor.tints(count: Int = 10): List<HSLAColor> {
+    require(count > 0) { "count must be > 0" }
+
+    val start = (this.lightness * 10000000).roundToInt()
+    val step = if (start < 10000000) (10000000 - start) / count else 1
+    return IntProgression.fromClosedRange(start, 10000000, step).map { i ->
+        this.copy(lightness = i / 10000000f)
+    }
+}
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
