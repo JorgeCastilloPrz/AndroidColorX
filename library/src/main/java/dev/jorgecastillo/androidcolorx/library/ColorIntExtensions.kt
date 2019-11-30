@@ -93,10 +93,6 @@ fun hslToColor(hsl: FloatArray): Int {
     return rgbColorInt(r, g, b)
 }
 
-private fun constrain(amount: Float, low: Float, high: Float): Float {
-    return if (amount < low) low else if (amount > high) high else amount
-}
-
 /**
  * Convert RGB components to HSL (hue-saturation-lightness).
  *

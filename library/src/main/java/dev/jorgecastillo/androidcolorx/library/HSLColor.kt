@@ -4,6 +4,8 @@ import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.annotation.NonNull
 import androidx.core.graphics.ColorUtils
+import kotlin.math.abs
+import kotlin.math.max
 
 /**
  * HSL stands for hue-saturation-lightness.
@@ -30,11 +32,81 @@ fun @receiver:ColorInt Int.asHsl(): HSLColor = this.let { color ->
 @ColorInt
 fun HSLColor.asColorInt(): Int = hslToColor(floatArrayOf(hue, saturation, lightness))
 
+private fun HSLColor.asRGBF(): FloatArray {
+    val hsl = floatArrayOf(hue, saturation, lightness)
+
+    val h = hsl[0]
+    val s = hsl[1]
+    val l = hsl[2]
+
+    val c = (1f - abs(2 * l - 1f)) * s
+    val m = l - 0.5f * c
+    val x = c * (1f - abs(h / 60f % 2f - 1f))
+
+    val hueSegment = h.toInt() / 60
+
+    var r = 0f
+    var g = 0f
+    var b = 0f
+
+    when (hueSegment) {
+        0 -> {
+            r = (c + m)
+            g = (x + m)
+            b = m
+        }
+        1 -> {
+            r = (x + m)
+            g = (c + m)
+            b = m
+        }
+        2 -> {
+            r = m
+            g = (c + m)
+            b = (x + m)
+        }
+        3 -> {
+            r = m
+            g = (x + m)
+            b = (c + m)
+        }
+        4 -> {
+            r = (x + m)
+            g = m
+            b = (c + m)
+        }
+        5, 6 -> {
+            r = (c + m)
+            g = m
+            b = (x + m)
+        }
+    }
+
+    r = constrain(r, 0f, 1f)
+    g = constrain(g, 0f, 1f)
+    b = constrain(b, 0f, 1f)
+
+    return floatArrayOf(r, g, b)
+}
+
+private fun FloatArray.asCmyk(): CMYKColor {
+    val r1 = this[0]
+    val g1 = this[1]
+    val b1 = this[2]
+    val k = 1.0f - max(r1, max(g1, b1))
+
+    val cyan = if (k == 1f) 0f else (1.0f - r1 - k) / (1.0f - k)
+    val magenta = if (k == 1f) 0f else (1.0f - g1 - k) / (1.0f - k)
+    val yellow = if (k == 1f) 0f else (1.0f - b1 - k) / (1.0f - k)
+
+    return CMYKColor(cyan, magenta, yellow, k)
+}
+
 fun HSLColor.asRgb(): RGBColor = asColorInt().asRgb()
 
 fun HSLColor.asArgb(): ARGBColor = asRgb().asArgb()
 
-fun HSLColor.asCmyk(): CMYKColor = asColorInt().asCmyk()
+fun HSLColor.asCmyk(): CMYKColor = asRGBF().asCmyk()
 
 fun HSLColor.asHex(): HEXColor = asColorInt().asHex()
 

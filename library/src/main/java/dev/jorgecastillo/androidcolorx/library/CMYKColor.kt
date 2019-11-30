@@ -2,6 +2,7 @@ package dev.jorgecastillo.androidcolorx.library
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.annotation.FloatRange
 import androidx.core.graphics.ColorUtils
 import kotlin.math.max
 
@@ -52,7 +53,70 @@ fun CMYKColor.asArgb(): ARGBColor = asColorInt().asArgb()
 
 fun CMYKColor.asHex(): HEXColor = asColorInt().asHex()
 
-fun CMYKColor.asHsl(): HSLColor = asColorInt().asHsl()
+fun CMYKColor.asHsl(): HSLColor {
+    val red = (1 - cyan) * (1 - key)
+    val green = (1 - magenta) * (1 - key)
+    val blue = (1 - yellow) * (1 - key)
+
+    return FloatArray(3).apply {
+        rgbFToHsl(red, green, blue, this)
+    }.let {
+        HSLColor(it[0], it[1], it[2])
+    }
+}
+
+/**
+ * Convert RGB components defined by floats [0..1] to HSL (hue-saturation-lightness).
+ *
+ *  * outHsl[0] is Hue [0 .. 360)
+ *  * outHsl[1] is Saturation [0...1]
+ *  * outHsl[2] is Lightness [0...1]
+ *
+ *
+ * @param r red component value [0..1]
+ * @param g green component value [0..1]
+ * @param b blue component value [0..1]
+ * @param outHsl 3-element array which holds the resulting HSL components
+ */
+fun rgbFToHsl(
+    @FloatRange(from = 0.0, to = 1.0) rf: Float,
+    @FloatRange(from = 0.0, to = 1.0) gf: Float,
+    @FloatRange(from = 0.0, to = 1.0) bf: Float,
+    outHsl: FloatArray
+) {
+    val max = Math.max(rf, Math.max(gf, bf))
+    val min = Math.min(rf, Math.min(gf, bf))
+    val deltaMaxMin = max - min
+
+    var h: Float
+    val s: Float
+    val l = (max + min) / 2f
+
+    if (max == min) {
+        // Monochromatic
+        s = 0f
+        h = s
+    } else {
+        if (max == rf) {
+            h = (gf - bf) / deltaMaxMin % 6f
+        } else if (max == gf) {
+            h = (bf - rf) / deltaMaxMin + 2f
+        } else {
+            h = (rf - gf) / deltaMaxMin + 4f
+        }
+
+        s = deltaMaxMin / (1f - Math.abs(2f * l - 1f))
+    }
+
+    h = h * 60f % 360f
+    if (h < 0) {
+        h += 360f
+    }
+
+    outHsl[0] = constrain(h, 0f, 360f)
+    outHsl[1] = constrain(s, 0f, 1f)
+    outHsl[2] = constrain(l, 0f, 1f)
+}
 
 fun CMYKColor.asHsla(): HSLAColor =
     asHsl().let { HSLAColor(it.hue, it.saturation, it.lightness, 1f) }
@@ -85,7 +149,8 @@ fun CMYKColor.darken(value: Int): CMYKColor = this.asColorInt().darken(value).as
  *
  * @param count of shades to generate over the source color. It generates 10 by default.
  */
-fun CMYKColor.shades(count: Int = 10): List<CMYKColor> = asColorInt().shades(count).map { it.asCmyk() }
+fun CMYKColor.shades(count: Int = 10): List<CMYKColor> =
+    asColorInt().shades(count).map { it.asCmyk() }
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
@@ -93,7 +158,8 @@ fun CMYKColor.shades(count: Int = 10): List<CMYKColor> = asColorInt().shades(cou
  *
  * @param count of tints to generate over the source color. It generates 10 by default.
  */
-fun CMYKColor.tints(count: Int = 10): List<CMYKColor> = asColorInt().tints(count).map { it.asCmyk() }
+fun CMYKColor.tints(count: Int = 10): List<CMYKColor> =
+    asColorInt().tints(count).map { it.asCmyk() }
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
