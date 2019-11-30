@@ -45,16 +45,14 @@ class HSLColorTests {
     fun `darken integer should darken the color`() {
         val color = HSLColor(339.61f, 0.82f, 0.52f)
 
-        HSLColor(339.70f, 0.82f, 0.32f) withQuiteBigPrecisionLoss
-                color.darken(20)
+        HSLColor(339.61f, 0.82f, 0.32f) eqWithMinimumPrecisionLoss color.darken(20)
     }
 
     @Test
     fun `darken float should darken the color`() {
         val color = HSLColor(339.61f, 0.82f, 0.52f)
 
-        HSLColor(339.70f, 0.82f, 0.32f) withQuiteBigPrecisionLoss
-                color.darken(0.2f)
+        HSLColor(339.61f, 0.82f, 0.32f) eqWithMinimumPrecisionLoss color.darken(0.2f)
     }
 
     @Test

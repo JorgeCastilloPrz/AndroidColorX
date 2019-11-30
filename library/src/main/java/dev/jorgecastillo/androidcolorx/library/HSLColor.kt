@@ -137,12 +137,22 @@ fun HSLColor.lighten(value: Int): HSLColor {
 /**
  * @param value amount to darken in the range 0...1
  */
-fun HSLColor.darken(value: Float): HSLColor = this.asColorInt().darken(value).asHsl()
+fun HSLColor.darken(value: Float): HSLColor {
+    var mutableLightness = this.lightness
+    mutableLightness -= value
+    mutableLightness = 0f.coerceAtLeast(mutableLightness.coerceAtMost(1f))
+    return HSLColor(hue, saturation, mutableLightness)
+}
 
 /**
  * @param value amount to darken in the range 0...100
  */
-fun HSLColor.darken(value: Int): HSLColor = this.asColorInt().darken(value).asHsl()
+fun HSLColor.darken(value: Int): HSLColor {
+    var mutableLightness = this.lightness
+    mutableLightness -= value / 100f
+    mutableLightness = 0f.coerceAtLeast(mutableLightness.coerceAtMost(1f))
+    return HSLColor(hue, saturation, mutableLightness)
+}
 
 /**
  * @return a list of shades for the given color like the ones in https://www.color-hex.com/color/e91e63.
