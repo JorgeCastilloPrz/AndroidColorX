@@ -66,43 +66,59 @@ class HSLColorTests {
     fun `shades should be properly calculated`() {
         val color = HSLColor(339.61f, 0.82f, 0.52f)
 
-        listOf(
-            HSLColor(339.70f, 0.82f, 0.52f),
-            HSLColor(339.49f, 0.82f, 0.47f),
-            HSLColor(339.66f, 0.82f, 0.42f),
-            HSLColor(339.87f, 0.82f, 0.36f)
-        ) withQuiteBigPrecisionLoss color.shades()
+        assertEquals(
+            listOf(
+                HSLColor(339.61f, 0.82f, 0.52f),
+                HSLColor(339.61f, 0.82f, 0.468f),
+                HSLColor(339.61f, 0.82f, 0.416f),
+                HSLColor(339.61f, 0.82f, 0.364f),
+                HSLColor(339.61f, 0.82f, 0.312f),
+                HSLColor(339.61f, 0.82f, 0.26f),
+                HSLColor(339.61f, 0.82f, 0.208f),
+                HSLColor(339.61f, 0.82f, 0.156f),
+                HSLColor(339.61f, 0.82f, 0.104f),
+                HSLColor(339.61f, 0.82f, 0.052f),
+                HSLColor(339.61f, 0.82f, 0.00f)
+            ),
+            color.shades()
+        )
     }
 
     @Test
     fun `shades with specific count should be properly calculated`() {
         val color = HSLColor(339.61f, 0.82f, 0.52f)
 
-        listOf(
-            HSLColor(339.70f, 0.82f, 0.52f),
-            HSLColor(339.72f, 0.82f, 0.35f),
-            HSLColor(340f, 0.82f, 0.17f),
-            HSLColor(0f, 0f, 0f)
-        ) withQuiteBigPrecisionLoss color.shades(count = 3)
+        assertEquals(
+            listOf(
+                HSLColor(339.61f, 0.82f, 0.52f),
+                HSLColor(339.61f, 0.82f, 0.3466667f),
+                HSLColor(339.61f, 0.82f, 0.1733334f),
+                HSLColor(339.61f, 0.82f, 0.0000001f)
+            ),
+            color.shades(count = 3)
+        )
     }
 
     @Test
     fun `tints should be properly calculated`() {
         val color = HSLColor(339.61f, 0.82f, 0.52f)
 
-        listOf(
-            HSLColor(339.70f, 0.82f, 0.52f),
-            HSLColor(339.78f, 0.82f, 0.57f),
-            HSLColor(339.75f, 0.82f, 0.62f),
-            HSLColor(340.00f, 0.82f, 0.66f),
-            HSLColor(339.67f, 0.82f, 0.71f),
-            HSLColor(339.80f, 0.82f, 0.76f),
-            HSLColor(339.75f, 0.82f, 0.81f),
-            HSLColor(340.00f, 0.81f, 0.85f),
-            HSLColor(339.51f, 0.84f, 0.90f),
-            HSLColor(342.00f, 0.83f, 0.95f),
-            HSLColor(0.00f, 0.00f, 1.00f)
-        ) withQuiteBigPrecisionLoss color.tints()
+        assertEquals(
+            listOf(
+                HSLColor(339.61f, 0.82f, 0.52f),
+                HSLColor(339.61f, 0.82f, 0.568f),
+                HSLColor(339.61f, 0.82f, 0.616f),
+                HSLColor(339.61f, 0.82f, 0.664f),
+                HSLColor(339.61f, 0.82f, 0.712f),
+                HSLColor(339.61f, 0.82f, 0.76f),
+                HSLColor(339.61f, 0.82f, 0.808f),
+                HSLColor(339.61f, 0.82f, 0.856f),
+                HSLColor(339.61f, 0.82f, 0.904f),
+                HSLColor(339.61f, 0.82f, 0.952f),
+                HSLColor(339.61f, 0.82f, 1.00f)
+            ),
+            color.tints()
+        )
     }
 
     @Test
@@ -110,10 +126,10 @@ class HSLColorTests {
         val color = HSLColor(339.61f, 0.82f, 0.52f)
 
         listOf(
-            HSLColor(339.70f, 0.82f, 0.52f),
-            HSLColor(339.4f, 0.82f, 0.68f),
-            HSLColor(340.3f, 0.83f, 0.84f),
-            HSLColor(0.00f, 0.00f, 1.00f)
+            HSLColor(339.61f, 0.82f, 0.52f),
+            HSLColor(339.61f, 0.82f, 0.68f),
+            HSLColor(339.61f, 0.82f, 0.84f),
+            HSLColor(339.61f, 0.82f, 1.00f)
         ) withQuiteBigPrecisionLoss color.tints(count = 3)
     }
 

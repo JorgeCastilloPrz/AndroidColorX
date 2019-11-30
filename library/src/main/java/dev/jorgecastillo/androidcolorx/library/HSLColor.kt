@@ -6,6 +6,7 @@ import androidx.annotation.NonNull
 import androidx.core.graphics.ColorUtils
 import kotlin.math.abs
 import kotlin.math.max
+import kotlin.math.roundToInt
 
 /**
  * HSL stands for hue-saturation-lightness.
@@ -160,7 +161,16 @@ fun HSLColor.darken(value: Int): HSLColor {
  *
  * @param count of shades to generate over the source color. It generates 10 by default.
  */
-fun HSLColor.shades(count: Int = 10): List<HSLColor> = asColorInt().shades(count).map { it.asHsl() }
+fun HSLColor.shades(count: Int = 10): List<HSLColor> {
+    require(count > 0) { "count must be > 0" }
+    val start = (this.lightness * 10000000).roundToInt()
+    val step = if (start > 0) {
+        -1 * start / count
+    } else 1
+    return IntProgression.fromClosedRange(start, 0, step).map { i ->
+        this.copy(lightness = i / 10000000f)
+    }
+}
 
 /**
  * @return a list of tints for the given color like the ones in https://www.color-hex.com/color/e91e63.
@@ -168,7 +178,15 @@ fun HSLColor.shades(count: Int = 10): List<HSLColor> = asColorInt().shades(count
  *
  * @param count of tints to generate over the source color. It generates 10 by default.
  */
-fun HSLColor.tints(count: Int = 10): List<HSLColor> = asColorInt().tints(count).map { it.asHsl() }
+fun HSLColor.tints(count: Int = 10): List<HSLColor> {
+    require(count > 0) { "count must be > 0" }
+
+    val start = (this.lightness * 10000000).roundToInt()
+    val step = if (start < 10000000) (10000000 - start) / count else 1
+    return IntProgression.fromClosedRange(start, 10000000, step).map { i ->
+        this.copy(lightness = i / 10000000f)
+    }
+}
 
 /**
  * The Hue is the colour's position on the colour wheel, expressed in degrees from 0° to 359°, representing the 360° of
